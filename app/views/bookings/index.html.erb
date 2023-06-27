@@ -1,0 +1,7 @@
+<h1>My Bookmark </h1>
+<ul>
+  <% @bookings.each do |booking|%>
+  <li><%= booking.event.title%></li>
+  <% end %>
+</ul>
+
