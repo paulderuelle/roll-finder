@@ -1,0 +1,16 @@
+<div class="new-event-wrap">
+  <h1>Let's create an amazing event!</h1>
+  <%= simple_form_for @event do |f| %>
+    <div class="text_form"><%= f.input :title %></div>
+    <div class="text_form"><%= f.input :description %></div>
+    <div class="text_form"><%= f.input :date %></div>
+    <div class="text_form"><%= f.input :address %></div>
+    <div class="text_form"><%= f.input :slot_number %></div>
+    <div class="text_form btn_photo">
+      <%= f.input :photo, as: :file %>
+    </div>
+    <div class="submit-wrap">
+      <%= f.submit class: "btn_form" %>
+    </div>
+  <% end %>
+</div>

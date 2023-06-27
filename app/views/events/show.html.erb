@@ -1,0 +1,8 @@
+<h1><%= @event.title %></h1>
+      <div class="cta">
+        <% if current_user == @event.user %>
+          <%= link_to "", edit_event_path(@event), class: "fa-solid fa-pencil fa-lg" %>
+          <%= link_to "", event_path(@event), class: "fa-solid fa-trash-can fa-lg", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+        <% else %>
+        <% end %>
+      </div>

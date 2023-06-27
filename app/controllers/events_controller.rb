@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
+  before_action :owner, only: %i[edit update destroy]
   before_action :set_event, only: %i[show edit update destroy]
 
   def index

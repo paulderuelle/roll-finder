@@ -1,0 +1,11 @@
+<div class="event-index">
+  <% if @events.present? %>
+    <% @events.each do |event| %>
+      <%= link_to event_path(event.id), class: "event-index" do %>
+        <h1><%= event.title %></h1>
+      <% end %>
+    <% end %>
+  <% else %>
+    <p class="response">There is no events</p>
+  <% end %>
+</div>
