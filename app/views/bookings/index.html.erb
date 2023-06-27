@@ -1,7 +1,8 @@
 <h1>My Bookmark </h1>
 <ul>
   <% @bookings.each do |booking|%>
-  <li><%= booking.event.title%></li>
+  <li><%= link_to booking.event.title, event_path(booking.event.id)%></li>
   <% end %>
 </ul>
 
+<%= link_to "home", root_path%>
