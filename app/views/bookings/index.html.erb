@@ -2,6 +2,8 @@
 <ul>
   <% @bookings.each do |booking|%>
   <li><%= link_to booking.event.title, event_path(booking.event.id)%></li>
+  <%= link_to "Cancel booking", bookings_path,
+                data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
   <% end %>
 </ul>
 
