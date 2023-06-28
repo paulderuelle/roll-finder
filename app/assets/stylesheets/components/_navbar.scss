@@ -1,12 +1,17 @@
-.navbar-lewagon {
+.navbar {
+  display: flex;
   justify-content: space-between;
-  background: white;
+  align-items: center;
+  padding: 10px;
+  background-color: $rollblue;
 }
-
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
+.navbar-brand {
+  text-align: left;
 }
-
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+.navbar-icons {
+  display: flex;
+  align-items: center;
+}
+.navbar-chatrooms {
+  margin-right: 10px;
 }
