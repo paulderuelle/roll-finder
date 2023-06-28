@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'games/index'
   devise_for :users
   root to: "pages#home"
 
@@ -18,4 +19,6 @@ Rails.application.routes.draw do
   # get "profile/:id", to: "pages#profileshow", as: :show_profile
 
   ## routes for chatroom
+
+  get '/games', to: 'games#index'
 end
