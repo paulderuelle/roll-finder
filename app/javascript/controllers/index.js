@@ -1,6 +1,9 @@
 // Import and register all your controllers from the importmap under controllers/*
 
 import { application } from "controllers/application"
+import { DropdownMenuController } from "controllers/dropdown_menu"
+
+application.register("dropdown-menu", DropdownMenuController)
 
 // Eager load all controllers defined in the import map under controllers/**/*_controller
 import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading"
