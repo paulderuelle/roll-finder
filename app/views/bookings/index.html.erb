@@ -1,8 +1,28 @@
-<h1>My Bookmark </h1>
-<ul>
-  <% @bookings.each do |booking|%>
-  <li><%= link_to booking.event.title, event_path(booking.event.id)%></li>
-  <% end %>
-</ul>
+<h1>My booking </h1>
 
-<%= link_to "home", root_path%>
+<% if @bookings.size == 0 %>
+  <p>There is no bookmark yet.</p>
+<% else %>
+   <ul>
+    <% @bookings.each do |booking|%>
+    <li><%= link_to booking.event.title, event_path(booking.event.id)%></li>
+    <%= link_to "Cancel booking", booking_path(booking), class: "btn primary",
+                  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+    <% end %>
+  </ul>
+<% end %>
+
+
+<h1>My bookmark </h1>
+
+<% if @bookmarks.size == 0 %>
+  <p>There is no bookmark yet.</p>
+<% else %>
+   <ul>
+    <% @bookmarks.each do |bookmark|%>
+    <li><%= link_to bookmark.event.title, event_path(bookmark.event.id)%></li>
+    <%= link_to "Cancel bookmark", bookmark_path(bookmark), class: "btn primary",
+                  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+    <% end %>
+  </ul>
+<% end %>

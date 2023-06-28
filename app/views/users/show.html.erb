@@ -1,0 +1,11 @@
+<div class="profile">
+  <div class = "profile-picture">
+    <h1><%= current_user.nickname %></h1>
+    <p><%= current_user.email %></p>
+    <p><%= current_user.description %></p>
+
+  <% if @user == current_user %>
+    <%= link_to "Edit profile", edit_user_path(current_user), class: "edit" %>
+    <% end %>
+</div>
+<%= link_to "Log out", destroy_user_session_path, method: :delete, data: { turbo: "false" } %>

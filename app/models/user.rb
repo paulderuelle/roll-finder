@@ -5,10 +5,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :bookings, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :events, dependent: :destroy
 
-  ## Change Sign_up
-  # validates :nickname, presence: true
-  # validates :first_name, presence: true
+  validates :nickname, presence: true
+  validates :first_name, presence: true
+  has_one_attached :photo
 end

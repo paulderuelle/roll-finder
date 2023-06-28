@@ -1,0 +1,20 @@
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: $rollblue;
+}
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+.footer-buttons {
+  display: flex;
+}
+.footer-button {
+  margin-right: 10px;
+  text-decoration: none;
+  padding: 5px 10px;
+  color: $rollmustard;
+}
