@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'games/index'
   devise_for :users
   root to: "pages#home"
 
@@ -20,5 +21,7 @@ Rails.application.routes.draw do
 
   ## routes for chatroom
 
+  get '/games', to: 'games#index'
+  post '/games/save_game', to: 'games#save_game'
   resources :bookmarks, only: %i[destroy]
 end
