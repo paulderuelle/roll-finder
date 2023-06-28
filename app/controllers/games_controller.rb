@@ -4,10 +4,30 @@ require 'nokogiri' # Including the 'nokogiri' gem, which provides XML parsing an
 class GamesController < ApplicationController
   def index
     # Set the initial search query
-    search_query = 'Monopoly'
+    search_query = 'Space Hulk'
 
     # Call the search_games method with the search query and assign the result to @games
     @games = search_games(search_query)
+  end
+
+  def save_game
+    game_id = params[:game_id]
+    game_name = params[:game_name] # Add this line to retrieve the game name from the form
+
+    # Use the game ID to retrieve the relevant game data
+    game_data = fetch_game_data(game_id)
+
+    # Create a new game record in the database using the retrieved data
+    Game.create!(
+      name: game_name, # Save the retrieved game name instead of the name from game_data (to avoid localized name usage)
+      publish_year: game_data.at_xpath('//yearpublished').text,
+      description: game_data.at_xpath('//description').text,
+      min_players: game_data.at_xpath('//minplayers').text,
+      max_players: game_data.at_xpath('//maxplayers').text,
+      duration: game_data.at_xpath('//playingtime').text.to_i
+    )
+
+    redirect_to games_path, notice: 'Game saved successfully' # Redirect back to the index page
   end
 
   private
