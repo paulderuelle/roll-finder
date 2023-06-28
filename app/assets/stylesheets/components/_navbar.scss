@@ -1,17 +1,34 @@
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
   background-color: $rollblue;
 }
-.navbar-brand {
-  text-align: left;
-}
-.navbar-icons {
+.navbar-container {
   display: flex;
-  align-items: center;
+  justify-content: space-between;
 }
-.navbar-chatrooms {
+.navbar-buttons {
+  display: flex;
+}
+.navbar-button {
   margin-right: 10px;
+  text-decoration: none;
+  padding: 5px 10px;
+  color: $rollmustard;
 }
+// .navbar-brand {
+//   text-align: left;
+// }
+// .navbar-icons {
+//   display: flex;
+//   align-items: center;
+// }
+// .brand {
+//   text-decoration: none;
+//   color: $rollmustard;
+// }
+// .navbar-chatrooms {
+//   margin-right: 10px;
+//   color: $rollmustard;
+// }

@@ -1,28 +1,27 @@
-<nav class="navbar">
-  <div class="navbar-brand">
-    <%= link_to "RollFinder", root_path %>
-  </div>
-
-  <% if user_signed_in? %>
-    <div class="navbar-icons">
-      <div class="navbar-chatrooms">
-        <%= link_to root_path do %>
-          <i class="fa-solid fa-comments"></i>
-        <% end %>
+<nav>
+  <div class="navbar-container">
+    <div class="navbar-buttons">
+      <div class="navbar-brand">
+        <%= link_to "RollFinder", root_path %>
       </div>
-      <div class="dropdown-menu">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          <%= image_tag "avatar.png" %>
-        </a>
-        <div class="dropdown-content">
-          <%= link_to "Your profile", user_path(current_user.id), class: "dropdown-item" %>
-          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item", data: { turbo: "false" } %>
+      <% if user_signed_in? %>
+        <div class="navbar-button">
+          <%= link_to root_path do %>
+            <i class="fa-solid fa-comments"></i>
+          <% end %>
         </div>
-      </div>
+        <div class="navbar-button">
+          <%= link_to user_path(current_user.id) do %>
+            <%= image_tag "avatar.png", id:"navbar-avatar"%>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="navbar-button">
+          <%= link_to "Login", new_user_session_path %>
+        </div>
+      <% end %>
     </div>
-  <% else %>
-    <nav class="navbar-login">
-      <%= link_to "Login", new_user_session_path %>
-    </div>
-  <% end %>
+  </div>
 </nav>
+
+<%# <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item", data: { turbo: "false" } %>
