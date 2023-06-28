@@ -1,0 +1,9 @@
+<h1>New bookmark</h1>
+
+<%= simple_form_for [@event, @bookmark] do |f| %>
+    <div>
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= link_to "return to the home-pages", root_path %>

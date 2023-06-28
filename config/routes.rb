@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :events do
     resources :bookings, only: %i[new create]
+    resources :bookmarks, only: %i[new create]
     resources :reviews, only: %i[new create edit update]
   end
 
@@ -18,4 +19,6 @@ Rails.application.routes.draw do
   # get "profile/:id", to: "pages#profileshow", as: :show_profile
 
   ## routes for chatroom
+
+  resources :bookmarks, only: %i[destroy]
 end
