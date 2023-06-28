@@ -11,13 +11,13 @@
           <% end %>
         </div>
         <div class="navbar-button">
-          <%= link_to user_path(current_user.id) do %>
+          <%= link_to user_path(current_user) do %>
             <%= image_tag "avatar.png", id:"navbar-avatar"%>
           <% end %>
         </div>
       <% else %>
         <div class="navbar-button">
-          <%= link_to "Login", new_user_session_path %>
+          <%= link_to "Login", new_user_session_path, id:"login" %>
         </div>
       <% end %>
     </div>
