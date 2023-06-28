@@ -2,6 +2,9 @@
 
 <%= simple_form_for [@event, @booking] do |f| %>
   <div>
+    <%= f.input :comment, as: :hidden %>
+  </div>
+  <div>
     <%= f.submit %>
   </div>
 <% end %>
