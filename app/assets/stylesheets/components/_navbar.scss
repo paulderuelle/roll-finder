@@ -10,13 +10,22 @@ nav {
 }
 .navbar-buttons {
   display: flex;
+  align-items: center;
 }
 .navbar-button {
   margin-right: 10px;
-  text-decoration: none;
   padding: 5px 10px;
-  color: $rollmustard;
+  #brand {
+    text-decoration: none;
+    color: $rollmustard;
+  }
+  .fa-comments {
+    text-decoration: none;
+    color: $rollmustard;
+  }
 }
+
+
 // .navbar-brand {
 //   text-align: left;
 // }

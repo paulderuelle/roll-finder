@@ -1,8 +1,8 @@
 <nav>
   <div class="navbar-container">
     <div class="navbar-buttons">
-      <div class="navbar-brand">
-        <%= link_to "RollFinder", root_path %>
+      <div class="navbar-button">
+        <%= link_to "RollFinder", root_path, id:"brand" %>
       </div>
       <% if user_signed_in? %>
         <div class="navbar-button">
