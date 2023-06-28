@@ -1,7 +1,7 @@
-<h1>My Bookmark </h1>
+<h1>My booking </h1>
 
 <% if @bookings.size == 0 %>
-  <p>There is no booking yet.</p>
+  <p>There is no bookmark yet.</p>
 <% else %>
    <ul>
     <% @bookings.each do |booking|%>
@@ -12,4 +12,17 @@
   </ul>
 <% end %>
 
-<%= link_to "home", root_path%>
+
+<h1>My bookmark </h1>
+
+<% if @bookmarks.size == 0 %>
+  <p>There is no bookmark yet.</p>
+<% else %>
+   <ul>
+    <% @bookmarks.each do |bookmark|%>
+    <li><%= link_to bookmark.event.title, event_path(bookmark.event.id)%></li>
+    <%= link_to "Cancel bookmark", bookmark_path(bookmark), class: "btn primary",
+                  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+    <% end %>
+  </ul>
+<% end %>
