@@ -1,4 +1,9 @@
 <h1><%= @event.title %></h1>
+<%= @event.description %>
+<br><%= @event.start_hours.year %>
+<br><%= @event.start_hours.hour %>:<%= @event.start_hours.min %>  :  <%= @event.end_hours.hour %>:<%= @event.end_hours.min %>
+<br><%= @event.address %>
+<br><%= @event.slot_number %>
       <div class="cta">
         <% if current_user == @event.user %>
           <%= link_to "", edit_event_path(@event), class: "fa-solid fa-pencil fa-lg" %>
