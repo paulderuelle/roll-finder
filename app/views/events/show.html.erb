@@ -14,11 +14,11 @@
     <% else %>
     <% bookmark = @event.bookmarks.where(user: current_user).first %>
       <% if bookmark.present? %>
-        <%= link_to "Cancel bookmark", bookmark_path(bookmark), class: "btn-main", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+        <%= link_to "", bookmark_path(bookmark), class:"fa-solid fa-heart", style:"color: #f10404;", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
       <% else %>
         <%= simple_form_for [@event, Bookmark.new] do |f| %>
           <div>
-            <%= f.submit class: "btn-main" %>
+            <%= f.submit "", class:"fa-regular fa-heart", style:"color: #f10404;" %>
           </div>
         <% end %>
       <% end %>
