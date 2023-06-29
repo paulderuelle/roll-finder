@@ -16,9 +16,7 @@ class GamesController < ApplicationController
   def save_game
     game_id = params[:game_id]
     game_name = params[:game_name]
-
     game_data = fetch_game_data(game_id)
-
     image_url = fetch_image_url(game_data)
 
     Game.create!(
