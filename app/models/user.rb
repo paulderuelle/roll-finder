@@ -9,7 +9,5 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :events, dependent: :destroy
 
-  # validates :nickname, presence: true, uniqueness: true, length: { maximum: 20 }
-  # validates :first_name, presence: true, length: { maximum: 20 }
   has_one_attached :photo
 end

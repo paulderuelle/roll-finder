@@ -11,10 +11,10 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    if @user.update(user_params)
+    if @user.update_without_password(user_params)
       redirect_to user_path(@user), notice: 'Profile was successfully updated.'
     else
-      render :update, status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity
     end
   end
 end
