@@ -16,6 +16,7 @@
       <% end %>
       <% if Game.exists?(name: game[:name]) %>
         <% existing_game = Game.find_by(name: game[:name]) %>
+        <img src="<%= game.image_url %>" alt="<%= game.name %>">
         <p><strong>Year Published:</strong> <%= existing_game.publish_year %></p>
         <p><strong>Min Players:</strong> <%= existing_game.min_players %></p>
         <p><strong>Max Players:</strong> <%= existing_game.max_players %></p>
@@ -31,7 +32,7 @@
         <% if game[:year_published].nil? || game[:min_players].nil? || game[:max_players].nil? || game[:playing_time].nil? || game[:description].nil? %>
           <p>No game found.</p>
         <% else %>
-          <%= form_with url: { action: :save_game }, method: :post do |f| %>
+          <%= form_with url: { action: :save_game }, method: :post, html: { multipart: true } do |f| %>
             <%= f.hidden_field :game_id, value: game[:id] %>
             <%= f.hidden_field :game_name, value: game[:name] %>
             <%= f.submit 'Save Game' %>

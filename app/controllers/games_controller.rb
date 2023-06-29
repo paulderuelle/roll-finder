@@ -1,5 +1,6 @@
 require 'open-uri'
 require 'nokogiri'
+require 'cloudinary'
 
 class GamesController < ApplicationController
   def index
@@ -18,13 +19,16 @@ class GamesController < ApplicationController
 
     game_data = fetch_game_data(game_id)
 
+    image_url = fetch_image_url(game_data)
+
     Game.create!(
       name: game_name,
-      publish_year: game_data.at_xpath('//yearpublished').text,
-      description: game_data.at_xpath('//description').text,
-      min_players: game_data.at_xpath('//minplayers').text,
-      max_players: game_data.at_xpath('//maxplayers').text,
-      duration: game_data.at_xpath('//playingtime').text.to_i
+      publish_year: fetch_value(game_data, '//yearpublished'),
+      description: fetch_value(game_data, '//description'),
+      min_players: fetch_value(game_data, '//minplayers'),
+      max_players: fetch_value(game_data, '//maxplayers'),
+      duration: fetch_value(game_data, '//playingtime').to_i,
+      image_url: image_url
     )
 
     redirect_to games_path, notice: 'Game saved successfully'
@@ -51,14 +55,14 @@ class GamesController < ApplicationController
       game_data = fetch_game_data(game_id)
 
       {
-        name: game.at_xpath('./name').text,
+        name: fetch_value(game, './name'),
         id: game_id,
-        year_published: game_data.at_xpath('//yearpublished').text,
-        min_players: game_data.at_xpath('//minplayers').text,
-        max_players: game_data.at_xpath('//maxplayers').text,
-        playing_time: game_data.at_xpath('//playingtime').text,
-        description: game_data.at_xpath('//description').text,
-        image: game_data.at_xpath('//image')&.text
+        year_published: fetch_value(game_data, '//yearpublished'),
+        min_players: fetch_value(game_data, '//minplayers'),
+        max_players: fetch_value(game_data, '//maxplayers'),
+        playing_time: fetch_value(game_data, '//playingtime'),
+        description: fetch_value(game_data, '//description'),
+        image: fetch_value(game_data, '//image')
       }
     end
   end
@@ -71,5 +75,18 @@ class GamesController < ApplicationController
   def fetch_game_data(game_id)
     game_url = "https://www.boardgamegeek.com/xmlapi/boardgame/#{game_id}"
     fetch_xml_data(game_url)
+  end
+
+  def fetch_value(xml_data, xpath)
+    xml_data.at_xpath(xpath)&.text
+  end
+
+  def fetch_image_url(game_data)
+    image_url = fetch_value(game_data, '//image')
+
+    if image_url.present?
+      uploaded_image = Cloudinary::Uploader.upload(image_url)
+      uploaded_image['secure_url']
+    end
   end
 end

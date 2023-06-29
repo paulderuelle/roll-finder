@@ -31,7 +31,7 @@
         <% if game[:year_published].nil? || game[:min_players].nil? || game[:max_players].nil? || game[:playing_time].nil? || game[:description].nil? %>
           <p>No game found.</p>
         <% else %>
-          <%= form_with url: { action: :save_game }, method: :post do |f| %>
+          <%= form_with url: { action: :save_game }, method: :post, html: { multipart: true } do |f| %>
             <%= f.hidden_field :game_id, value: game[:id] %>
             <%= f.hidden_field :game_name, value: game[:name] %>
             <%= f.submit 'Save Game' %>
