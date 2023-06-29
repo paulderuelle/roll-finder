@@ -15,6 +15,6 @@
     <p><strong>Max Players:</strong> <%= existing_game.max_players %></p>
     <p><strong>Playing Time:</strong> <%= existing_game.duration %> minutes</p>
     <p><strong>Description:</strong> <%= existing_game.description %></p>
-    <%= button_to "Game already in the db", { disabled: true }, class: 'game-exists-button' %>
+    <%= button_to "Game already in the db", new_event_path, method: :get, class: 'game-exists-button', params: { game_name: game[:name], year_published: existing_game.publish_year, min_players: existing_game.min_players, max_players: existing_game.max_players, playing_time: existing_game.duration, description: existing_game.description, image_url: existing_game.image_url } %>
   </div>
 <% end %>

@@ -8,28 +8,21 @@
 <% if @games.empty? %>
   <p>No game found.</p>
 <% else %>
-  <% game_names = @games.map { |game| game[:name] } %>
-  <% game_names.uniq.each do |name| %>
-    <% existing_game = Game.find_by(name: name) %>
+  <% @games.each do |game| %>
     <div>
-      <h2><%= name %></h2>
-
+      <h2><%= game[:name] %></h2>
+      <% if game[:image] %>
+        <img src="<%= game[:image] %>" alt="<%= game[:name] %>">
+      <% end %>
+      <% existing_game = Game.find_by(name: game[:name]) %>
       <% if existing_game %>
-        <% if existing_game.image_url.present? %>
-          <img src="<%= existing_game.image_url %>" alt="<%= existing_game.name %>">
-        <% end %>
         <p><strong>Year Published:</strong> <%= existing_game.publish_year %></p>
         <p><strong>Min Players:</strong> <%= existing_game.min_players %></p>
         <p><strong>Max Players:</strong> <%= existing_game.max_players %></p>
         <p><strong>Playing Time:</strong> <%= existing_game.duration %> minutes</p>
         <p><strong>Description:</strong> <%= existing_game.description %></p>
-        <%= button_to "Game already in the db", { disabled: true }, class: 'game-exists-button' %>
+        <%= button_to "Game already in the db", new_event_path, method: :get, class: 'game-exists-button', params: { game_name: game[:name], year_published: existing_game.publish_year, min_players: existing_game.min_players, max_players: existing_game.max_players, playing_time: existing_game.duration, description: existing_game.description, image_url: existing_game.image_url } %>
       <% else %>
-        <% matching_games = @games.select { |game| game[:name] == name } %>
-        <% game = matching_games.first %>
-        <% if game[:image].present? %>
-          <img src="<%= game[:image] %>" alt="<%= game[:name] %>">
-        <% end %>
         <p><strong>Year Published:</strong> <%= game[:year_published] %></p>
         <p><strong>Min Players:</strong> <%= game[:min_players] %></p>
         <p><strong>Max Players:</strong> <%= game[:max_players] %></p>
@@ -38,7 +31,7 @@
         <% if game[:year_published].nil? || game[:min_players].nil? || game[:max_players].nil? || game[:playing_time].nil? || game[:description].nil? %>
           <p>No game found.</p>
         <% else %>
-          <%= form_with url: { action: :save_game }, method: :post, html: { multipart: true } do |f| %>
+          <%= form_with url: { action: :show }, method: :post, html: { multipart: true } do |f| %>
             <%= f.hidden_field :game_id, value: game[:id] %>
             <%= f.hidden_field :game_name, value: game[:name] %>
             <%= f.submit 'Save Game' %>
