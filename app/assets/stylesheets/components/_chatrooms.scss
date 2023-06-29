@@ -1,0 +1,39 @@
+
+  .message {
+    display: flex;
+    margin: 10px;
+    p {
+      margin: 0 10px;
+      background: white;
+      padding: 10px;
+      border-radius: 10px;
+    }
+    .message-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+    }
+  }
+  .message.me {
+    flex-direction: row-reverse;
+    p {
+      background-color: #fff5d5;
+    }
+    .message-avatar {
+      background-color: aquamarine;
+    }
+    .sender {
+      display: none;
+    }
+  }
+  .message.you {
+    .message-avatar {
+      background-color: grey;
+    }
+    .sender {
+      font-weight: bold;
+      font-size: 0.8em;
+      display: block;
+      margin: 0;
+    }
+  }

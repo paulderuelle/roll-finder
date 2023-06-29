@@ -21,4 +21,8 @@ Rails.application.routes.draw do
   ## routes for chatroom
 
   resources :bookmarks, only: %i[destroy]
+
+  resources :chatrooms, only: [:index, :show, :create] do
+    resources :messages, only: :create
+  end
 end
