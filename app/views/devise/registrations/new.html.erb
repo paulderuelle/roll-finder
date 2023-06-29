@@ -5,10 +5,17 @@
         <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), data: { turbo: :false }) do |f| %>
           <%= f.error_notification %>
           <div class="form-inputs">
+            <%= f.input :nickname,
+                        required: true,
+                        hint: "can be modified later in your profile",
+                        input_html: { autocomplete: "nickname" }%>
+            <%= f.input :first_name,
+                        required: true,
+                        input_html: { autocomplete: "first_name" }%>
             <%= f.input :email,
                         required: true,
                         autofocus: true,
-                        hint: "will be used to log in, you can go later to your profile to edit a nickame",
+                        hint: "will be used to log in later",
                         input_html: { autocomplete: "email" }%>
             <%= f.input :password,
                         required: true,
@@ -20,7 +27,7 @@
           </div>
 
           <div class="form-actions">
-            <%= f.button :submit, "Sign up", class:"btn-main btn-devise" %>
+            <%= f.button :submit, "Sign up", class: "btn-main btn-devise" %>
           </div>
         <% end %>
         <%= render "devise/shared/links" %>
