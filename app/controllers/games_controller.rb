@@ -11,25 +11,10 @@ class GamesController < ApplicationController
     search_query = params[:search_query]&.capitalize
     @games = search_games(search_query)
     @search_query = search_query
-  end
 
-  def save_game
-    game_id = params[:game_id]
-    game_name = params[:game_name]
-    game_data = fetch_game_data(game_id)
-    image_url = fetch_image_url(game_data)
+    save_games_to_database(@games)
 
-    Game.create!(
-      name: game_name,
-      publish_year: fetch_value(game_data, '//yearpublished'),
-      description: fetch_value(game_data, '//description'),
-      min_players: fetch_value(game_data, '//minplayers'),
-      max_players: fetch_value(game_data, '//maxplayers'),
-      duration: fetch_value(game_data, '//playingtime').to_i,
-      image_url: image_url
-    )
-
-    redirect_to games_path, notice: 'Game saved successfully'
+    # redirect_to games_path
   end
 
   def my_game
@@ -39,7 +24,7 @@ class GamesController < ApplicationController
       game.update(switched_button: !game.switched_button)
     end
 
-    redirect_to games_path
+    redirect_to new_event_path
   end
 
   private
@@ -85,6 +70,25 @@ class GamesController < ApplicationController
     if image_url.present?
       uploaded_image = Cloudinary::Uploader.upload(image_url)
       uploaded_image['secure_url']
+    end
+  end
+
+  def save_games_to_database(games)
+    games.each do |game|
+      next if Game.exists?(name: game[:name])
+
+      game_data = fetch_game_data(game[:id])
+      image_url = fetch_image_url(game_data)
+
+      Game.create!(
+        name: game[:name],
+        publish_year: fetch_value(game_data, '//yearpublished'),
+        description: fetch_value(game_data, '//description'),
+        min_players: fetch_value(game_data, '//minplayers'),
+        max_players: fetch_value(game_data, '//maxplayers'),
+        duration: fetch_value(game_data, '//playingtime').to_i,
+        image_url: image_url
+      )
     end
   end
 end
