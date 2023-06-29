@@ -3,33 +3,51 @@
     <h1><%= @event.title %></h1>
   </div>
   <div class="event-profile">
-  <%= link_to "profile", user_path(@event)%>
-  <%= link_to "new bookmark", new_event_bookmark_path(@event)%>
+    <%= link_to "profile", user_path(@event)%>
+    <% if current_user == @event.user %>
+      <div class="event-icone">
+        <%= link_to "", edit_event_path(@event), class: "fa-solid fa-pencil fa-lg" %>
+      </div>
+      <div class="event-icone">
+        <%= link_to "", event_path(@event), class: "fa-solid fa-trash-can fa-lg", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+      </div>
+    <% else %>
+    <% bookmark = @event.bookmarks.where(user: current_user).first %>
+      <% if bookmark.present? %>
+        <%= link_to "Cancel bookmark", bookmark_path(bookmark), class: "btn-main", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+      <% else %>
+        <%= simple_form_for [@event, Bookmark.new] do |f| %>
+          <div>
+            <%= f.submit class: "btn-main" %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
   </div>
   <div class="event-date">
-    <div>
+    <div class="event-dateshow">
       <%= @event.start_hours.day %>/<%= @event.start_hours.month %>/<%= @event.start_hours.year %>
     </div>
-    <div>
+    <div class="event-dateshow">
       <%= @event.start_hours.hour %>:<%= @event.start_hours.min %>  :  <%= @event.end_hours.hour %>:<%= @event.end_hours.min %>
     </div>
   </div>
   <div class="event-description">
   <%= @event.description %>
   </div>
-  <div class="event-slot">
-    <div>
+  <div class="event-cardslot">
+    <% if current_user == @event.user %>
+    <div class="event-slotshow">
       <%= @event.bookings.size %> / <%= @event.slot_number %>
     </div>
-    <div>
-      <%= link_to "new booking", new_event_booking_path(@event)%>
-    </div>
-  </div>
-  <div class="cta">
-    <% if current_user == @event.user %>
-      <%= link_to "", edit_event_path(@event), class: "fa-solid fa-pencil fa-lg" %>
-      <%= link_to "", event_path(@event), class: "fa-solid fa-trash-can fa-lg", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+    <% @event.bookings.each do |booking| %>
+      <div class="validatecard">
+        <%= booking.user.nickname %>
+        <p>Accepted</p>
+      </div>
+      <% end %>
     <% else %>
     <% end %>
   </div>
 </div>
+<%= link_to "new booking", new_event_booking_path(@event)%>
