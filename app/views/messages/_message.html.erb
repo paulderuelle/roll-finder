@@ -1,0 +1,7 @@
+<div class="message-avatar"></div>
+<p>
+  <% if !message.chatroom.personal %>
+    <span class="sender"><%= message.user.nickname %></span>
+  <% end %>
+  <%= message.content %>
+</p>

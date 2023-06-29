@@ -1,0 +1,9 @@
+<% if user.first_name.present? && user.nickname.present? %>
+  <strong style="margin-right: 5px"><%= user.first_name %></strong>(<%= user.nickname %>)
+<% elsif user.first_name.present? && !user.nickname.present? %>
+  <strong><%= user.first_name %></strong>
+<% elsif !user.first_name.present? && user.nickname.present? %>
+  <%= user.nickname %>
+<% else %>
+  <%= user.email %>
+<% end %>

@@ -10,4 +10,6 @@ class User < ApplicationRecord
   has_many :events, dependent: :destroy
 
   has_one_attached :photo
+  has_many :chatroom_users
+  has_many :chatrooms, through: :chatroom_users
 end

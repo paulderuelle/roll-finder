@@ -1,0 +1,31 @@
+<h1>Chatrooms</h1>
+<%= link_to "Chat with bobby", "/chatrooms", data: { turbo_method: :post} %>
+<% if @chatrooms.present? %>
+  <div class="chatrooms">
+    <% @chatrooms.each do |chatroom| %>
+      <%= link_to chatroom_path(chatroom.id), style: "text-decoration:none; color:black;" do %>
+        <div style="background-color: white; padding: 17px; margin:10px; border-radius: 10px; display: flex; justify-content: space-between;">
+          <% if chatroom.personal %>
+             <% chatroom.users.each do |user| %>
+              <% unless user == current_user %>
+                <div style="display: flex">
+                  <div style="height: 30px; width: 30px; background-color:grey; border-radius: 50%"></div>
+                  <%= render "messages/user_names", user: user %>
+                </div>
+                <div>
+                  <% if chatroom.messages.present? %>
+                    <span><strong>“</strong></span><%= chatroom.messages.last.content %>
+                  <% end %>
+                </div>
+              <% end %>
+             <% end %>
+          <% else %>
+              <%= chatroom.name %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% else %>
+  <p>You have no opened chatrooms yet.</p>
+<% end %>
