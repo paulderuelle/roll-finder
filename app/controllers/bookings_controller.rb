@@ -17,7 +17,7 @@ class BookingsController < ApplicationController
     @booking.user = current_user
     @booking.status = "Pending"
     if @booking.save
-      redirect_to @event, notice: "Booking created succesfully."
+      redirect_to event_path(@event.bookings), notice: "Booking created succesfully."
     else
       render :new, status: :unprocessable_entity
     end
@@ -37,7 +37,7 @@ class BookingsController < ApplicationController
 
   def destroy
     @booking.destroy
-    redirect_to bookings_path, status: :see_other
+    redirect_to event_path, status: :see_other
   end
 
   private
