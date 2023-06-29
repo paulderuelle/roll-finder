@@ -8,14 +8,16 @@
 <% if @games.empty? %>
   <p>No game found.</p>
 <% else %>
-  <% @games.each do |game| %>
+  <% game_names = @games.map { |game| game[:name] } %>
+  <% game_names.uniq.each do |name| %>
+    <% existing_game = Game.find_by(name: name) %>
     <div>
-      <h2><%= game[:name] %></h2>
-      <% if game[:image] %>
-        <img src="<%= game[:image] %>" alt="<%= game[:name] %>">
-      <% end %>
-      <% if Game.exists?(name: game[:name]) %>
-        <% existing_game = Game.find_by(name: game[:name]) %>
+      <h2><%= name %></h2>
+
+      <% if existing_game %>
+        <% if existing_game.image_url.present? %>
+          <img src="<%= existing_game.image_url %>" alt="<%= existing_game.name %>">
+        <% end %>
         <p><strong>Year Published:</strong> <%= existing_game.publish_year %></p>
         <p><strong>Min Players:</strong> <%= existing_game.min_players %></p>
         <p><strong>Max Players:</strong> <%= existing_game.max_players %></p>
@@ -23,6 +25,11 @@
         <p><strong>Description:</strong> <%= existing_game.description %></p>
         <%= button_to "Game already in the db", { disabled: true }, class: 'game-exists-button' %>
       <% else %>
+        <% matching_games = @games.select { |game| game[:name] == name } %>
+        <% game = matching_games.first %>
+        <% if game[:image].present? %>
+          <img src="<%= game[:image] %>" alt="<%= game[:name] %>">
+        <% end %>
         <p><strong>Year Published:</strong> <%= game[:year_published] %></p>
         <p><strong>Min Players:</strong> <%= game[:min_players] %></p>
         <p><strong>Max Players:</strong> <%= game[:max_players] %></p>
