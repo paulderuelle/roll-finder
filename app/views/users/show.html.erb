@@ -1,14 +1,21 @@
 <div class="profile">
   <div class="profile-picture">
     <% if current_user %>
-      <p><%= current_user.nickname %></p>
-      <p><%= current_user.first_name %></p>
-      <p><%= current_user.email %></p>
-      <p><%= current_user.description %></p>
+      <p><%= @user.nickname %></p>
+      <p><%= @user.first_name %></p>
+      <p><%= @user.email %></p>
+      <p><%= @user.description %></p>
+
+    <div>
+      <% @reviews.each do |review| %>
+        <p>Rating: <%= review.rating %></p>
+        <p>Comments: <%= review.comment %></p>
+      <% end %>
+    </div>
+
       <div>
         <%= link_to edit_user_path(current_user), class: "edit" do %>
           <% concat content_tag(:i, "", class: "fa-solid fa-pencil fa-sm") %>
-          Edit profile
         <% end %>
       </div>
     <% end %>

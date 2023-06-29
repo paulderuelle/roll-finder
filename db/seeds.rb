@@ -50,7 +50,6 @@ puts 'Categories created'
     Booking.create!(
       event: event_loop,
       status: "pending",
-      comment: Faker::Book.title,
       user: User.all.sample
     )
   end
