@@ -1,6 +1,7 @@
 .row {
   width: 100%;
 }
+
 .form-login {
   background: white;
   padding: 10px 20px;
@@ -12,7 +13,28 @@
     justify-content: center;
   }
   .btn-devise {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
     width: 50%;
-    margin: 20px auto;
+    margin: 5px auto;
   }
+  .btn-back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    width: 30%;
+    height: 25px;
+    margin: 5px auto;
+  }
+}
+
+.fa-arrow-right, .fa-arrow-left {
+  padding-right: 5px;
+}
+
+.devise-links-container {
+  display: flex;
+  justify-content: center;
 }
