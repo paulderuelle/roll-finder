@@ -3,9 +3,10 @@
     <% @events.each do |event| %>
       <%= link_to event_path(event.id), class: "event-index" do %>
         <h1><%= event.title %></h1>
-        <%= event.start_hours.year %>
+        <%= event.start_hours.day %>/<%= event.start_hours.month %>/<%= event.start_hours.year %>
         <br><%= event.start_hours.hour %>:<%= event.start_hours.min %>  :  <%= event.end_hours.hour %>:<%= event.end_hours.min %>
         <br> <%= event.bookings.size %> / <%= event.slot_number %>
+        <br><%= event.address %>
       <% end %>
     <% end %>
   <% else %>
