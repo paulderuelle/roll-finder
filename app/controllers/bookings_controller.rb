@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_event, only: %i[new create]
+  before_action :set_booking, only: %i[edit update destroy]
 
   def index
     @bookings = Booking.where(user: current_user)
@@ -14,34 +15,29 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.event = @event
     @booking.user = current_user
+    @booking.status = "Pending"
     if @booking.save
-      redirect_to bookings_path
+      redirect_to event_path(@event.bookings), notice: "Booking created succesfully."
     else
-      render "events/show", status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
   def edit
-    @booking = Booking.find(params[:id])
   end
 
   def update
-    @booking = Booking.find(params[:id])
-    if @booking.status == "accepted" || @booking.status == "rejected"
-      if @booking.save
-        redirect_to root_path
-      else
-        render :edit, status: :unprocessable_entity
-      end
+    @booking.status = params[:status]
+    if @booking.save
+      redirect_to @booking.event
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @booking = Booking.find(params[:id])
     @booking.destroy
-    redirect_to bookings_path, status: :see_other
+    redirect_to event_path, status: :see_other
   end
 
   private
@@ -50,7 +46,11 @@ class BookingsController < ApplicationController
     @event = Event.find(params[:event_id])
   end
 
+  def set_booking
+    @booking = Booking.find(params[:id])
+  end
+
   def booking_params
-    params.require(:booking).permit(:comment, :status)
+    params.require(:booking).permit(:status)
   end
 end

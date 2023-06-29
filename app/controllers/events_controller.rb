@@ -18,6 +18,13 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    @game_name = params[:game_name]
+    @year_published = params[:year_published]
+    @min_players = params[:min_players]
+    @max_players = params[:max_players]
+    @playing_time = params[:playing_time]
+    @description = params[:description]
+    @image_url = params[:image_url]
   end
 
   def create

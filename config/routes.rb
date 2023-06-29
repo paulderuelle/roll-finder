@@ -19,12 +19,9 @@ Rails.application.routes.draw do
   # get "profile", to: "pages#profile"
   # get "profile/:id", to: "pages#profileshow", as: :show_profile
 
-  ## routes for chatroom
-
   resources :bookmarks, only: %i[destroy]
 
-
-  resources :chatrooms, only: [:index, :show, :create] do
+  resources :chatrooms, only: %i[index show create] do
     resources :messages, only: :create
   end
 
@@ -35,6 +32,4 @@ Rails.application.routes.draw do
 
   get '/games/show', to: 'games#show', as: 'show_games'
   get '/games', to: 'games#index'
-
-
 end

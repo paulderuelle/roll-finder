@@ -1,12 +1,9 @@
 <h1>New booking</h1>
 
 <%= simple_form_for [@event, @booking] do |f| %>
-  <div>
-    <%= f.input :comment, as: :hidden %>
-  </div>
-  <div>
-    <%= f.submit %>
-  </div>
+  <%= f.input :status, as: :hidden %>
+
+  <%= f.submit "Create Booking", class: "btn-main" %>
 <% end %>
 
-<%= link_to "return to the home-pages", root_path %>
+<%# as: :hidden %>

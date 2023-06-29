@@ -10,10 +10,16 @@ class BookmarksController < ApplicationController
     @bookmark.event = @event
     @bookmark.user = current_user
     if @bookmark.save
-      redirect_to bookings_path
+      redirect_to event_path(@event.bookmarks)
     else
       render "events/show", status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @bookmark = Bookmark.find(params[:id])
+    @bookmark.destroy
+    redirect_to event_path, status: :see_other
   end
 
   private
