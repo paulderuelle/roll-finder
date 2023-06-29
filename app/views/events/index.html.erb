@@ -5,7 +5,7 @@
         <h1><%= event.title %></h1>
         <%= event.start_hours.year %>
         <br><%= event.start_hours.hour %>:<%= event.start_hours.min %>  :  <%= event.end_hours.hour %>:<%= event.end_hours.min %>
-        <br><%= event.slot_number %>/10
+        <br> <%= event.bookings.size %> / <%= event.slot_number %>
       <% end %>
     <% end %>
   <% else %>
