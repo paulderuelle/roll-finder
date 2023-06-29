@@ -1,10 +1,12 @@
 footer {
   position: fixed;
   bottom: 0;
+  height: 63px;
   width: 100%;
   background-color: $rollblue;
 }
 .footer-container {
+  height: 100%;
   display: flex;
   justify-content: space-between;
   padding: 10px;

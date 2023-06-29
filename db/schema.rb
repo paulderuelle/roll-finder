@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_29_091444) do
+
+ActiveRecord::Schema[7.0].define(version: 2023_06_29_101324) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -97,15 +99,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_29_091444) do
   create_table "events", force: :cascade do |t|
     t.string "title"
     t.string "description"
-    t.date "date"
     t.string "address"
     t.integer "slot_number"
     t.boolean "online"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "start_hours"
+    t.datetime "end_hours"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
+
 
   create_table "messages", force: :cascade do |t|
     t.string "content"
@@ -115,6 +119,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_29_091444) do
     t.datetime "updated_at", null: false
     t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.string "name"
+    t.integer "publish_year"
+    t.text "description"
+    t.integer "min_players"
+    t.integer "max_players"
+    t.integer "duration"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "image_url"
   end
 
   create_table "reviews", force: :cascade do |t|

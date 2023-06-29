@@ -1,11 +1,30 @@
-<div class="event-index">
+<div>
   <% if @events.present? %>
     <% @events.each do |event| %>
-      <%= link_to event_path(event.id), class: "event-index" do %>
-        <h1><%= event.title %></h1>
-      <% end %>
+      <div class="event-list">
+        <div class="event-address">
+            <%= event.address %>
+        </div>
+        <div class="event-title">
+          <h3><%= link_to event.title, event_path(event.id) %></h3>
+        </div>
+        <div class="event-card">
+          <div class="event-datecard">
+            <div class="backcard">
+            <%= event.start_hours.day %>/<%= event.start_hours.month %>/<%= event.start_hours.year %>
+            </div>
+            <div class="backcard">
+            <%= event.start_hours.hour %>:<%= event.start_hours.min %>  -  <%= event.end_hours.hour %>:<%= event.end_hours.min %>
+            </div>
+          </div>
+          <div class="event-slotcard">
+            <%= event.bookings.size %> / <%= event.slot_number %>
+          </div>
+        </div>
+      </div>
     <% end %>
+
   <% else %>
-    <p class="response">There is no events</p>
+    <p>There is no events</p>
   <% end %>
 </div>

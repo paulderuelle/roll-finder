@@ -1,0 +1,50 @@
+<h1>Search Results</h1>
+
+<%= form_with url: show_games_path, method: :get, class: 'search-form' do |f| %>
+  <%= f.text_field :search_query, placeholder: 'Search a game', value: @search_query %>
+  <%= f.submit 'Search' %>
+<% end %>
+
+<% if @games.empty? %>
+  <p>No game found.</p>
+<% else %>
+  <% game_names = @games.map { |game| game[:name] } %>
+  <% game_names.uniq.each do |name| %>
+    <% existing_game = Game.find_by(name: name) %>
+    <div>
+      <h2><%= name %></h2>
+
+      <% if existing_game %>
+        <% if existing_game.image_url.present? %>
+          <img src="<%= existing_game.image_url %>" alt="<%= existing_game.name %>">
+        <% end %>
+        <p><strong>Year Published:</strong> <%= existing_game.publish_year %></p>
+        <p><strong>Min Players:</strong> <%= existing_game.min_players %></p>
+        <p><strong>Max Players:</strong> <%= existing_game.max_players %></p>
+        <p><strong>Playing Time:</strong> <%= existing_game.duration %> minutes</p>
+        <p><strong>Description:</strong> <%= existing_game.description %></p>
+        <%= button_to "Game already in the db", { disabled: true }, class: 'game-exists-button' %>
+      <% else %>
+        <% matching_games = @games.select { |game| game[:name] == name } %>
+        <% game = matching_games.first %>
+        <% if game[:image].present? %>
+          <img src="<%= game[:image] %>" alt="<%= game[:name] %>">
+        <% end %>
+        <p><strong>Year Published:</strong> <%= game[:year_published] %></p>
+        <p><strong>Min Players:</strong> <%= game[:min_players] %></p>
+        <p><strong>Max Players:</strong> <%= game[:max_players] %></p>
+        <p><strong>Playing Time:</strong> <%= game[:playing_time] %> minutes</p>
+        <p><strong>Description:</strong> <%= game[:description] %></p>
+        <% if game[:year_published].nil? || game[:min_players].nil? || game[:max_players].nil? || game[:playing_time].nil? || game[:description].nil? %>
+          <p>No game found.</p>
+        <% else %>
+          <%= form_with url: { action: :save_game }, method: :post, html: { multipart: true } do |f| %>
+            <%= f.hidden_field :game_id, value: game[:id] %>
+            <%= f.hidden_field :game_name, value: game[:name] %>
+            <%= f.submit 'Save Game' %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

@@ -39,10 +39,11 @@ puts 'Categories created'
   event_loop = Event.create!(
     title: Faker::Movie.title,
     description: Faker::Book.title,
-    date: Faker::Date.in_date_period,
+    start_hours: Faker::Time.forward(days: 5, period: :morning, format: :long),
+    end_hours: Faker::Time.forward(days: 5, period: :evening, format: :long),
     address: Faker::Address.city,
     slot_number: rand(2..8),
-    online: Faker::Boolean.boolean(true_ratio:0.3),
+    online: Faker::Boolean.boolean(true_ratio: 0.3),
     user: User.all.sample
   )
   rand(1..3).times do

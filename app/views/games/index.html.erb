@@ -1,0 +1,20 @@
+<h1>Search Results</h1>
+
+<%= form_with url: show_games_path, method: :get, class: 'search-form' do |f| %>
+  <%= f.text_field :search_query, placeholder: 'Search a game', value: @search_query %>
+  <%= f.submit 'Search' %>
+<% end %>
+
+<% @games.each do |game| %>
+  <div>
+    <h2><%= game[:name] %></h2>
+    <% existing_game = Game.find_by(name: game[:name]) %>
+    <img src="<%= existing_game.image_url %>" alt="<%= existing_game.name %>">
+    <p><strong>Year Published:</strong> <%= existing_game.publish_year %></p>
+    <p><strong>Min Players:</strong> <%= existing_game.min_players %></p>
+    <p><strong>Max Players:</strong> <%= existing_game.max_players %></p>
+    <p><strong>Playing Time:</strong> <%= existing_game.duration %> minutes</p>
+    <p><strong>Description:</strong> <%= existing_game.description %></p>
+    <%= button_to "Game already in the db", { disabled: true }, class: 'game-exists-button' %>
+  </div>
+<% end %>

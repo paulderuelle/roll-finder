@@ -9,8 +9,6 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :events, dependent: :destroy
 
-  #validates :nickname, presence: true
-  #validates :first_name, presence: true
   has_one_attached :photo
   has_many :chatroom_users
   has_many :chatrooms, through: :chatroom_users
