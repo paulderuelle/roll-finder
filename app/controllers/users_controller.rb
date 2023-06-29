@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     if @user.update_without_password(user_params)
       redirect_to user_path(@user), notice: 'Profile was successfully updated.'
     else
-      render :edit, status: :unprocessable_entity
+      render :update, status: :unprocessable_entity
     end
   end
 end
