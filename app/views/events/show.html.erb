@@ -47,7 +47,25 @@
       </div>
       <% end %>
     <% else %>
+      <div class="event-cardslotuser">
+        <div class="event-slotshow">
+          <%= @event.bookings.size %> / <%= @event.slot_number %>
+        </div>
+        <div>
+          <% booking = @event.bookings.where(user: current_user).first %>
+          <% if booking.present? %>
+            <p>pending</p>
+            <%= link_to "Cancel booking", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+          <% else %>
+            <%= simple_form_for [@event, Booking.new] do |f| %>
+              <div>
+                <%= f.input :status, as: :hidden %>
+                <%= f.submit "Create Booking", class: "btn-main" %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
     <% end %>
   </div>
 </div>
-<%= link_to "new booking", new_event_booking_path(@event)%>
