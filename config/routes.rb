@@ -21,7 +21,14 @@ Rails.application.routes.draw do
 
   ## routes for chatroom
 
-  get '/games', to: 'games#index'
-  post '/games/save_game', to: 'games#save_game'
   resources :bookmarks, only: %i[destroy]
+
+  resources :games do
+    post :save_game, on: :collection
+    post :my_game, on: :collection
+  end
+
+  get '/games/show', to: 'games#show', as: 'show_games'
+  get '/games', to: 'games#index'
+
 end
