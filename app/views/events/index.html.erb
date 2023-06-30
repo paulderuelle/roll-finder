@@ -1,37 +1,48 @@
-<div id="event-index-wrap">
+<div id="event-index-wrap" data-controller="map-animation" data-map-animation-target="wrapper">
 
   <div id="map" data-controller="map"
         data-map-markers-value="<%= @markers.to_json %>"
-        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+        data-map-animation-target="map"></div>
 
-  <%# link_to "Show the map", "", class: "show-map" %>
-
-  <div>
+  <button class="show-map-btn" data-action="mousedown->map-animation#toggleMap"
+          data-map-animation-target="button">Show the map <i class="fa-solid fa-chevron-down"></i></button>
+  <div class="event-index" data-controller="event-index">
+    <div class="arrow left d-none" data-action="click->event-index#scrollPrevious"
+                            data-event-index-target="arrowLeft">
+      <i class="fa-solid fa-chevron-left"></i>
+    </div>
+    <div class="arrow right" data-action="click->event-index#scrollNext"
+                              data-event-index-target="arrowRight">
+      <i class="fa-solid fa-chevron-right"></i>
+    </div>
     <% if @events.present? %>
-      <% @events.each do |event| %>
-        <div class="event-list">
-          <div class="event-address">
-              <%= event.address %>
-          </div>
-          <div class="event-title">
-            <h3><%= link_to event.title, event_path(event.id) %></h3>
-          </div>
-          <div class="event-card">
-            <div class="event-datecard">
-              <div class="backcard">
-              <%= event.start_hours.day %>/<%= event.start_hours.month %>/<%= event.start_hours.year %>
+      <div class="scrolling-events" data-event-index-target="list">
+      <% @events.each_with_index do |event, index| %>
+            <div class="event-list" data-event-index-target="card<%= index %>">
+            <div class="event-address">
+                <%= event.address %>
+            </div>
+            <div class="event-title">
+              <h3><%= link_to event.title, event_path(event.id) %></h3>
+            </div>
+            <div class="event-card">
+              <div class="event-datecard">
+                <div class="backcard">
+                <%= event.start_hours.day %>/<%= event.start_hours.month %>/<%= event.start_hours.year %>
+                </div>
+                <div class="backcard">
+                <%= event.start_hours.hour %>:<%= event.start_hours.min %>  -  <%= event.end_hours.hour %>:<%= event.end_hours.min %>
+                </div>
               </div>
-              <div class="backcard">
-              <%= event.start_hours.hour %>:<%= event.start_hours.min %>  -  <%= event.end_hours.hour %>:<%= event.end_hours.min %>
+              <div class="event-slotcard">
+                <%= event.bookings.where(status: "Accepted").size %> / <%= event.slot_number %>
               </div>
             </div>
-            <div class="event-slotcard">
-              <%= event.bookings.size %> / <%= event.slot_number %>
-            </div>
           </div>
-        </div>
-      <% end %>
 
+      <% end %>
+      </div>
     <% else %>
       <p>There is no events</p>
     <% end %>

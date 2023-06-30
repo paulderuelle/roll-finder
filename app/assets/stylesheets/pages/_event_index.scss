@@ -1,22 +1,121 @@
-/*
-#event-index-wrap {
-  transform: translateY(-300px);
-  animation: 1s ease-in;
-  #map {
-    opacity: 40%;
-  }
+$wrapInitialY: -350px;
+$btnInitialY: -15px;
+$btnFinalY: 30px;
+$initialOpacity: 30%;
+$animDuration: 0.5s;
 
-  .show-map {
-    text-decoration: none;
-    transition: all 1s;
-    &:hover {
-      transform: translateY(200px);
-      color: white;
-    }
-  }
+@keyframes slideIn {
+  from { transform: translateY($wrapInitialY) }
+  to { transform: translateY(0) }
+}
+@keyframes slideOut {
+  from { transform: translateY(0) }
+  to { transform: translateY($wrapInitialY) }
+}
+@keyframes slideDown {
+  from { transform: translateY($btnInitialY) }
+  to { transform: translateY($btnFinalY) }
+}
+@keyframes slideUp {
+  from { transform: translateY($btnFinalY) }
+  to { transform: translateY($btnInitialY) }
+}
+@keyframes fadeIn {
+  from { opacity: $initialOpacity }
+  to { opacity: 100% }
+}
+@keyframes fadeOut {
+  from { opacity: 100% }
+  to { opacity: $initialOpacity }
+}
+
+@keyframes scrollRight {
+  from { transform: translateX(0); }
+  to { transform: translateX(-300px) }
+}
+
+@keyframes scrollLeft {
+  from { transform: translateX(-300px); }
+  to { transform: translateX(0) }
 }
 
 .slideIn {
-  transform: translateY(0);
+  animation: slideIn $animDuration forwards;
 }
-*/
+.slideOut {
+  animation: slideOut $animDuration forwards;
+}
+.slideDown {
+  animation: slideDown 0.3s forwards;
+}
+.slideUp {
+  animation: slideUp 0.3s forwards;
+}
+.fadeIn {
+  animation: fadeIn $animDuration forwards;
+}
+.fadeOut {
+  animation: fadeOut $animDuration forwards;
+}
+
+.low-opacity {
+  opacity: $initialOpacity;
+}
+
+.scrollRight {
+  animation: scrollRight 0.3s forwards;
+}
+.scrollLeft {
+  animation: scrollLeft 0.3s forwards;
+}
+
+#event-index-wrap {
+  text-align: center;
+  width: 400px;
+  overflow: hidden;
+
+  transform: translateY($wrapInitialY);
+
+  #map {
+    opacity: $initialOpacity;
+  }
+
+  .show-map-btn {
+    margin: 0 auto 30px auto;
+    z-index: 10;
+
+    transform: translateY($btnInitialY);
+  }
+
+  .scrolling-events {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .arrow {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    width: 70px;
+    height: 70px;
+    background-color: rgba($color: white, $alpha: 0.6);
+    border-radius: 50%;
+    z-index: 5;
+    cursor: pointer;
+  }
+
+  .arrow.right {
+    right: 0;
+  }
+  .arrow.left {
+    left: 0;
+  }
+
+
+  .event-list.second {
+    opacity: $initialOpacity;
+  }
+}
