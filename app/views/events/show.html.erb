@@ -3,7 +3,7 @@
     <h1><%= @event.title %></h1>
   </div>
   <div class="event-profile">
-    <%= link_to "profile", user_path(@event)%>
+    <%= link_to "profile", user_path(@event.user)%>
     <% if current_user == @event.user %>
       <div class="event-icone">
         <%= link_to "", edit_event_path(@event), class: "fa-solid fa-pencil fa-lg" %>
@@ -38,23 +38,47 @@
   <div class="event-cardslot">
     <% if current_user == @event.user %>
     <div class="event-slotshow">
-      <%= @event.bookings.size %> / <%= @event.slot_number %>
+      <%= @event.bookings.where(status: "Accepted").size %> / <%= @event.slot_number %>
     </div>
-    <% @event.bookings.each do |booking| %>
-      <div class="validatecard">
-        <%= booking.user.nickname %>
-        <p>Accepted</p>
-      </div>
+      <% @event.bookings.each do |booking| %>
+        <div class="validatecard">
+          <%= booking.user.nickname %>
+          <%if booking.status == "Accepted" %>
+            <p class="accepted">Accepted</p>
+          <% elsif booking.status == "Declined" %>
+            <p class="declined">Declined</p>
+          <% else %>
+            <div class="cardbutton">
+              <%= simple_form_for (booking) do |f| %>
+                <div>
+                  <%= f.button :submit, "Accepting", status: 'Accepted', class: "btn-main" %>
+                </div>
+              <% end %>
+              <%= simple_form_for (booking) do |f| %>
+                <div>
+                  <%= f.input :status, input_html: { value: 'Declined' }, as: :hidden %>
+                  <%= f.submit "Decline", class: "btn-main" %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
       <% end %>
     <% else %>
       <div class="event-cardslotuser">
         <div class="event-slotshow">
-          <%= @event.bookings.size %> / <%= @event.slot_number %>
+          <%= @event.bookings.where(status: "Accepted").size %> / <%= @event.slot_number %>
         </div>
-        <div>
+        <div class="bookingstatus">
           <% booking = @event.bookings.where(user: current_user).first %>
           <% if booking.present? %>
-            <p>pending</p>
+             <% if booking.status == "Declined" %>
+              <p class="declined"><%= booking.status %></p>
+            <% elsif booking.status == "Accepted" %>
+              <p class="accepted"><%= booking.status %></p>
+            <% else %>
+              <p class="wait"><%= booking.status %></p>
+            <% end %>
             <%= link_to "Cancel booking", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
           <% else %>
             <%= simple_form_for [@event, Booking.new] do |f| %>
