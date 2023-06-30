@@ -15,13 +15,13 @@ Rails.application.routes.draw do
   #   patch :declined, to: ""
   # end
 
-  resources :users, only: %i[show edit update]
-  # get "profile", to: "pages#profile"
-  # get "profile/:id", to: "pages#profileshow", as: :show_profile
+  resources :users, only: %i[show edit update] do
+    post '/chatrooms', to: 'chatrooms#create', as: 'chatroom'
+  end
 
   resources :bookmarks, only: %i[destroy]
 
-  resources :chatrooms, only: %i[index show create] do
+  resources :chatrooms, only: %i[index show] do
     resources :messages, only: :create
   end
 
@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     post :save_game, on: :collection
     post :my_game, on: :collection
   end
-
   get '/games/show', to: 'games#show', as: 'show_games'
   get '/games', to: 'games#index'
+  get 'games/search', to: 'games#search'
 end
