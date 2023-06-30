@@ -3,8 +3,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 500px;
-  height: 700px;
 }
 
 .event-profile{
@@ -34,7 +32,6 @@
   background-color: white;
   border-radius: 20px;
   width: 300px;
-  height: 300px;
 }
 
 .event-slot{
@@ -55,7 +52,6 @@
   justify-content: end;
   align-items:center;
   width: 400px;
-  height: 400px;
 }
 
 .event-address{
@@ -86,7 +82,6 @@
   margin: 10px;
   border-radius: 20px;
   width: 300px;
-  height: 20px;
   display:flex;
   justify-content: end;
   align-items: center;
@@ -101,7 +96,7 @@
 }
 
 .event-icone{
-  background-color: white;
+
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -111,7 +106,6 @@
   margin: 10px;
   width: 300px;
   display:flex;
-  height: 200px;
   flex-direction: column;
   justify-content:baseline;
   align-items: center;
@@ -147,8 +141,32 @@
   margin: 10px;
   width: 300px;
   display:flex;
-  height: 200px;
   justify-content:space-between;
   align-items: center;
 
+}
+
+.cardbutton{
+  margin: 10px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bookingstatus{
+  margin: 10px;
+  display:flex;
+  flex-direction: column;
+}
+
+.wait{
+  color: orange;
+}
+
+.accepted{
+  color:rgb(12, 156, 12)
+}
+
+.declined{
+  color:red
 }
