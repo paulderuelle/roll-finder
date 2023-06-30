@@ -10,6 +10,49 @@
     <div class="text_form btn_photo">
       <%= f.input :photo, as: :file %>
     </div>
+
+    <% if params[:game_name].present? %>
+      <div class="text_form">
+        <%= tag.p params[:game_name], class: "readonly-text" %>
+        <%= f.hidden_field :game_name, value: params[:game_name] %>
+      </div>
+    <% end %>
+    <% if params[:year_published].present? %>
+      <div class="text_form">
+        <%= tag.p params[:year_published], class: "readonly-text" %>
+        <%= f.hidden_field :year_published, value: params[:year_published] %>
+      </div>
+    <% end %>
+    <% if params[:description].present? %>
+      <div class="text_form">
+        <%= tag.p params[:description], class: "readonly-text" %>
+        <%= f.hidden_field :game_description, value: params[:description] %>
+      </div>
+    <% end %>
+    <% if params[:min_players].present? %>
+      <div class="text_form">
+        <%= f.label :min_players, "Min Players" %>
+        <%= f.number_field :min_players, value: params[:min_players] %>
+      </div>
+    <% end %>
+    <% if params[:max_players].present? %>
+      <div class="text_form">
+        <%= f.label :max_players, "Max Players" %>
+        <%= f.number_field :max_players, value: params[:max_players] %>
+      </div>
+    <% end %>
+    <% if params[:playing_time].present? %>
+      <div class="text_form">
+        <%= f.label :playing_time, "Playing Time" %>
+        <%= f.number_field :playing_time, value: params[:playing_time] %>
+      </div>
+    <% end %>
+    <% if params[:image_url].present? %>
+      <div>
+        <%= image_tag params[:image_url], alt: "Game Image", style: 'max-width: 200px; max-height: 200px;' %>
+      </div>
+    <% end %>
+
     <div class="submit-wrap">
       <%= f.submit class: "btn_form" %>
     </div>

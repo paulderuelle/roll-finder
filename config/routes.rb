@@ -31,4 +31,5 @@ Rails.application.routes.draw do
   end
   get '/games/show', to: 'games#show', as: 'show_games'
   get '/games', to: 'games#index'
+  get 'games/search', to: 'games#search'
 end
