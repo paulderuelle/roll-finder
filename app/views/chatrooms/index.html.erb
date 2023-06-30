@@ -9,7 +9,13 @@
              <% chatroom.users.each do |user| %>
               <% unless user == current_user %>
                 <div style="display: flex">
-                  <div style="height: 30px; width: 30px; background-color:grey; border-radius: 50%"></div>
+
+                  <% if user.photo.attached? %>
+                    <%= image_tag user.photo, class:"avatar-global" %>
+                  <% else %>
+                    <%= image_tag "meeple.png", class:"avatar-global" %>
+                  <% end %>
+                  <%# <div style="height: 30px; width: 30px; background-color:grey; border-radius: 50%"></div> %>
                   <%= render "messages/user_names", user: user %>
                 </div>
                 <div>

@@ -1,4 +1,8 @@
-<div class="message-avatar"></div>
+<% if message.user.photo.attached? %>
+  <%= image_tag message.user.photo, class:"avatar-global" %>
+<% else %>
+  <%= image_tag "meeple.png", class:"avatar-global" %>
+<% end %>
 <p>
   <% if !message.chatroom.personal %>
     <span class="sender"><%= message.user.nickname %></span>
