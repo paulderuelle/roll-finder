@@ -1,4 +1,4 @@
-<h1>Search Results</h1>
+<h1>What game do you want to play?</h1>
 
 <%= form_with url: show_games_path, method: :get, class: 'search-form' do |f| %>
   <%= f.text_field :search_query, placeholder: 'Search a game', value: @search_query %>
