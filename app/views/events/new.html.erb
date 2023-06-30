@@ -7,7 +7,7 @@
 <% end %>
 
 <% if @image_url.present? %>
-  <img src="<%= @image_url %>" alt="Game Image">
+  <%= image_tag @image_url, alt: "Game Image", style: 'max-width: 200px; max-height: 200px;' %>
 <% end %>
 
 <% if @year_published.present? %>
