@@ -7,14 +7,13 @@
 
 <% @games.each do |game| %>
   <div>
-    <h2><%= game[:name] %></h2>
-    <% existing_game = Game.find_by(name: game[:name]) %>
-    <img src="<%= existing_game.image_url %>" alt="<%= existing_game.name %>">
-    <p><strong>Year Published:</strong> <%= existing_game.publish_year %></p>
-    <p><strong>Min Players:</strong> <%= existing_game.min_players %></p>
-    <p><strong>Max Players:</strong> <%= existing_game.max_players %></p>
-    <p><strong>Playing Time:</strong> <%= existing_game.duration %> minutes</p>
-    <p><strong>Description:</strong> <%= existing_game.description %></p>
-    <%= button_to "Game already in the db", new_event_path, method: :get, class: 'game-exists-button', params: { game_name: game[:name], year_published: existing_game.publish_year, min_players: existing_game.min_players, max_players: existing_game.max_players, playing_time: existing_game.duration, description: existing_game.description, image_url: existing_game.image_url } %>
+    <h2><%= game.name %></h2>
+    <%= image_tag game.image_url, alt: game.name, style: 'max-width: 200px; max-height: 200px;' if game.image_url.present? %>
+    <p><strong>Year Published:</strong> <%= game.publish_year %></p>
+    <p><strong>Min Players:</strong> <%= game.min_players %></p>
+    <p><strong>Max Players:</strong> <%= game.max_players %></p>
+    <p><strong>Playing Time:</strong> <%= game.duration %> minutes</p>
+    <p><strong>Description:</strong> <%= game.description %></p>
+    <%= button_to "Add to my Deck!", new_event_path, method: :get, class: 'deck-button', params: { game_name: game.name, year_published: game.publish_year, min_players: game.min_players, max_players: game.max_players, playing_time: game.duration, description: game.description, image_url: game.image_url } %>
   </div>
 <% end %>

@@ -1,45 +1,44 @@
 require 'open-uri'
 require 'nokogiri'
 require 'cloudinary'
+require 'cgi'
 
 class GamesController < ApplicationController
+  before_action :fetch_game, only: [:my_game]
+
   def index
     @games = Game.order(:name)
   end
 
   def show
-    search_query = params[:search_query]&.capitalize
+    search_query = params[:search_query]
     @games = search_games(search_query)
     @search_query = search_query
 
-    save_games_to_database(@games)
+    save_games(@games)
 
-    # redirect_to games_path
+    @games = Game.where(name: @games.pluck(:name))
   end
 
   def my_game
-    game = Game.find_by(name: params[:game_name])
-
-    if game
-      game.update(switched_button: !game.switched_button)
-    end
-
+    @game.update(switched_button: !@game.switched_button) if @game
     redirect_to new_event_path
   end
 
   private
 
-  def search_games(query)
-    url = "https://www.boardgamegeek.com/xmlapi/search?search=#{query}&exact=1"
-    xml_data = fetch_xml_data(url)
+  def fetch_game
+    @game = Game.find_by(name: params[:game_name])
+  end
 
-    xml_data.xpath('//boardgame').map do |game|
-      game_id = game['objectid']
-      game_data = fetch_game_data(game_id)
+  def search_games(query)
+    encoded_query = CGI.escape(query)
+    fetch_xml_data("https://www.boardgamegeek.com/xmlapi/search?search=#{encoded_query}&exact=1").xpath('//boardgame').map do |game|
+      game_data = fetch_game_data(game['objectid'])
 
       {
-        name: fetch_value(game, './name'),
-        id: game_id,
+        name: fetch_value(game, './name[@primary="true"]'),
+        id: game['objectid'],
         year_published: fetch_value(game_data, '//yearpublished'),
         min_players: fetch_value(game_data, '//minplayers'),
         max_players: fetch_value(game_data, '//maxplayers'),
@@ -51,34 +50,39 @@ class GamesController < ApplicationController
   end
 
   def fetch_xml_data(url)
-    html_file = URI.open(url).read
-    Nokogiri::XML.parse(html_file)
+    Nokogiri::XML(URI.open(url))
   end
 
   def fetch_game_data(game_id)
-    game_url = "https://www.boardgamegeek.com/xmlapi/boardgame/#{game_id}"
-    fetch_xml_data(game_url)
+    fetch_xml_data("https://www.boardgamegeek.com/xmlapi/boardgame/#{game_id}")
   end
 
   def fetch_value(xml_data, xpath)
-    xml_data.at_xpath(xpath)&.text
-  end
-
-  def fetch_image_url(game_data)
-    image_url = fetch_value(game_data, '//image')
-
-    if image_url.present?
-      uploaded_image = Cloudinary::Uploader.upload(image_url)
-      uploaded_image['secure_url']
+    if xpath == './name'
+      text = xml_data.at_xpath(xpath + '[@primary="true"]')&.text
+    else
+      text = xml_data.at_xpath(xpath)&.text
     end
+
+    if xpath == '//description'
+      text = text.gsub(/<[^>]*>/, '')
+
+      sentences = text.split(/(?<=[.!?])\s+/)
+
+      text = sentences.first(2).join(' ')
+    end
+
+    text
   end
 
-  def save_games_to_database(games)
+  def save_games(games)
     games.each do |game|
-      next if Game.exists?(name: game[:name])
-
       game_data = fetch_game_data(game[:id])
-      image_url = fetch_image_url(game_data)
+      existing_game = Game.find_by(name: game[:name], publish_year: fetch_value(game_data, '//yearpublished'))
+
+      next if existing_game.present?
+
+      image_url = upload_image_to_cloudinary(game[:image])
 
       Game.create!(
         name: game[:name],
@@ -90,5 +94,9 @@ class GamesController < ApplicationController
         image_url: image_url
       )
     end
+  end
+
+  def upload_image_to_cloudinary(image_url)
+    Cloudinary::Uploader.upload(image_url)['secure_url']
   end
 end
