@@ -36,13 +36,7 @@
             <%= image_tag "meeple.png", class: "avatar-global avatar-profile" %>
           <% end %>
         </div>
-        <div class="user-rating-stars">
-          <% rating = @user.rating%>
-          <% (1..5).each do |i| %>
-          <% if rating >= i %>
-          <i class="fa-solid fa-star" style="color: #ecb365;"></i>
-          <i class="fa-solid fa-star-half-stroke" style="color: #ecb365;"></i>
-        </div>
+
           <p><%= @user.description %></p>
         </div>
 
