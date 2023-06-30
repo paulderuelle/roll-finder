@@ -29,14 +29,14 @@
         </div>
 
         <div class="profile-highlights">
-        <div class="">
+        <div class="user-avatar">
           <% if @user.photo.attached? %>
             <%= image_tag @user.photo, class: "avatar-global avatar-profile" %>
           <% else %>
             <%= image_tag "meeple.png", class: "avatar-global avatar-profile" %>
           <% end %>
         </div>
-          <%# Insert stars %>
+
           <p><%= @user.description %></p>
         </div>
 
