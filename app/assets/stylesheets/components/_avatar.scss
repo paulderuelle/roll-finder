@@ -1,4 +1,12 @@
-#navbar-avatar {
+.avatar-global {
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
-  width: 30px;
+  object-fit: cover;
+  object-position: center center;
+}
+.avatar-profile {
+  border: 5px solid $rollblueL;
+  height: 10rem;
+  width: 10rem;
 }

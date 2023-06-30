@@ -19,7 +19,7 @@ class ChatroomsController < ApplicationController
   end
 
   def create
-    user = User.find(22)
+    user = User.find(params[:user_id])
 
     user_chatroom = chatting_with(user)
     if user_chatroom

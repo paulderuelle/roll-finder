@@ -7,7 +7,7 @@
     <h1><%= @event.title %></h1>
   </div>
   <div class="event-profile">
-    <%= link_to "profile", user_path(@event)%>
+    <%= link_to "profile", user_path(@event.user)%>
     <% if current_user == @event.user %>
       <div class="event-icone">
         <%= link_to "", edit_event_path(@event), class: "fa-solid fa-pencil fa-lg" %>

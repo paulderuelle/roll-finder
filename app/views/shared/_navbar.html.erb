@@ -11,8 +11,14 @@
           <% end %>
         </div>
         <div class="navbar-button">
-          <%= link_to user_path(current_user) do %>
-            <%= image_tag "avatar.png", id:"navbar-avatar"%>
+          <% if current_user.photo.attached? %>
+            <%= link_to user_path(current_user) do %>
+              <%= image_tag current_user.photo, class:"avatar-global" %>
+            <% end %>
+          <% else %>
+            <%= link_to user_path(current_user) do %>
+              <%= image_tag "meeple.png", class:"avatar-global" %>
+            <% end %>
           <% end %>
         </div>
       <% else %>
