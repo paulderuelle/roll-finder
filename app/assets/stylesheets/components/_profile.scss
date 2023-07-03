@@ -2,7 +2,6 @@
   padding: 10px 20px;
   margin: 50px auto;
   border-radius: 3px;
-  border: 3px solid black;
   }
 
 .profile-btn-container {
@@ -15,6 +14,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 95px;
 }
 
 .profile-details {
@@ -35,7 +35,7 @@
   .reviews-details {
     display: flex;
     justify-content: center;
-    .user-reviews-count {
+    .user-reviews-rating {
       font-size: 1rem;
       font-weight: 600;
     }
@@ -69,14 +69,26 @@
 }
 
 .profile-stats {
-  border: 3px solid black;
   margin: 5px auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
+  .fa-angle-down {
+    padding: 20px auto;
+  }
 }
 
-.btn-chat {
+.profile-chat-button {
   display: flex;
   justify-content: center;
-  text-decoration: none;
+  margin-bottom: 15px;
+  .btn-chat {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+  }
 }
 
 .btn-profile {

@@ -1,8 +1,8 @@
 <div class="profile-global-container">
   <div class="col-md 12">
     <div class="profile-display">
-        <div class="profile-btn-container">
-          <% if current_user %>
+      <div class="profile-btn-container">
+        <% if current_user == @user %>
           <div class="btn-profile btn-logout">
             <%= link_to edit_user_path(current_user), class: "edit" do %>
               <% concat content_tag(:i, "", class: "fa-solid fa-pencil", style:"color: #04293a;") %>
@@ -13,8 +13,8 @@
               <% concat content_tag(:i, "", class: "fa-solid fa-power-off", style:"color: #04293a;") %>
             <% end %>
           </div>
-          <% end %>
-        </div>
+        <% end %>
+      </div>
       <div class="profile-headers-container">
         <div class="profile-highlights position-relative">
           <div class="user-avatar">
@@ -32,24 +32,32 @@
             <% empty_stars = 5 - full_stars - (half_star > 0 ? 1 : 0) %>
 
             <% positions = {
-              top: %i[125 95 65 35 5],
-              right: %i[-15 -30 -35 -30 -15]
+              top: %i[125 95 59 29 5],
+              right: %i[-15 -30 -31 -21 -1]
             } %>
 
-            <% full_stars.times.with_index do |_, index| %>
+            <% if rating > 0 %>
+              <% full_stars.times.with_index do |_, index| %>
+                <% position_top = positions[:top][index] || 0 %>
+                <% position_right = positions[:right][index] || 0 %>
+                <i class="fa-solid fa-star fa-lg position-absolute" style="color: #ecb365; top: <%= position_top %>px; right: <%= position_right %>px;"></i>
+              <% end %>
+              <% if half_star > 0 %>
+                <% position_top = positions[:top][full_stars] || 0 %>
+                <% position_right = positions[:right][full_stars] || 0 %>
+                <i class="fa-solid fa-star-half-stroke fa-lg position-absolute" style="color: #ecb365; top: <%= position_top %>px; right: <%= position_right %>px;"></i>
+              <% end %>
+              <% empty_stars.times.with_index do |_, index| %>
+                <% position_top = positions[:top][full_stars + 1 + index] || 0 %>
+                <% position_right = positions[:right][full_stars + 1 + index] || 0 %>
+                <i class="fa-regular fa-star fa-lg position-absolute" style="color: #ecb365; top: <%= position_top %>px; right: <%= position_right %>px;"></i>
+              <% end %>
+            <% else %>
+            <% total_stars.times.with_index do |_, index| %>
               <% position_top = positions[:top][index] || 0 %>
               <% position_right = positions[:right][index] || 0 %>
-              <i class="fa-solid fa-star fa-lg position-absolute" style="color: #ecb365; top: <%= position_top %>px; right: <%= position_right %>px;"></i>
-            <% end %>
-            <% if half_star > 0 %>
-              <% position_top = positions[:top][full_stars] || 0 %>
-              <% position_right = positions[:right][full_stars] || 0 %>
-              <i class="fa-solid fa-star-half-stroke fa-lg position-absolute" style="color: #ecb365; top: <%= position_top %>px; right: <%= position_right %>px;"></i>
-            <% end %>
-            <% empty_stars.times.with_index do |_, index| %>
-              <% position_top = positions[:top][full_stars + 1 + index] || 0 %>
-              <% position_right = positions[:right][full_stars + 1 + index] || 0 %>
               <i class="fa-regular fa-star fa-lg position-absolute" style="color: #ecb365; top: <%= position_top %>px; right: <%= position_right %>px;"></i>
+              <% end %>
             <% end %>
           </div>
           <div class="user-profile-description position-absolute"><i class="fa-solid fa-quote-left"></i><%= @user.description %></div>
@@ -60,11 +68,12 @@
           <p class="user-nickname"><%= @user.nickname %></p>
           <div class="reviews-details">
             <% if @reviews.present? %>
-            <div class="user-reviews-rating"><%= number_with_precision(@reviews.average(:rating), precision: 1) %>/5 </div>
-            <div class="user-reviews-count">&nbsp;- <%= @reviews.count %> reviews</div>
+              <div class="user-reviews-rating"><%= number_with_precision(@reviews.average(:rating), precision: 1) %>/5 </div>
+              <div class="user-reviews-count">&nbsp;- <%= @reviews.count %> reviews</div>
               <%# Insert a link_to "reviews_index" AJAX %>
             <% else %>
-              <p>No reviews available.</p>
+              <div class="user-reviews-rating">0/5</div>
+              <div class="user-reviews-count">&nbsp;- No reviews available</div>
             <% end %>
           </div>
         </div>
@@ -77,20 +86,18 @@
       </div>
 
       <div class="profile-stats">
-        <% stats_event_text = @user.events.count > 1 ? "games events" : "game event" %>
-        <%= " Created #{@user.events.count} #{stats_event_text}" %>
+          <% stats_event_text = @user.events.count > 1 ? "games events" : "game event" %>
+          <%= "Created #{@user.events.count} #{stats_event_text}" %>
+          <% accepted_bookings = @user.bookings.where(status: "accepted") %>
+          <% stats_accepted_text =  accepted_bookings.count > 1 ? "games events" : "game event" %>
         <br>
-        <% accepted_bookings = @user.bookings.where(status: "accepted") %>
-        <% stats_accepted_text =  accepted_bookings.count > 1 ? "games events" : "game event" %>
-        <%= "Appeared in #{accepted_bookings.count} #{stats_accepted_text}" %>
-          <br>
-            <i class="fa-solid fa-circle-chevron-down"></i>
-          <br>
-        <% incoming_user_events = @user.events.where("end_hours > ?", Time.now).count %>
-        <% @user == current_user ? stats_user_text = "You are" : stats_user_text = "#{ @user.first_name } is" %>
-        <% stats_event_text = incoming_user_events > 1 ? "games events" : "game event" %>
-        <%= "#{stats_user_text} hosting #{incoming_user_events} #{stats_event_text}" %>
-      </div>
+          <%= "Appeared in #{accepted_bookings.count} #{stats_accepted_text}" %>
+            <i class="fa-solid fa-angle-down fa-lg" style="color: #042393A; margin: 20px auto;"></i>
+          <% incoming_user_events = @user.events.where("end_hours > ?", Time.now).count %>
+          <% @user == current_user ? stats_user_text = "You are" : stats_user_text = "#{ @user.first_name } is" %>
+          <% stats_event_text = incoming_user_events > 1 ? "games events" : "game event" %>
+          <%= "#{stats_user_text} hosting #{incoming_user_events} #{stats_event_text}" %>
+        </div>
 
       <div class="profile-events-cards">
         <%# Insert events cards %>
