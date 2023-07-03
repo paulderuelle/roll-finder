@@ -1,0 +1,30 @@
+.queen {
+  //
+}
+
+.queen-card {
+  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.4);
+  border-radius: 35px;
+  transform: rotate(45deg) scale(0.16);
+  position: fixed;
+  top: -54vh;
+  left: -80vw;
+}
+
+.joker {
+  //
+}
+
+.joker-card {
+  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.4);
+  border-radius: 35px;
+  transform: rotate(45deg) scale(0.16);
+  position: fixed;
+  top: 2vh;
+  left: -45vw;
+}
+
+.bookmark {
+  position: fixed;
+  top: 22em;
+}

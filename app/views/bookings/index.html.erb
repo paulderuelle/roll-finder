@@ -1,31 +1,43 @@
-<h1>My bookings</h1>
+<div class="queen" >
+  <img class="queen-card" src="/assets/Queen_of_hearts.png" />
+</div>
 
-<% if @bookings.present? %>
-  <% @bookings.each do |booking| %>
-    <div>
-      <p><%= booking.event.title %></p>
-      <p><%= booking.status %></p>
-    </div>
+<div class="joker" >
+  <img class="joker-card" src="/assets/Joker_black.png" />
+</div>
+
+<div class ="bookmark">
+
+  <h1>My bookmarks</h1>
+
+  <% if @bookmarks.size == 0 %>
+    <p>You haven't added any bookmarks yet.</p>
+  <% else %>
+    <ul>
+      <% @bookmarks.each do |bookmark| %>
+        <li><%= link_to bookmark.event.title, event_path(bookmark.event.id) %></li>
+        <%= link_to "Cancel bookmark", bookmark_path(bookmark), class: "btn primary",
+            data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+      <% end %>
+    </ul>
   <% end %>
-<% else %>
-  <p>You have not yet made any bookings.</p>
-  <% end %>
+
+  <h1>My bookings</h1>
+
+  <% if @bookings.present? %>
+    <% @bookings.each do |booking| %>
+      <div>
+        <p><%= booking.event.title %></p>
+        <p><%= booking.status %></p>
+      </div>
+    <% end %>
+  <% else %>
+    <p>You have not yet made any bookings.</p>
+    <% end %>
+
+</div>
 
 <%#
 link_to booking.event.title, event_path(booking.event.id)
 link_to "Cancel booking", booking_path(booking), class: "btn primary"
 data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
-
-<h1>My bookmarks</h1>
-
-<% if @bookmarks.size == 0 %>
-  <p>You haven't added any bookmarks yet.</p>
-<% else %>
-  <ul>
-    <% @bookmarks.each do |bookmark| %>
-      <li><%= link_to bookmark.event.title, event_path(bookmark.event.id) %></li>
-      <%= link_to "Cancel bookmark", bookmark_path(bookmark), class: "btn primary",
-          data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-    <% end %>
-  </ul>
-<% end %>
