@@ -40,7 +40,7 @@ puts 'Categories created'
     title: Faker::Movie.title,
     description: Faker::Book.title,
     start_hours: Faker::Time.forward(days: 5, period: :morning, format: :long),
-    end_hours: Faker::Time.forward(days: 5, period: :evening, format: :long),
+    playtime: rand(15..60),
     address: Faker::Address.city,
     slot_number: rand(2..8),
     online: Faker::Boolean.boolean(true_ratio: 0.3),

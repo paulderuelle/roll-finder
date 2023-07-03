@@ -29,6 +29,7 @@ class EventsController < ApplicationController
 
   def create
     @event = current_user.events.build(event_params)
+    raise
     if @event.save
       redirect_to event_path(@event), notice: "Event was successfully created."
     else
@@ -59,7 +60,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:title, :description, :start_hours, :end_hours, :address, :slot_number, :online, :user_id)
+    params.require(:event).permit(:title, :description, :start_hours, :playtime, :address, :slot_number, :online, :user_id)
   end
 
   def owner
