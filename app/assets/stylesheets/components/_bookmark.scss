@@ -25,7 +25,7 @@
 }
 
 .heart-back-card {
-  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: -20px 20px 10px 10px rgba(0, 0, 0, 0.4);
   border-radius: 35px;
   transform: rotate(315deg) scale(0.16);
   position: fixed;
@@ -34,7 +34,7 @@
 }
 
 .joker-back-card {
-  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 20px -20px 10px 10px rgba(0, 0, 0, 0.4);
   border-radius: 35px;
   transform: rotate(135deg) scale(0.16);
   position: fixed;
