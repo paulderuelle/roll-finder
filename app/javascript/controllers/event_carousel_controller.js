@@ -7,6 +7,7 @@ export default class extends Controller {
   static scrollingPosition;
 
   connect() {
+    console.log("yeah");
     this.scrollingPosition = 2;
   }
 
