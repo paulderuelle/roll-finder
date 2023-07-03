@@ -1,9 +1,15 @@
 <footer>
   <div class="footer-container">
     <div class="footer-buttons">
-      <%= link_to "New Event", games_path, class: "footer-button" %>
-      <%= link_to "Index Event", events_path, class: "footer-button" %>
-      <%= link_to "Bookmarks", bookings_path, class: "footer-button" %>
+      <%= link_to games_path, class: "footer-btn" do %>
+        <%= image_tag("logo.png", alt: "New event") %>
+      <% end %>
+      <%= link_to events_path, class: "footer-btn" do %>
+        <%= image_tag("magnifying_glass.png", alt: "Index") %>
+      <% end %>
+      <%= link_to bookings_path, class: "footer-btn" do %>
+        <%= image_tag("bookmarks.png", alt: "Bookmarks") %>
+      <% end %>
     </div>
   </div>
 </footer>
