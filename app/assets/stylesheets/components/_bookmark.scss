@@ -24,6 +24,24 @@
   left: -15vw;
 }
 
+.heart-back-card {
+  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.4);
+  border-radius: 35px;
+  transform: rotate(315deg) scale(0.16);
+  position: fixed;
+  top: -33vh;
+  left: -47vw;
+}
+
+.joker-back-card {
+  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.4);
+  border-radius: 35px;
+  transform: rotate(135deg) scale(0.16);
+  position: fixed;
+  top: 12vh;
+  left: -33vw;
+}
+
 .bookmark {
   position: fixed;
   top: 22em;
