@@ -1,0 +1,76 @@
+.card-title {
+  a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+  }
+  h3 {
+    margin: 0;
+  }
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 7px 7px 0 0;
+  object-fit: cover;
+}
+
+.card-games {
+  margin-bottom: 10px;
+  color: gray;
+}
+
+.card-info {
+  display: flex;
+}
+.card-date, .card-time, .card-players {
+  display: flex;
+}
+
+.card-date {
+  margin-bottom: 10px;
+}
+
+.card-time {
+  margin-bottom: 25px;
+}
+.card-date i, .card-time i, .card-players i {
+  position: relative;
+  z-index: 1;
+  font-size: 1.5em;
+  margin: 0 -20px 0 0;
+}
+.card-date p, .card-time p, .card-players p {
+  flex-grow: 0;
+  margin: 0;
+  height: fit-content;
+  position: relative;
+  z-index: 0;
+  display: inline-block;
+  width: 100%;
+
+  background: white;
+  border-radius: 10px;
+  padding: 0 10px 0 30px;
+}
+
+.card-players {
+  margin: 15px 0 0 10px;
+  i {
+    font-size: 2.2em;
+    margin: 0 -35px 0 0;
+  }
+  p {
+    text-align: right;
+    font-size: 1.5em;
+    padding: 0 10px 0 40px;
+    letter-spacing: -0.12em;
+  }
+  .current_players {
+    color: green;
+  }
+  .current_players .full {
+    color: red;
+  }
+}

@@ -1,15 +1,16 @@
 $wrapInitialY: -350px;
+$wrapFinalY: 100px;
 $btnInitialY: -15px;
-$btnFinalY: 30px;
+$btnFinalY: 45px;
 $initialOpacity: 30%;
 $animDuration: 0.5s;
 
 @keyframes slideIn {
   from { transform: translateY($wrapInitialY) }
-  to { transform: translateY(0) }
+  to { transform: translateY($wrapFinalY) }
 }
 @keyframes slideOut {
-  from { transform: translateY(0) }
+  from { transform: translateY($wrapFinalY) }
   to { transform: translateY($wrapInitialY) }
 }
 @keyframes slideDown {
@@ -29,51 +30,20 @@ $animDuration: 0.5s;
   to { opacity: $initialOpacity }
 }
 
-@keyframes scrollRight {
-  from { transform: translateX(0); }
-  to { transform: translateX(-300px) }
-}
-
-@keyframes scrollLeft {
-  from { transform: translateX(-300px); }
-  to { transform: translateX(0) }
-}
-
-.slideIn {
-  animation: slideIn $animDuration forwards;
-}
-.slideOut {
-  animation: slideOut $animDuration forwards;
-}
-.slideDown {
-  animation: slideDown 0.3s forwards;
-}
-.slideUp {
-  animation: slideUp 0.3s forwards;
-}
-.fadeIn {
-  animation: fadeIn $animDuration forwards;
-}
-.fadeOut {
-  animation: fadeOut $animDuration forwards;
-}
+.slideIn { animation: slideIn $animDuration forwards; }
+.slideOut { animation: slideOut $animDuration forwards; }
+.slideDown { animation: slideDown 0.3s forwards; }
+.slideUp { animation: slideUp 0.3s forwards; }
+.fadeIn { animation: fadeIn $animDuration forwards; }
+.fadeOut { animation: fadeOut $animDuration forwards; }
 
 .low-opacity {
   opacity: $initialOpacity;
 }
 
-.scrollRight {
-  animation: scrollRight 0.3s forwards;
-}
-.scrollLeft {
-  animation: scrollLeft 0.3s forwards;
-}
-
 #event-index-wrap {
   text-align: center;
   width: 400px;
-  overflow: hidden;
-
   transform: translateY($wrapInitialY);
 
   #map {
@@ -82,19 +52,23 @@ $animDuration: 0.5s;
 
   .show-map-btn {
     margin: 0 auto 30px auto;
-    z-index: 10;
+    z-index: 1000;
+    position: relative;
 
     transform: translateY($btnInitialY);
   }
 
   .scrolling-events {
+    z-index: 1;
     display: flex;
     align-items: center;
     position: relative;
+    transform: translateX(25px);
   }
 
   .arrow {
     position: absolute;
+    bottom: -260px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -112,10 +86,5 @@ $animDuration: 0.5s;
   }
   .arrow.left {
     left: 0;
-  }
-
-
-  .event-list.second {
-    opacity: $initialOpacity;
   }
 }
