@@ -92,7 +92,7 @@
       <br>
         <%= "Appeared in #{accepted_bookings.count} #{stats_accepted_text}" %>
           <i class="fa-solid fa-angle-down fa-lg" style="color: #042393A; margin: 20px auto;"></i>
-        <% incoming_user_events = @user.events.where("end_hours > ?", Time.now).count %>
+        <% incoming_user_events = @user.events.where("start_hours > ?", Time.now).count %>
         <% @user == current_user ? stats_user_text = "You are" : stats_user_text = "#{ @user.first_name } is" %>
         <% stats_event_text = incoming_user_events > 1 ? "games events" : "game event" %>
         <%= "#{stats_user_text} hosting #{incoming_user_events} #{stats_event_text}" %>
