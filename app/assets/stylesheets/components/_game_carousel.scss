@@ -1,0 +1,43 @@
+.garrow {
+  position: absolute;
+  bottom: 375px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  width: 70px;
+  height: 70px;
+  background-color: rgba($color: white, $alpha: 0.6);
+  border-radius: 50%;
+  z-index: 5;
+  cursor: pointer;
+}
+
+.garrow.right {
+  right: 0;
+}
+
+.garrow.left {
+  left: 0;
+}
+
+.game-cards {
+  margin-top: 30px;
+  transform: translateX(25px);
+}
+
+.full-game-card {
+  background-color: #dcdcdc;
+  border: 8px solid $rollblue;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  height: 460px;
+  width: 320px;
+  margin: 0 10px;
+  position: absolute;
+  box-shadow: -7px 7px 20px 0px rgba(0, 0, 0, 0.2);
+  top: 0;
+}
