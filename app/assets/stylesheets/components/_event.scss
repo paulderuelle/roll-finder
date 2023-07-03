@@ -45,13 +45,15 @@
 }
 
 .event-list{
-  background-color: rgb(204, 197, 197);
-  border: 2px solid;
+  background-color: #dcdcdc;
+  border: 8px solid $rollblue;
+  border-radius: 15px;
   display: flex;
   flex-direction: column;
   justify-content: end;
   align-items: center;
-  height: 400px;
+  height: 460px;
+  width: 320px;
   margin: 0 10px;
 }
 
