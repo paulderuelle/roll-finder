@@ -1,13 +1,21 @@
 class ReviewsController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[index]
   before_action :set_event, only: %i[new create edit update]
   before_action :set_review, only: %i[edit update]
+
+  def index
+    @reviews = current_user.event_reviews
+  end
 
   def new
     @review = Review.new
   end
 
   def create
-    @review = current_user.reviews.build(review_params)
+    @review = Review.new(review_params)
+    @review.event = @event
+    @review.user = current_user
+    # @review = current_user.reviews.build(review_params)
     if @review.save
       redirect_to event_path(@event), notice: 'Review was successfully created.'
     else

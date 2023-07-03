@@ -1,0 +1,31 @@
+.reviewcontainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.reviewprofile{
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+
+}
+
+.reviewtitle{
+  display: flex;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.reviewcard{
+display: flex;
+flex-direction: column;
+}
+
+.reviewrating{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
