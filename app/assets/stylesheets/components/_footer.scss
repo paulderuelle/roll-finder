@@ -1,4 +1,5 @@
 footer {
+  position: absolute;
   position: fixed;
   bottom: 0;
   height: 60px;
@@ -8,16 +9,13 @@ footer {
 }
 .footer-container {
   height: 100%;
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
 }
 .footer-buttons {
   display: flex;
-}
-.footer-button {
-  margin-right: 10px;
-  text-decoration: none;
-  padding: 5px 10px;
-  color: $rollmustard;
+  justify-content: space-between;
+  flex-grow: 1;
+  .footer-btn{
+    position: relative;
+    bottom: 20px;
+  }
 }

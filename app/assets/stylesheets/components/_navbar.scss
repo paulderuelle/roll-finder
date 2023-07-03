@@ -8,12 +8,12 @@ nav {
 }
 .navbar-container {
   height: 100%;
-  display: flex;
-  justify-content: space-between;
 }
 .navbar-buttons {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  flex-grow: 1;
 }
 .navbar-button {
   margin-right: 10px;
@@ -23,12 +23,17 @@ nav {
     color: $rollmustard;
   }
   #brand {
+    font-family: 'Courgette', cursive;
+    font-size: 1.8rem;
     text-decoration: none;
     color: $rollmustard;
   }
   .fa-comments {
     text-decoration: none;
     color: $rollmustard;
-
   }
+}
+
+.navbar-comments {
+  margin-left: auto;
 }
