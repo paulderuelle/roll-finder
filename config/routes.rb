@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 
   resources :bookmarks, only: %i[destroy]
 
+  resources :reviews, only: %i[index]
+
   resources :chatrooms, only: %i[index show] do
     resources :messages, only: :create
   end
@@ -29,6 +31,7 @@ Rails.application.routes.draw do
     post :save_game, on: :collection
     post :my_game, on: :collection
   end
+
   get '/games/show', to: 'games#show', as: 'show_games'
   get '/games', to: 'games#index'
   get 'games/search', to: 'games#search'
