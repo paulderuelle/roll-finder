@@ -1,11 +1,11 @@
 .btn-main {
   appearance: none;
-  background-color: $rollblueL;
+  background-color: $rollmustard;
   border: 1px solid rgba(27, 31, 35, 0.15);
   border-radius: 6px;
   box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
   box-sizing: border-box;
-  color: $rollmustard;
+  color: white;
   cursor: pointer;
   display: inline-block;
   font-family: -apple-system,".SFNSDisplay-Regular","Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -23,9 +23,9 @@
   white-space: nowrap;
   word-wrap: break-word;
   &:hover {
-    // opacity: 0.8;
-    background-color: $rollblueL;
-    color: $rollmustard;
+    opacity: 0.8;
+    background-color: $rollmustard;
+    color: $white;
     text-decoration: none;
     transition-duration: .15s, .15s;
   }
