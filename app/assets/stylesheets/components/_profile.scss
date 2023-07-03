@@ -1,5 +1,4 @@
 .profile-display {
-  background: white;
   padding: 10px 20px;
   margin: 50px auto;
   border-radius: 3px;
@@ -7,18 +6,66 @@
   }
 
 .profile-btn-container {
-  border: 3px solid black;
   margin: 5px auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.profile-headers-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .profile-details {
-  border: 3px solid black;
   margin: 5px auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  .user-first_name {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 0;
+  }
+  .user-nickname {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 0.2rem;
+  }
+  .reviews-details {
+    display: flex;
+    justify-content: center;
+    .user-reviews-count {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .user-reviews-count {
+      font-size: 1rem;
+      font-weight: 400;
+    }
+  }
 }
 
 .profile-highlights {
-  border: 3px solid black;
+  display: flex;
+  flex-direction: column;
   margin: 5px auto;
+  .user-profile-description {
+    background-color: white;
+    border-radius: 10px;
+    width: 20rem;
+    height: 6rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+    z-index : -1;
+    bottom: -80px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    .fa-quote-left {
+      padding: 0 1rem 2rem 0.75rem;
+    }
+  }
 }
 
 .profile-stats {
@@ -31,8 +78,14 @@
   justify-content: center;
   text-decoration: none;
 }
+
 .btn-profile {
   width: 2.5rem;
   height: 2.5rem;
-  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  margin: auto 5px;
+  background-color: white;
 }
