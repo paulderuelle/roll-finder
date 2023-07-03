@@ -1,4 +1,4 @@
-<h1>What game do you want to play?</h1>
+<h1>Let's Get Ready to Rumble!!!</h1>
 
 <%= form_with url: show_games_path, method: :get, class: 'search-form' do |f| %>
   <%= f.text_field :search_query, placeholder: 'Search a game', value: @search_query %>
@@ -9,7 +9,7 @@
   <p>No game found.</p>
 <% else %>
   <% @games.each do |game| %>
-    <div>
+    <div class="game-show">
       <h2><%= game.name %></h2>
       <% if game.image_url.present? %>
         <%= image_tag game.image_url, alt: game.name, style: 'max-width: 200px; max-height: 200px;' %>
@@ -19,7 +19,7 @@
       <p><strong>Max Players:</strong> <%= game.max_players %></p>
       <p><strong>Playing Time:</strong> <%= game.duration %> minutes</p>
       <p><strong>Description:</strong> <%= game.description %></p>
-      <%= button_to "Create an Event!", new_event_path, method: :get, class: 'deck-button', params: { game_name: game.name, year_published: game.publish_year, min_players: game.min_players, max_players: game.max_players, playing_time: game.duration, description: game.description, image_url: game.image_url } %>
+      <%= button_to "To my Deck!", new_event_path, method: :get, class: 'deck-button2', params: { game_name: game.name, year_published: game.publish_year, min_players: game.min_players, max_players: game.max_players, playing_time: game.duration, description: game.description, image_url: game.image_url } %>
     </div>
   <% end %>
 <% end %>
