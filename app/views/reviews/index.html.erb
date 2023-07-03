@@ -1,11 +1,66 @@
-<div>
-  <h2>Reviews</h2>
-  <div>
+<div class="reviewcontainer">
+  <div class="reviewprofile">
+    <div class="profile-highlights">
+      <div class="user-avatar">
+        <% if current_user.photo.attached? %>
+          <%= image_tag current_user.photo, class: "avatar-global avatar-profile" %>
+        <% else %>
+          <%= image_tag "meeple.png", class: "avatar-global avatar-profile" %>
+        <% end %>
+      </div>
+      <div class="user-rating-stars">
+        <% rating = current_user.reviews.average(:rating) || 0 %>
+        <% full_stars = rating.floor %>
+        <% half_star = rating - full_stars %>
+        <% total_stars = 5 %>
+        <% empty_stars = 5 - full_stars - (half_star > 0 ? 1 : 0) %>
+        <% full_stars.times do %>
+          <i class="fa-solid fa-star" style="color: #ecb365;"></i>
+        <% end %>
+        <% if half_star > 0 %>
+          <i class="fa-solid fa-star-half-stroke" style="color: #ecb365;"></i>
+        <% end %>
+        <% empty_stars.times do %>
+          <i class="fa-regular fa-star"></i>
+        <% end %>
+      </div>
+    </div>
+    <div class="profile-details">
+      <div>
+        <p><%= current_user.nickname %></p>
+      </div>
+      <div>
+         <p><%= current_user.first_name %></p>
+      </div>
+      <div>
+      <% if current_user.present? %>
+        <p>Average Rating: <%= number_with_precision(@reviews.average(:rating), precision: 1) %> Reviews: <%= @reviews.count %></p>
+        <%# Insert a link_to "reviews_index" AJAX %>
+      </div>
+      <% else %>
+        <p>No reviews available.</p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="reviewtitle">
+    <h2>Reviews</h2>
+  </div>
+
+  <div class="reviewcard">
     <% if @reviews.any? %>
       <% @reviews.each do |review| %>
-        <%= review.user %>
-        <%= review.rating %>
-        <%= review.comment %>
+        <div class="reviewrating">
+          <div>
+            <%= review.user.nickname %>
+          </div>
+          <div>
+            <%= review.rating %>
+          </div>
+        </div>
+        <div>
+          <%= review.comment %>
+        </div>
       <% end %>
     <% else %>
       <p> You haven't any review yet </p>
