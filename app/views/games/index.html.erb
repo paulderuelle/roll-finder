@@ -5,20 +5,20 @@
   <%= f.submit 'Search' %>
 <% end %>
 
-<div class="event-index" data-controller="event-carousel">
-  <div class="arrow left" data-action="click->event-carousel#scrollPrevious"
+<div data-controller="event-carousel">
+  <div class="garrow left" data-action="click->event-carousel#scrollPrevious"
     data-event-index-target="arrowLeft">
     <i class="fa-solid fa-chevron-left"></i>
   </div>
-  <div class="arrow right" data-action="click->event-carousel#scrollNext"
+  <div class="garrow right" data-action="click->event-carousel#scrollNext"
     data-event-index-target="arrowRight">
     <i class="fa-solid fa-chevron-right"></i>
   </div>
 
   <% if @games.present? %>
-    <div class="scrolling-events" data-event-index-target="list">
+    <div class="game-cards" data-event-index-target="list">
     <% @games.each_with_index do |game, index| %>
-      <div id="init<%= index %>" class="event-list card<%= index <= 4 ? index : 4 %> index-card" data-event-carousel-target="card">
+      <div id="init<%= index %>" class="full-game-card <%= index <= 4 ? index : 4 %>" data-event-carousel-target="card">
         <%= image_tag game.image_url, alt: game.name, class: "card-image" if game.image_url.present? %>
         <div class="card-title">
           <h3><%= game.name %></h3>

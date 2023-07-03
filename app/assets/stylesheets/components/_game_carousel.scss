@@ -1,126 +1,43 @@
-$index-cards-anim-duration: 0.4s;
-
-@keyframes switch-to-4 {
-  to {
-    height: 410px;
-    transform: rotate(3deg) translate(385px, 0px);
-    filter: brightness(0.65);
-    opacity: 0;
-  }
+.garrow {
+  position: absolute;
+  bottom: 375px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  width: 70px;
+  height: 70px;
+  background-color: rgba($color: white, $alpha: 0.6);
+  border-radius: 50%;
+  z-index: 5;
+  cursor: pointer;
 }
 
-@keyframes switch-to-3 {
-  10% {
-    opacity: 1;
-  }
-
-  to {
-    height: 410px;
-    transform: rotate(3deg) translate(295px, 15px);
-    filter: brightness(0.65);
-    transform-origin: center;
-    opacity: 1;
-  }
+.garrow.right {
+  right: 0;
 }
 
-@keyframes switch-to-2 {
-  to {
-    transform: rotate(0) translate(0, 0);
-    filter: brightness(1);
-    height: 460px;
-  }
+.garrow.left {
+  left: 0;
 }
 
-@keyframes switch-to-1 {
-  to {
-    height: 410px;
-    transform: rotate(-5deg) translate(-20px, 30px);
-    transform-origin: bottom left;
-    filter: brightness(0.65);
-    opacity: 1;
-  }
+.game-cards {
+  margin-top: 30px;
+  transform: translateX(25px);
 }
 
-@keyframes switch-to-0 {
-  to {
-    transform: rotate(-8deg) translate(-20px, 100px);
-    height: 310px;
-    transform-origin: center;
-    filter: brightness(0.65);
-    opacity: 0;
-  }
-}
-
-.switch-to-4 {
-  animation: switch-to-4 $index-cards-anim-duration forwards;
-}
-
-.switch-to-3 {
-  animation: switch-to-3 $index-cards-anim-duration forwards;
-}
-
-.switch-to-2 {
-  animation: switch-to-2 $index-cards-anim-duration forwards;
-}
-
-.switch-to-1 {
-  animation: switch-to-1 $index-cards-anim-duration forwards;
-}
-
-.switch-to-0 {
-  animation: switch-to-0 $index-cards-anim-duration forwards;
-}
-
-.index-card {
+.full-game-card {
+  background-color: #dcdcdc;
+  border: 8px solid $rollblue;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  height: 460px;
+  width: 320px;
+  margin: 0 10px;
   position: absolute;
   box-shadow: -7px 7px 20px 0px rgba(0, 0, 0, 0.2);
   top: 0;
-}
-
-// left-out card
-.card0 {
-  transform: rotate(-8deg) translate(-20px, 100px);
-  height: 310px;
-  transform-origin: center;
-  filter: brightness(0.65);
-  opacity: 0;
-  z-index: 0;
-}
-
-// left card
-.card1 {
-  height: 410px;
-  transform: rotate(-5deg) translate(-20px, 30px);
-  transform-origin: bottom left;
-  filter: brightness(0.65);
-  opacity: 1;
-  z-index: 1;
-}
-
-// main card
-.card2 {
-  height: 460px;
-  transform: rotate(0) translate(0, 0);
-  transform-origin: bottom left;
-  filter: brightness(1);
-  z-index: 2;
-}
-
-// right card
-.card3 {
-  height: 410px;
-  transform: rotate(3deg) translate(295px, 15px);
-  filter: brightness(0.65);
-  transform-origin: center;
-  opacity: 1;
-  z-index: 3;
-}
-
-// right-out card
-.card4 {
-  height: 410px;
-  transform: rotate(3deg) translate(385px, 0px);
-  filter: brightness(0.65);
-  opacity: 0;
-  z-index: 4;
 }
