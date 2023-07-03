@@ -105,3 +105,33 @@ $index-cards-anim-duration: 0.4s;
   opacity: 0;
   z-index: 4;
 }
+
+.arrow {
+  position: absolute;
+  bottom: -260px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  width: 70px;
+  height: 70px;
+  background-color: rgba($color: white, $alpha: 0.6);
+  border-radius: 50%;
+  z-index: 5;
+  cursor: pointer;
+}
+
+.arrow.right {
+  right: 0;
+}
+.arrow.left {
+  left: 0;
+}
+
+.event-cards {
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  position: relative;
+  transform: translateX(25px);
+}
