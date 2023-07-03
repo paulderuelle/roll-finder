@@ -5,38 +5,54 @@
         data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
         data-map-animation-target="map"></div>
 
-  <button class="show-map-btn" data-action="mousedown->map-animation#toggleMap"
+  <button class="btn-main show-map-btn" data-action="mousedown->map-animation#toggleMap"
           data-map-animation-target="button">Show the map <i class="fa-solid fa-chevron-down"></i></button>
-  <div class="event-index" data-controller="event-index">
-    <div class="arrow left d-none" data-action="click->event-index#scrollPrevious"
+  <div class="event-index" data-controller="event-carousel">
+    <div class="arrow left" data-action="click->event-carousel#scrollPrevious"
                             data-event-index-target="arrowLeft">
       <i class="fa-solid fa-chevron-left"></i>
     </div>
-    <div class="arrow right" data-action="click->event-index#scrollNext"
+    <div class="arrow right" data-action="click->event-carousel#scrollNext"
                               data-event-index-target="arrowRight">
       <i class="fa-solid fa-chevron-right"></i>
     </div>
     <% if @events.present? %>
       <div class="scrolling-events" data-event-index-target="list">
       <% @events.each_with_index do |event, index| %>
-            <div class="event-list" data-event-index-target="card<%= index %>">
+          <div id="init<%= index %>" class="event-list card<%= index <= 4 ? index : 4 %> index-card" data-event-carousel-target="card">
+            <%= image_tag "tabletop.png", class: "card-image" %>
             <div class="event-address">
                 <%= event.address %>
             </div>
-            <div class="event-title">
+            <div class="card-title">
               <h3><%= link_to event.title, event_path(event.id) %></h3>
             </div>
-            <div class="event-card">
-              <div class="event-datecard">
-                <div class="backcard">
-                <%= event.start_hours.day %>/<%= event.start_hours.month %>/<%= event.start_hours.year %>
+            <div class="card-games">
+              7 wonders / Monopoly
+            </div>
+            <div class="card-info">
+              <div class="date-wrap">
+                <div class="card-date">
+                  <div class="icon"><i class="fa-solid fa-calendar-day"></i></div>
+                  <p><%= event.start_hours.day %>/<%= event.start_hours.month %>/<%= event.start_hours.year %></p>
                 </div>
-                <div class="backcard">
-                <%= event.start_hours.hour %>:<%= event.start_hours.min %>  -  <%= event.end_hours.hour %>:<%= event.end_hours.min %>
+                <div class="card-time">
+                  <div class="icon"><i class="fa-solid fa-clock"></i></div>
+                  <p><%= event.start_hours.hour %>:<%= event.start_hours.min %>  -  <%= event.playtime %> minutes </p>
                 </div>
               </div>
-              <div class="event-slotcard">
-                <%= event.bookings.where(status: "Accepted").size %> / <%= event.slot_number %>
+              <div class="card-players">
+                <div class="icon">
+                  <i class="fa-solid fa-people-carry-box"></i>
+                </div>
+                <p>
+                  <% if event.bookings.where(status: "Accepted").size < event.slot_number %>
+                    <span class="current_players">
+                  <% else %>
+                    <span class="current_players full">
+                  <% end %>
+                  <%= event.bookings.where(status: "Accepted").size %>
+                  </span> / <%= event.slot_number %></p>
               </div>
             </div>
           </div>

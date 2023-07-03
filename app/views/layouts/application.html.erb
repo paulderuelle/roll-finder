@@ -28,17 +28,17 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
-
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
     </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   </head>
 
   <body>
   <%= render "shared/navbar" %>
   <%= render "shared/flashes" %>
   <%= render "shared/footer" %>
-  <div class="body-wrap">
+  <div class="body-wrapp">
     <%= yield %>
   </div>
   </body>
