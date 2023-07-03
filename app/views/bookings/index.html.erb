@@ -1,9 +1,9 @@
-<div class="queen" >
-  <img class="queen-card" src="/assets/Queen_of_hearts.png" />
+<div data-controller="fr-card" data-fr-card-images-value='["assets/cards/queen_of_hearts.png", "assets/cards/jack_of_hearts.png", "assets/cards/king_of_hearts.png"]'>
+  <img class="heart-card" src="/assets/cards/queen_of_hearts.png" data-fr-card-target="image" data-action="click->fr-card#change" />
 </div>
 
-<div class="joker" >
-  <img class="joker-card" src="/assets/Joker_black.png" />
+<div data-controller="fr-card" data-fr-card-images-value='["assets/cards/Joker_black.png", "assets/cards/Joker_red.png"]' >
+  <img class="joker-card" src="/assets/cards/Joker_black.png" data-fr-card-target="image" data-action="click->fr-card#change"/>
 </div>
 
 <div class ="bookmark">
