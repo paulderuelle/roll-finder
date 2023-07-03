@@ -1,0 +1,6 @@
+<h1>New review</h1>
+<%= simple_form_for [@event, @review] do |f| %>
+  <%= f.input :rating %>
+  <%= f.input :comment %>
+  <%= f.submit "Create Reviews", class: "btn-main" %>
+<% end %>
