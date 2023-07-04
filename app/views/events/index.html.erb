@@ -28,7 +28,9 @@
               <h3><%= link_to event.title, event_path(event.id) %></h3>
             </div>
             <div class="card-games">
-              7 wonders / Monopoly
+              <% event.games.each do |game| %>
+                <%= game.name %>
+              <% end %>
             </div>
             <div class="card-info">
               <div class="date-wrap">

@@ -18,17 +18,28 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    @game_name = params[:game_name]
-    @year_published = params[:year_published]
-    @min_players = params[:min_players]
-    @max_players = params[:max_players]
-    @playing_time = params[:playing_time]
-    @description = params[:description]
-    @image_url = params[:image_url]
+    @games = []
+    @games << Game.find(params[:game_id])
+    # @game_name = params[:game_name]
+    # @year_published = params[:year_published]
+    # @min_players = params[:min_players]
+    # @max_players = params[:max_players]
+    # @playing_time = params[:playing_time]
+    # @description = params[:description]
+    # @image_url = params[:image_url]
   end
 
   def create
-    @event = current_user.events.build(event_params)
+    # @event = current_user.events.build(event_params)
+
+    @event = Event.new(event_params)
+    @event.user = current_user
+    @games = []
+    @games << Game.find(event_params[:game_id])
+
+    @games.each do |game|
+      EventGame.create!(event: @event, game: game)
+    end
     if @event.save
       redirect_to event_path(@event), notice: "Event was successfully created."
     else
@@ -59,7 +70,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:title, :description, :start_hours, :playtime, :address, :slot_number, :online, :user_id)
+    params.require(:event).permit(:title, :description, :start_hours, :playtime, :address, :slot_number, :online, :user_id, :game_id)
   end
 
   def owner
