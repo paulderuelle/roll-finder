@@ -14,8 +14,8 @@ $index-cards-anim-duration: 0.4s;
     opacity: 1;
   }
   to {
-    height: 410px;
-    transform: rotate(3deg) translate(295px, 15px);
+    height: 440px;
+    transform: rotate(3deg) translate(295px, 0px);
     filter: brightness(0.65);
     transform-origin: center;
     opacity: 1;
@@ -42,7 +42,7 @@ $index-cards-anim-duration: 0.4s;
 
 @keyframes switch-to-0 {
   to {
-    transform: rotate(-8deg) translate(-20px, 100px);
+    transform: rotate(-8deg) translate(-11px, 26px);
     height: 310px;
     transform-origin: center;
     filter: brightness(0.65);
@@ -64,7 +64,7 @@ $index-cards-anim-duration: 0.4s;
 
 // left-out card
 .card0 {
-  transform: rotate(-8deg) translate(-20px, 100px);
+  transform: rotate(-8deg) translate(-11px, 26px);
   height: 310px;
   transform-origin: center;
   filter: brightness(0.65);
@@ -90,8 +90,8 @@ $index-cards-anim-duration: 0.4s;
 }
 // right card
 .card3 {
-  height: 410px;
-  transform: rotate(3deg) translate(295px, 15px);
+  height: 440px;
+  transform: rotate(3deg) translate(295px, 0px);
   filter: brightness(0.65);
   transform-origin: center;
   opacity: 1;
