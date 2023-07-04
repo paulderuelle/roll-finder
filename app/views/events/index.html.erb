@@ -51,7 +51,7 @@
                   <% else %>
                     <span class="current_players full">
                   <% end %>
-                  <%= event.bookings.where(status: "Accepted").size %>
+                  <%= event.bookings.where(status: "Accepted").size + 1 %>
                   </span> / <%= event.slot_number %></p>
               </div>
             </div>
