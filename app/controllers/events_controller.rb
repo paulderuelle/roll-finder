@@ -8,12 +8,15 @@ class EventsController < ApplicationController
     @markers = @events.geocoded.map do |event|
       {
         lat: event.latitude,
-        lng: event.longitude
+        lng: event.longitude,
+        info_window_html: render_to_string(partial: "popup", locals: {event: event}),
+        marker_html: render_to_string(partial: "marker")
       }
     end
   end
 
   def show
+    @user = @event.user
   end
 
   def new
@@ -36,11 +39,13 @@ class EventsController < ApplicationController
     @event.user = current_user
     @games = []
     @games << Game.find(event_params[:game_id])
-
-    @games.each do |game|
-      EventGame.create!(event: @event, game: game)
-    end
+    # @games.each do |game|
+    #   EventGame.create!(event: @event, game: game)
+    # end
     if @event.save
+      @games.each do |game|
+        EventGame.create!(event: @event, game: game)
+      end
       redirect_to event_path(@event), notice: "Event was successfully created."
     else
       render :new, status: :unprocessable_entity

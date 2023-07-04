@@ -1,4 +1,4 @@
-<div id="event-index-wrap" data-controller="map-animation" data-map-animation-target="wrapper">
+<div id="event-index-wrap" data-controller="map-animation event-carousel" data-map-animation-target="wrapper">
 
   <div id="map" data-controller="map"
         data-map-markers-value="<%= @markers.to_json %>"
@@ -7,7 +7,7 @@
 
   <button class="btn-main show-map-btn" data-action="mousedown->map-animation#toggleMap"
           data-map-animation-target="button">Show the map <i class="fa-solid fa-chevron-down"></i></button>
-  <div class="event-index" data-controller="event-carousel">
+  <div class="event-index">
     <div class="arrow left" data-action="click->event-carousel#scrollPrevious"
                             data-event-index-target="arrowLeft">
       <i class="fa-solid fa-chevron-left"></i>
@@ -19,7 +19,7 @@
     <% if @events.present? %>
       <div class="event-cards">
       <% @events.each_with_index do |event, index| %>
-          <div id="init<%= index %>" class="event-list card<%= index <= 4 ? index : 4 %> index-card" data-event-carousel-target="card">
+          <div id="<%= event.id %>" class="<%= event.games[0].name %> event-list card<%= index <= 4 ? index : 4 %> index-card" data-event-carousel-target="card">
             <%= image_tag "tabletop.png", class: "card-image" %>
             <div class="event-address">
                 <%= event.address %>
