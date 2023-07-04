@@ -1,17 +1,40 @@
 <div class="new-event-wrap">
-  <h1>Let's create an amazing event!</h1>
-  <%= simple_form_for @event do |f| %>
-    <div class="text_form"><%= f.input :title %></div>
-    <div class="text_form"><%= f.input :description %></div>
-    <div class="text_form"><%= f.input :start_hours, as: :string,
-                                input_html: { data: { controller: "datepicker" } } %></div>
-    <div class="text_form"><%= f.input :playtime %></div>
-    <div class="text_form"><%= f.input :address %></div>
-    <div class="text_form"><%= f.input :slot_number %></div>
-    <div class="text_form btn_photo">
-      <%= f.input :photo, as: :file %>
-    </div>
+  <h1>Host a new event</h1>
 
+    <%= simple_form_for @event do |f| %>
+      <div class="new-event-form">
+        <%= f.input :title, placeholder: "Type your game event title" %>
+        <%= f.input :description, placeholder: "What's gonna happen?" %>
+        <label for="">Games</label>
+        <div class="new-event-games">
+          <% @games.each do |game| %>
+            <%= image_tag game.image_url, style: "width: 100px; height: 100px; object-fit: cover" %>
+            <%= f.hidden_field :game_id, value: game.id %>
+          <% end %>
+        </div>
+        <%= f.input :address, placeholder: "Type your event address" %>
+        <%= f.input :start_hours, label: "Date", as: :string,
+                                    input_html: { data: { controller: "datepicker" } } %>
+        <div class="half-size">
+          <%= f.input :playtime, label: "Duration" %>
+          <div class="players">
+            <%= f.input :slot_number, as: :integer, label: "Players"%>
+          </div>
+        </div>
+        <!--
+        <div class="text_form btn_photo">
+          <%= f.input :photo, as: :file %>
+        </div>
+        -->
+      </div>
+
+      <div class="submit-wrap">
+        <%= f.submit value: "Let's play!", class: "btn-main" %>
+      </div>
+    <% end %>
+
+
+    <!--
     <% if params[:game_name].present? %>
       <div class="text_form">
         <%= tag.p params[:game_name], class: "readonly-text" %>
@@ -53,9 +76,7 @@
         <%= image_tag params[:image_url], alt: "Game Image", style: 'max-width: 200px; max-height: 200px;' %>
       </div>
     <% end %>
+    -->
 
-    <div class="submit-wrap">
-      <%= f.submit class: "btn_form" %>
-    </div>
-  <% end %>
+
 </div>

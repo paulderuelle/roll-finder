@@ -39,6 +39,11 @@
   <div class="event-description">
   <%= @event.description %>
   </div>
+  <div class="event-games">
+    <% @event.games.each do |game| %>
+      <%= image_tag game.image_url, style: "width: 100px; height: 100px; object-fit:cover" %>
+    <% end %>
+  </div>
   <div class="event-cardslot">
     <% if current_user == @event.user %>
     <div class="event-slotshow">
