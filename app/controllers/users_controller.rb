@@ -3,7 +3,8 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show]
 
   def show
-    @reviews = @user.reviews
+    @event = @user.events
+    @reviews = current_user.event_reviews
   end
 
   def edit

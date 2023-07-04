@@ -1,4 +1,4 @@
-<div class="profile-global-container">
+<div class="profile-global-container" data-controller="review">
   <div class="profile-display">
     <div class="profile-btn-container">
       <% if current_user == @user %>
@@ -97,9 +97,13 @@
         <% stats_event_text = incoming_user_events > 1 ? "games events" : "game event" %>
         <%= "#{stats_user_text} hosting #{incoming_user_events} #{stats_event_text}" %>
       </div>
+    <div class="review-stats d-none">
+      <%= render "reviews/info" %>
+    </div>
 
     <div class="profile-events-cards">
       <%# Insert events cards %>
     </div>
   </div>
 </div>
+
