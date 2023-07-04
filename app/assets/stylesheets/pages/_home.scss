@@ -1,1 +1,42 @@
-// Specific CSS for your home-page
+.homepage-buttons {
+  h1 {
+    display: flex;
+    text-align: center;
+    margin: 40px auto;
+    color: $rollblue;
+    font-size: 37px;
+    font-weight: 900;
+  }
+  a {
+    text-decoration: none;
+    display: flex;
+  }
+}
+.homepage-btn {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: $rollblue;
+  border-radius: 10px;
+  margin: 20px auto;
+  width: 85%;
+  height: 8rem;
+  .homepage-txt-btn {
+    color: $rollmustard;
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-align: center;
+  }
+  .homepage-create-txt {
+    margin-right: 9px;
+  }
+  .homepage-near-txt {
+    margin-left: -20px;
+  }
+  .homepage-create-img {
+    margin-right: 30px;
+  }
+  .homepage-near-img {
+    margin-left: 30px;
+  }
+}

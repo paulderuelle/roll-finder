@@ -1,1 +1,23 @@
-<h1>Welcome to RollFinder</h1>
+<div class="homepage-buttons">
+<h1>Which chapter will you open today?</h1>
+  <%= link_to games_path do %>
+    <div class="homepage-btn">
+      <div class="homepage-txt-btn homepage-create-txt">
+        Organize a game event
+      </div>
+      <div class="homepage-create-img">
+        <%= image_tag("logo.png", alt: "New event") %>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to events_path do %>
+    <div class="homepage-btn">
+      <div class="homepage-near-img">
+        <%= image_tag("magnifying_glass.png", alt: "Near event") %>
+      </div>
+      <div class="homepage-txt-btn homepage-near-txt">
+        Join an event near me
+      </div>
+    </div>
+  <% end %>
+</div>
