@@ -59,7 +59,13 @@
             <% end %>
           <% end %>
         </div>
-        <div class="user-profile-description position-absolute"><i class="fa-solid fa-quote-left"></i><%= @user.description %></div>
+
+        <div class="user-profile-description position-absolute">
+        <i class="fa-solid fa-quote-left"></i>
+          <div class="description-content">
+            <%= @user.description %>
+          </div>
+        </div>
 
       </div>
       <div class="profile-details">
