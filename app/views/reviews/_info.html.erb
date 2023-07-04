@@ -1,0 +1,22 @@
+  <div class="reviewcard">
+    <% if @event.any? %>
+     <% @event.each do |event| %>
+      <% event.reviews.each do |review| %>
+        <div class="reviewrating">
+          <div>
+            <%= review.user.nickname %>
+          </div>
+          <div>
+            <%= review.rating %>
+          </div>
+        </div>
+        <div>
+          <%= review.comment %>
+        </div>
+      <% end %>
+    <% end %>
+    <% else %>
+      <p> You haven't any review yet </p>
+    <% end %>
+  </div>
+</div>
