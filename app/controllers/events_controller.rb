@@ -16,6 +16,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @user = @event.user
   end
 
   def new
@@ -38,11 +39,13 @@ class EventsController < ApplicationController
     @event.user = current_user
     @games = []
     @games << Game.find(event_params[:game_id])
-
-    @games.each do |game|
-      EventGame.create!(event: @event, game: game)
-    end
+    # @games.each do |game|
+    #   EventGame.create!(event: @event, game: game)
+    # end
     if @event.save
+      @games.each do |game|
+        EventGame.create!(event: @event, game: game)
+      end
       redirect_to event_path(@event), notice: "Event was successfully created."
     else
       render :new, status: :unprocessable_entity
