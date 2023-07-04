@@ -125,8 +125,8 @@ class GamesController < ApplicationController
     text = text.gsub("Description from the publisher:", '') if text
     # Split the description into sentences
     sentences = text.split(/(?<=[.:!?])\s+/)
-    # Get the first sentence from the description only
-    sentences.first.strip
+    # Get the first two sentences of the description only
+    sentences.first(2).join(' ').strip
   end
 
   # See line 23 for method usage
