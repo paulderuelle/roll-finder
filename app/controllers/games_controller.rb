@@ -2,6 +2,7 @@ require 'open-uri' # Import the library for opening URLs
 require 'nokogiri' # Import the library for parsing XML and HTML
 require 'cloudinary' # Import the library for working with cloud-based images
 require 'cgi' # Import the library for URL encoding. For exemple: "Hello, World!" => "Hello%2C+World%21"
+require 'htmlentities' # Import the library for decoding HTML entities. For exemple: "&amp;" => "&"
 
 class GamesController < ApplicationController
   # Execute the fetch_game method before the my_game action
@@ -112,14 +113,20 @@ class GamesController < ApplicationController
 
   # See line 100 for method usage
   def fetch_description_value(xml_data)
+    # Create a new HTMLEntities object to decode HTML entities
+    coder = HTMLEntities.new
     # Fetch the description attribute from the XML data
     text = xml_data.at_xpath('//description')&.text
     # Remove HTML tags from the description
     text = text.gsub(/<[^>]*>/, '') if text
+    # Replacing HTML entities with their corresponding characters
+    text = coder.decode(text) if text
+    # Remove specific sentence from the description
+    text = text.gsub("Description from the publisher:", '') if text
     # Split the description into sentences
-    sentences = text.split(/(?<=[.!?])\s+/)
+    sentences = text.split(/(?<=[.:!?])\s+/)
     # Get the first two sentences of the description only
-    sentences.first(2).join(' ')
+    sentences.first(2).join(' ').strip
   end
 
   # See line 23 for method usage
@@ -140,7 +147,7 @@ class GamesController < ApplicationController
     end
   end
 
-  # See line 139 for method usage
+  # See line 146 for method usage
   def create_game(game, game_data, image_url)
     Game.create!(
       # Set the game name attribute, year published, description, etc...
@@ -154,7 +161,7 @@ class GamesController < ApplicationController
     )
   end
 
-  # See line 137 for method usage
+  # See line 144 for method usage
   def upload_image_to_cloudinary(image_url)
     # Upload the game image to Cloudinary and return the secure URL
     Cloudinary::Uploader.upload(image_url)['secure_url']

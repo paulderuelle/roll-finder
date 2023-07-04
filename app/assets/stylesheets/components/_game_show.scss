@@ -1,22 +1,70 @@
 .game-show {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 10px;
-  margin-bottom: 20px;
-  background-color: #fff;
-  /* Add other desired styles */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 7px solid $rollblueD;
+  border-radius: 10px;
+  padding: 30px;
+  margin: 25px auto;
+  color: black;
+  background-color: $light-gray;
+  box-shadow: 5px 10px 10px 2px rgba(0, 0, 0, 0.5);
+  width: 370px;
+  height: 600px;
+  justify-content: space-between;
+}
+
+.game-name {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.game-details {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.game-info-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 8px;
+}
+
+.game-pic {
+  max-width: 200px;
+  max-height: 200px;
+  border-radius: 10px;
+  box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.game-players,
+.game-duration {
+  font-size: 30px;
+}
+
+.game-description {
+  font-size: 16px;
+  font-style: italic;
+  overflow: auto;
+  height: 200px;
+  background-color: white;
+  border-radius: 10px;
+  margin-top: 10px;
 }
 
 .deck-button2 {
   background-color: $red;
   color: #ffffff;
-  z-index: 99999;
-  bottom: -5px;
-  position: relative;
   border-radius: 7px 7px 7px 7px;
   border: 2px outset $yellow;
   box-shadow: inset -3px -3px 10px 2px rgba(0, 0, 0, 0.5);
   font-size: 1.5em;
   font-weight: bold;
   font-style: italic;
+  // position: relative;
+  margin-bottom: 20px;
 }
