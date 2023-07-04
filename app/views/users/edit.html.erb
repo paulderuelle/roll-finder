@@ -4,7 +4,7 @@
     <div class="edit-profile-form">
       <%= f.input :nickname, required: true %>
       <%= f.input :first_name, required: true %>
-      <%= f.input :description %>
+      <%= f.input :description, input_html: { maxlength: 55, style: 'background-color: #efefef; border: 0; border-radius: 20px;' } %>
       <%= f.input :photo, as: :file, label: "Photo" %>
     </div>
 
