@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :reviews, only: %i[new create edit update]
   end
 
+
   resources :bookings, only: %i[index edit update destroy]
   # member do
   #   patch :accepted, to: ""
@@ -30,6 +31,8 @@ Rails.application.routes.draw do
   resources :games do
     post :save_game, on: :collection
     post :my_game, on: :collection
+    # get "/event/new", to: "events#new", as: "new_event"
+    # post "/events", to: "events#create", as: "events"
   end
 
   get '/games/show', to: 'games#show', as: 'show_games'

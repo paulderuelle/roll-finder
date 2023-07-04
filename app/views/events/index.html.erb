@@ -28,7 +28,9 @@
               <h3><%= link_to event.title, event_path(event.id) %></h3>
             </div>
             <div class="card-games">
-              7 wonders / Monopoly
+              <% event.games.each do |game| %>
+                <%= game.name %>
+              <% end %>
             </div>
             <div class="card-info">
               <div class="date-wrap">
@@ -38,7 +40,7 @@
                 </div>
                 <div class="card-time">
                   <div class="icon"><i class="fa-solid fa-clock"></i></div>
-                  <p><%= event.start_hours.hour %>:<%= event.start_hours.min %>  -  <%= event.playtime %> minutes </p>
+                  <p><%= event.start_hours.hour %>:<%= event.start_hours.min %>  -  <%= event.playtime %>min </p>
                 </div>
               </div>
               <div class="card-players">
@@ -51,7 +53,7 @@
                   <% else %>
                     <span class="current_players full">
                   <% end %>
-                  <%= event.bookings.where(status: "Accepted").size %>
+                  <%= event.bookings.where(status: "Accepted").size + 1 %>
                   </span> / <%= event.slot_number %></p>
               </div>
             </div>

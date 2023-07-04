@@ -39,10 +39,15 @@
   <div class="event-description">
   <%= @event.description %>
   </div>
+  <div class="event-games">
+    <% @event.games.each do |game| %>
+      <%= image_tag game.image_url, style: "width: 100px; height: 100px; object-fit:cover" %>
+    <% end %>
+  </div>
   <div class="event-cardslot">
     <% if current_user == @event.user %>
     <div class="event-slotshow">
-      <%= @event.bookings.where(status: "Accepted").size %> / <%= @event.slot_number %>
+      <%= @event.bookings.where(status: "Accepted").size + 1 %> / <%= @event.slot_number %>
     </div>
       <% @event.bookings.each do |booking| %>
         <div class="validatecard">
@@ -71,7 +76,7 @@
     <% else %>
       <div class="event-cardslotuser">
         <div class="event-slotshow">
-          <%= @event.bookings.where(status: "Accepted").size %> / <%= @event.slot_number %>
+          <%= @event.bookings.where(status: "Accepted").size + 1 %> / <%= @event.slot_number %>
         </div>
         <div class="bookingstatus">
           <% booking = @event.bookings.where(user: current_user).first %>
@@ -94,6 +99,12 @@
           <% end %>
         </div>
       </div>
+      <% if booking&.status == "Accepted" && @event.reviews.where(user: current_user).first == nil %>
+        <div>
+          <%= link_to "add a review", new_event_review_path(@event) %>
+        </div>
+      <% else %>
+      <% end %>
     <% end %>
   </div>
 </div>

@@ -23,8 +23,7 @@
   white-space: nowrap;
   word-wrap: break-word;
   &:hover {
-    opacity: 0.8;
-    background-color: $rollmustard;
+    background-color: $rollhover;
     color: $white;
     text-decoration: none;
     transition-duration: .15s, .15s;
