@@ -17,7 +17,12 @@ export default class extends Controller {
       const element = this.cardTargets[(this.scrollingPosition + index - 1) % this.cardTargets.length];
       this.#resetPosition(element);
       // add the css classes to animate the element
-      element.classList.add(`card${(index + 1) % this.cardTargets.length}`);
+      if (index < 4) {
+        element.classList.add(`card${(index + 1) % this.cardTargets.length}`);
+      } else {
+        element.classList.add(`card${4 % this.cardTargets.length}`);
+      }
+
       element.classList.add(`switch-to-${index % this.cardTargets.length}`);
     }
     this.scrollingPosition += 1;
