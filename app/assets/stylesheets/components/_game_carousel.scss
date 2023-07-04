@@ -82,7 +82,7 @@
 .deck-button {
   background-color: $red;
   color: #ffffff;
-  z-index: 99999;
+  z-index: 9;
   bottom: 55px;
   position: relative;
   border-radius: 7px 7px 7px 7px;
@@ -96,7 +96,7 @@
 .search-button {
   background-color: $green;
   color: #ffffff;
-  z-index: 99999;
+  z-index: 9;
   bottom: 6px;
   left: 50%;
   transform: translateX(-50%);
