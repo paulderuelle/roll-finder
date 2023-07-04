@@ -94,7 +94,7 @@
           <% end %>
         </div>
       </div>
-      <% if booking.status == "Accepted" %>
+      <% if booking&.status == "Accepted" && @event.reviews.where(user: current_user).first == nil %>
         <div>
           <%= link_to "add a review", new_event_review_path(@event) %>
         </div>
