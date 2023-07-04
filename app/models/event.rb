@@ -10,10 +10,9 @@ class Event < ApplicationRecord
   has_many :event_games
   has_many :games, through: :event_games
 
-  # validates :title, presence: true, uniqueness: true, length: { maximum: 30 }
-  # validates :description, presence: true, length: { maximum: 300 }
-  # validates :date, presence: true
-  # validates :address, presence: true
-  # validates :slot_number, presence: true
-  # has_one_attached :photo
+  validates :title, presence: true, uniqueness: true, length: { maximum: 30 }
+  validates :description, presence: true, length: { maximum: 300 }
+  validates :address, presence: true
+  validates :slot_number, presence: true
+  has_one_attached :photo
 end
