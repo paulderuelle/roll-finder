@@ -49,9 +49,12 @@ export default class extends Controller {
     const id = event.params.id;
     let cardIndex;
     this.cardTargets.forEach((card) => {
+      // reset the position of every card
       this.#resetPosition(card);
+      // add the "hidden behind" card position to every card
       card.classList.add("card0");
       if (card.id === id.toString()) {
+        // get the index of the card we want in the targets array
         cardIndex = this.cardTargets.indexOf(card);
       }
     })
