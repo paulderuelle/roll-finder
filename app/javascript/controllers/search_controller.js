@@ -1,13 +1,14 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["form", "results"]
+  search(event) {
+    event.preventDefault();
 
-  connect() {
-    console.log("Controller connected");
-  }
-
-  search() {
-    console.log("Search action");
+    const button = event.target;
+    const gameName = button.getAttribute('data-game-name');
+    const form = document.querySelector('.search-form');
+    const searchField = form.querySelector('[name="search_query"]');
+    searchField.value = gameName;
+    form.submit();
   }
 }

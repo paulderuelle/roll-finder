@@ -1,6 +1,6 @@
 .garrow {
   position: absolute;
-  bottom: 375px;
+  bottom: 320px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,22 +22,89 @@
 }
 
 .game-cards {
-  margin-top: 30px;
+  margin-top: 130px;
   transform: translateX(25px);
 }
 
-.full-game-card {
-  background-color: #dcdcdc;
-  border: 8px solid $rollblue;
-  border-radius: 15px;
+.game-image {
+  width: 100%;
+  height: 90%;
+  border-radius: 7px 7px 0 0;
+  object-fit: cover;
+  margin-top: 0;
+}
+
+.game-title {
   display: flex;
-  flex-direction: column;
-  justify-content: end;
-  align-items: center;
-  height: 460px;
-  width: 320px;
-  margin: 0 10px;
+  justify-content: space-around;
   position: absolute;
-  box-shadow: -7px 7px 20px 0px rgba(0, 0, 0, 0.2);
-  top: 0;
+  top: -1px;
+  width: 100%;
+  padding: 10px;
+  background-color: $rollblueL;
+  color: white;
+  border-radius: 7px 7px 0 0;
+}
+
+.game-title h3 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.game-info {
+  display: flex;
+  justify-content: space-around;
+  position: absolute;
+  bottom: -1px;
+  width: 100%;
+  padding: 10px;
+  background-color: $rollblueL;
+  color: white;
+  border-radius: 0 0 7px 7px;
+}
+
+.game-info p {
+  margin: 0;
+  font-size: 30px;
+}
+
+.game-info p:first-child {
+  margin-right: 10px;
+  /* Adjust this value to move the player numbers to the left */
+}
+
+.game-info p:last-child {
+  margin-left: 37px;
+  /* Adjust this value to move the time info to the right */
+}
+
+.deck-button {
+  background-color: $red;
+  color: #ffffff;
+  z-index: 99999;
+  bottom: 55px;
+  position: relative;
+  border-radius: 7px 7px 7px 7px;
+  border: 2px outset $yellow;
+  box-shadow: inset -3px -3px 10px 2px rgba(0, 0, 0, 0.5);
+  font-size: 1.5em;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.search-button {
+  background-color: $green;
+  color: #ffffff;
+  z-index: 99999;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  border-radius: 7px 7px 7px 7px;
+  border: 2px outset $yellow;
+  box-shadow: inset -3px -3px 10px 2px rgba(0, 0, 0, 0.5);
+  font-size: 1.5em;
+  font-weight: bold;
+  font-style: italic;
 }
