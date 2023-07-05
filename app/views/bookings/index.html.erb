@@ -6,38 +6,47 @@
   <img class="joker-card" src="/assets/cards/Joker_black.png" data-fr-card-target="image" data-action="click->fr-card#change"/>
 </div>
 
-<div class ="bookmark">
-
-  <h1>My bookmarks</h1>
-
-  <% if @bookmarks.size == 0 %>
-    <p>You haven't added any bookmarks yet.</p>
-    <img class="heart-back-card" src="/assets/images/cards/back_03.png">
-  <% else %>
-    <ul>
-      <% @bookmarks.each do |bookmark| %>
-        <li><%= link_to bookmark.event.title, event_path(bookmark.event.id) %></li>
-        <%= link_to "Cancel bookmark", bookmark_path(bookmark), class: "btn primary",
-            data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-      <% end %>
-    </ul>
-  <% end %>
-
-  <h1>My bookings</h1>
-
-  <% if @bookings.present? %>
-    <% @bookings.each do |booking| %>
-      <div>
-        <p><%= booking.event.title %></p>
-        <p><%= booking.status %></p>
+<div class="books-container">
+  <div class="bookmarks-container">
+    <% if @bookmarks.size == 0 %>
+      <img class="heart-back-card" src="/assets/cards/back_03.png">
+    <% else %>
+      <div class="bookmarks-card">
+        <% @bookmarks.each_with_index do |bookmark, index| %>
+          <% if index < 10 %>
+            <div class="image-container">
+              <%= image_tag "cards/#{sprintf('%02d', index + 1)}_of_hearts.png", alt: bookmark.event.title, class: "bookmark-image" %>
+              <div class="image-text">
+                <%= link_to bookmark.event.title, event_path(bookmark.event.id), style: "text-decoration: none; color: green;" %>
+                <%= link_to "Cancel bookmark", bookmark_path(bookmark), class: "btn primary",
+                  data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
       </div>
     <% end %>
-  <% else %>
-    <p>You have not yet made any bookings.</p>
-    <img class="joker-back-card" src="/assets/images/cards/back_01.png">
+  </div>
 
+  <div class="bookings-container">
+    <% if @bookings.present? %>
+      <div class="bookings-card">
+        <% @bookings.reverse.each_with_index do |booking, index| %>
+          <% if index < 10 %>
+            <div class="image-container">
+              <%= image_tag "cards/#{sprintf('%02d', index + 1)}_of_clubs.png", alt: booking.event.title, class: "booking-image" %>
+              <div class="image-text <%= booking.status.downcase if booking.status.present? %>">
+                <%= link_to booking.event.title, event_path(booking.event.id), style: "text-decoration: none; color: green;" %>
+                <p><%= booking.status %></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% else %>
+      <img class="joker-back-card" src="/assets/cards/back_01.png">
     <% end %>
-
+  </div>
 </div>
 
 <%#
