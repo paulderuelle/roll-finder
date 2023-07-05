@@ -109,7 +109,15 @@
     </div>
 
     <div class="profile-events-cards">
-      <%# Insert events cards %>
+      <% @user.events.each do |event| %>
+        <div class="profile-event-games">
+          <% event.games.each do |game| %>
+            <%= link_to event_path(event) do %>
+              <%= image_tag game.image_url,  style: "width: 100px; height: 100px; object-fit:cover" %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
