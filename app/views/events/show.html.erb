@@ -37,19 +37,17 @@
         <% if bookmark.present? %>
           <%= link_to "", bookmark_path(bookmark), class:"fa-solid fa-heart", style:"color: #f10404;", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
         <% else %>
-          <%= simple_form_for [@event, Bookmark.new] do |f| %>
-            <div>
-              <%= f.submit "", class:"fa-regular fa-heart", style:"color: #f10404;" %>
-            </div>
-          <% end %>
+          <div>
+            <%= link_to "", event_bookmarks_path(@event), class:"fa-regular fa-heart", style:"color: #f10404;", data: {turbo_method: :post} %>
+          </div>
         <% end %>
       <% end %>
     </div>
     <div class="event-date">
-      <div class="event-dateshow icon"><i class="fa-solid fa-calendar-day"></i>
+      <div class="event-dateshow "><i class="fa-solid fa-calendar-day icon"></i>
         <%= @event.start_hours.day %>/<%= @event.start_hours.month %>/<%= @event.start_hours.year %>
       </div>
-      <div class="event-dateshow"><i class="fa-solid fa-clock"></i>
+      <div class="event-dateshow "><i class="fa-solid fa-clock icon"></i>
         <%= @event.start_hours.hour %>:<%= @event.start_hours.min %>  for <%= @event.playtime %> min
         </div>
     </div>
@@ -63,7 +61,7 @@
     </div>
     <div class="event-cardslot">
       <% if current_user == @event.user %>
-      <div class="event-slotshow"><i class="fa-solid fa-people-carry-box"></i>
+      <div class="event-slotshow "><i class="fa-solid fa-people-carry-box iconplay"></i>
         <%= @event.bookings.where(status: "Accepted").size + 1 %> / <%= @event.slot_number %>
       </div>
         <% @event.bookings.each do |booking| %>
@@ -77,7 +75,8 @@
               <div class="cardbutton">
                 <%= simple_form_for (booking) do |f| %>
                   <div>
-                    <%= f.button :submit, "Accept", status: 'Accepted', class: "btn-main" %>
+                    <% f.input :status, input_html: { value: 'Accepted' }, as: :hidden %>
+                    <%= f.button :submit, "Accepted", status: 'Accepted', class: "btn-main" %>
                   </div>
                 <% end %>
                 <%= simple_form_for (booking) do |f| %>
@@ -92,20 +91,24 @@
         <% end %>
       <% else %>
         <div class="event-cardslotuser">
-          <div class="event-slotshow icon"><i class="fa-solid fa-people-carry-box"></i>
+          <div class="event-slotshow "><i class="fa-solid fa-people-carry-box iconplay"></i>
             <%= @event.bookings.where(status: "Accepted").size + 1 %> / <%= @event.slot_number %>
           </div>
           <div class="bookingstatus">
             <% booking = @event.bookings.where(user: current_user).first %>
             <% if booking.present? %>
-              <% if booking.status == "Declined" %>
-                <p class="declined"><%= booking.status %></p>
-              <% elsif booking.status == "Accepted" %>
-                <p class="accepted"><%= booking.status %></p>
-              <% else %>
-                <p class="wait"><%= booking.status %></p>
-              <% end %>
-              <%= link_to "Cancel booking", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+              <div>
+                <% if booking.status == "Declined" %>
+                  <p class="declined"><%= booking.status %></p>
+                <% elsif booking.status == "Accepted" %>
+                  <p class="accepted"><%= booking.status %></p>
+                <% else %>
+                  <p class="wait"><%= booking.status %></p>
+                <% end %>
+              </div>
+              <div class="btn-profile btn-logout">
+                <%= link_to "", booking_path(booking), class: "fa-solid fa-trash-can", style:"color: #04293a;", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+              </div>
             <% else %>
               <%= simple_form_for [@event, Booking.new] do |f| %>
                 <div>

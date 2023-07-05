@@ -131,18 +131,25 @@
 
 .event-slotshow{
   margin: 5px;
+  width: 100px;
+  height: 30px;
   background-color: white;
   border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   font-size: larger;
   font-weight: bold;
 }
 
 .event-dateshow{
   background-color: white;
+  height: 20px;
   border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .event-cardslotuser{
@@ -162,21 +169,45 @@
 }
 
 .bookingstatus{
+  width: 200px;
   margin: 10px;
   display:flex;
-  flex-direction: column;
-}
+  justify-content:space-between;
+  align-items: center;
+ }
 
 .wait{
+  width: 120px;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items:last baseline;
+  border: 2px solid orange;
+  border-radius: 20px;
   color: orange;
+  text-align: center;
 }
 
 .accepted{
-  color:rgb(12, 156, 12)
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items:last baseline;
+  border: 2px solid rgb(12, 156, 12);
+  border-radius: 20px;
+  color:rgb(12, 156, 12);
+  text-align: center;
 }
 
 .declined{
-  color:red
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items:last baseline;
+  border: 2px solid red;
+  border-radius: 20px;
+  color:red;
+  text-align: center;
 }
 
 .btn-decline{
@@ -213,5 +244,19 @@
 .event-games{
   display: flex;
   justify-content:center;
+  align-items: center;
+}
+
+.icon{
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.iconplay{
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
