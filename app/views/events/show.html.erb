@@ -35,10 +35,10 @@
       <% else %>
       <% bookmark = @event.bookmarks.where(user: current_user).first %>
         <% if bookmark.present? %>
-          <%= link_to "", bookmark_path(bookmark), class:"fa-solid fa-heart", style:"color: #f10404;", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+          <%= link_to "", bookmark_path(bookmark), class:"fa-solid fa-heart", style:"text-decoration: none; color: #f10404;", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
         <% else %>
           <div>
-            <%= link_to "", event_bookmarks_path(@event), class:"fa-regular fa-heart", style:"color: #f10404;", data: {turbo_method: :post} %>
+            <%= link_to "", event_bookmarks_path(@event), class:"fa-regular fa-heart", style:" text-decoration: none; color: #f10404;", data: {turbo_method: :post} %>
           </div>
         <% end %>
       <% end %>
