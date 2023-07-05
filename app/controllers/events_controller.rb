@@ -5,6 +5,14 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.all
+    if params[:query].present?
+      sql_subquery = <<~SQL
+        games.name ILIKE :query
+        OR events.title ILIKE :query
+        OR events.address ILIKE :query
+      SQL
+      @events = @events.joins(:games).where(sql_subquery, query: "%#{params[:query]}%")
+    end
     @markers = @events.geocoded.map do |event|
       {
         lat: event.latitude,
@@ -13,6 +21,8 @@ class EventsController < ApplicationController
         marker_html: render_to_string(partial: "marker")
       }
     end
+
+
   end
 
   def show

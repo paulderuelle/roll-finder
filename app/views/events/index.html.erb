@@ -3,10 +3,24 @@
   <div id="map" data-controller="map"
         data-map-markers-value="<%= @markers.to_json %>"
         data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
-        data-map-animation-target="map"></div>
+        data-map-animation-target="map">
+  </div>
 
   <button class="btn-main show-map-btn" data-action="mousedown->map-animation#toggleMap"
-          data-map-animation-target="button">Show the map <i class="fa-solid fa-chevron-down"></i></button>
+          data-map-animation-target="button">Show the map <i class="fa-solid fa-chevron-down"></i>
+  </button>
+
+  <div class="event-searchbar">
+    <%= form_with url: events_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query,
+            params[:query],
+            class: "form-control event-search",
+            placeholder: "Search for a game..."
+        %>
+      <%= submit_tag "Search", name: "", class: "btn btn-primary d-none" %>
+    <% end %>
+  </div>
+
   <div class="event-index">
     <div class="arrow left" data-action="click->event-carousel#scrollPrevious"
                             data-event-index-target="arrowLeft">

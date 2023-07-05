@@ -51,10 +51,22 @@ $animDuration: 0.5s;
   }
 
   .show-map-btn {
-    margin: 0 auto 30px auto;
+    margin: 0 auto 12px auto;
     z-index: 1000;
     position: relative;
 
     transform: translateY($btnInitialY);
+  }
+
+  .event-searchbar {
+    padding: 0 30px;
+    margin-bottom: 35px;
+
+    input.event-search {
+      border-radius: 40px;
+      background-color: white;
+      padding: 12px 20px;
+      margin-right: 10px;
+    }
   }
 }
