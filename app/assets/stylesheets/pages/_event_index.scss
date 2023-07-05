@@ -3,6 +3,7 @@ $wrapFinalY: -5px;
 $btnInitialY: -15px;
 $btnFinalY: 45px;
 $initialOpacity: 30%;
+$cardsFinalY: -70px;
 $animDuration: 0.5s;
 
 @keyframes slideIn {
@@ -29,6 +30,34 @@ $animDuration: 0.5s;
   from { opacity: 100% }
   to { opacity: $initialOpacity }
 }
+@keyframes disapear {
+  from { opacity: 100% }
+  to { opacity: 0% }
+}
+@keyframes apear {
+  from { opacity: 0% }
+  to { opacity: 100% }
+}
+@keyframes cardsUp {
+  from {
+    transform: translateY(0px);
+    opacity: 100%;
+  }
+  to {
+    transform: translateY($cardsFinalY);
+    opacity: $initialOpacity;
+  }
+}
+@keyframes cardsDown {
+  from {
+    transform: translateY($cardsFinalY);
+    opacity: $initialOpacity;
+  }
+  to {
+    transform: translateY(0px);
+    opacity: 100%;
+  }
+}
 
 .slideIn { animation: slideIn $animDuration forwards; }
 .slideOut { animation: slideOut $animDuration forwards; }
@@ -36,6 +65,11 @@ $animDuration: 0.5s;
 .slideUp { animation: slideUp 0.3s forwards; }
 .fadeIn { animation: fadeIn $animDuration forwards; }
 .fadeOut { animation: fadeOut $animDuration forwards; }
+.disapear { animation: disapear $animDuration forwards; }
+.apear { animation: apear $animDuration forwards; }
+.cardsUp { animation: cardsUp $animDuration forwards; }
+.cardsDown { animation: cardsDown $animDuration forwards; }
+
 
 .low-opacity {
   opacity: $initialOpacity;
