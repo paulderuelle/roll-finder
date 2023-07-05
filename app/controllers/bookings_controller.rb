@@ -28,8 +28,10 @@ class BookingsController < ApplicationController
 
   def update
     @booking.status = params[:commit]
+    @booking.status = "Accepted" if @booking.status == "Accept"
+    @booking.status = "Declined" if @booking.status == "Decline"
     if @booking.save
-      redirect_to @booking.event
+      redirect_to event_path(@booking.event)
     else
       render :edit, status: :unprocessable_entity
     end
