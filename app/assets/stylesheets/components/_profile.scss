@@ -100,3 +100,23 @@
   margin: auto 5px;
   background-color: white;
 }
+
+.edit-profile-form {
+background-color: white;
+padding: 25px 25px 13px 25px;
+border-radius: 10px;
+margin: 20px;
+label {
+  font-weight: bold;
+  margin: 0 0 5px 15px;
+}
+input {
+  background-color: #efefef;
+  border: 0;
+  border-radius: 20px;
+}
+}
+
+.edit-profile-actions {
+  text-align: center;
+}

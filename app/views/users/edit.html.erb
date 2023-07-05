@@ -1,14 +1,14 @@
-<%= simple_form_for(@user, url: user_path(@user), method: :patch, data: { turbo: :false }) do |f| %>
-  <%= f.error_notification %>
+  <%= simple_form_for(@user, url: user_path(@user), method: :patch, data: { turbo: :false }) do |f| %>
+    <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :nickname, required: true %>
-    <%= f.input :first_name, required: true %>
-    <%= f.input :description %>
-    <%= f.input :photo, as: :file, label: "Photo" %>
-  </div>
+    <div class="edit-profile-form">
+      <%= f.input :nickname, required: true %>
+      <%= f.input :first_name, required: true %>
+      <%= f.input :description, input_html: { maxlength: 55, style: 'background-color: #efefef; border: 0; border-radius: 20px;' } %>
+      <%= f.input :photo, as: :file, label: "Photo" %>
+    </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Update Profile" %>
-  </div>
-<% end %>
+    <div class="edit-profile-actions">
+      <%= f.button :submit, "Update Profile", class: "btn-main" %>
+    </div>
+  <% end %>

@@ -44,6 +44,31 @@ export default class extends Controller {
     }
   }
 
+  scrollTo(event) {
+    // get the id given by the click on the pin
+    const id = event.params.id;
+    let cardIndex;
+    this.cardTargets.forEach((card) => {
+      // reset the position of every card
+      this.#resetPosition(card);
+      // add the "hidden behind" card position to every card
+      card.classList.add("card0");
+      if (card.id === id.toString()) {
+        // get the index of the card we want in the targets array
+        cardIndex = this.cardTargets.indexOf(card);
+      }
+    })
+
+    for (let index = 0; index < 5; index++) {
+      // pick the 4 cards to animate
+      const element = this.cardTargets[this.#negMod(cardIndex - 1 + index)];
+      // add the css class to iniatialize the card position
+      element.classList.add(`card${index}`);
+      // add the css class to animate the card
+      element.classList.add(`switch-to-${index + 1}`);
+    }
+  }
+
   #negMod(number) {
     // hack to use the modulo on negatives values
     if (number % this.cardTargets.length < 0) {
