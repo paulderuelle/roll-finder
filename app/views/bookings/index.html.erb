@@ -1,9 +1,9 @@
-<div data-controller="fr-card" data-fr-card-images-value='["assets/cards/queen_of_hearts.png", "assets/cards/jack_of_hearts.png", "assets/cards/king_of_hearts.png"]'>
-  <img class="heart-card" src="/assets/cards/queen_of_hearts.png" data-fr-card-target="image" data-action="click->fr-card#change" />
+<div data-controller="fr-card" data-fr-card-images-value='<%= [image_path("cards/queen_of_hearts.png"), image_path("cards/jack_of_hearts.png"), image_path("cards/king_of_hearts.png")].to_json %>'>
+  <%= image_tag 'cards/queen_of_hearts.png', class: 'heart-card', data: { fr_card_target: 'image', action: 'click->fr-card#change' } %>
 </div>
 
-<div data-controller="fr-card" data-fr-card-images-value='["assets/cards/queen_of_clubs.png", "assets/cards/jack_of_clubs.png", "assets/cards/king_of_clubs.png"]' >
-  <img class="joker-card" src="/assets/cards/queen_of_clubs.png" data-fr-card-target="image" data-action="click->fr-card#change"/>
+<div data-controller="fr-card" data-fr-card-images-value='<%= [image_path("cards/queen_of_clubs.png"), image_path("cards/jack_of_clubs.png"), image_path("cards/king_of_clubs.png")].to_json %>'>
+  <%= image_tag 'cards/queen_of_clubs.png', class: 'joker-card', data: { fr_card_target: 'image', action: 'click->fr-card#change' } %>
 </div>
 
 <div class="books-container">
