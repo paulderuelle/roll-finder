@@ -59,7 +59,9 @@
             <% end %>
           <% end %>
         </div>
-        <div class="user-profile-description position-absolute"><i class="fa-solid fa-quote-left"></i><%= @user.description %></div>
+        <div class="user-profile-description position-absolute"><i class="fa-solid fa-quote-left"></i>
+          <%= @user.description %>
+        </div>
       </div>
       <div class="profile-details">
         <p class="user-first_name"><%= @user.first_name.capitalize %></p>
@@ -68,11 +70,17 @@
           <% if @reviews.present? %>
             <div class="user-reviews-rating"><%= number_with_precision(@reviews.average(:rating), precision: 1) %>/5 </div>
             <div class="user-reviews-count">&nbsp;- <%= @reviews.count %> reviews</div>
-            <%# Insert a link_to "reviews_index" AJAX %>
           <% else %>
             <div class="user-reviews-rating">0/5</div>
             <div class="user-reviews-count">&nbsp;- No review</div>
           <% end %>
+          <%# if current_user != @user %>
+            <%# current_user.bookings.each do |booking| %>
+              <%# if booking.event.user == @user %>
+                <%#= link_to "add a review", new_event_review_path(@event) %>
+              <%# end %>
+            <%# end %>
+          <%# end %>
         </div>
       </div>
     </div>
