@@ -39,3 +39,14 @@ export default class extends Controller {
     this.map.fitBounds(bounds, { padding: 70, maxZoom:15, duration: 0 });
   }
 }
+
+// // Récupérer l'élément de la barre de recherche
+// const searchBar = document.getElementById('mapbox-search-bar');
+
+// // Modifier le placeholder
+// searchBar.addEventListener('load', () => {
+//   const searchInput = document.querySelector('.mapboxgl-ctrl-geocoder input');
+//   if (searchInput) {
+//     searchInput.placeholder = 'Nouveau placeholder';
+//   }
+// });

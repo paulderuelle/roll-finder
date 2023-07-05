@@ -7,5 +7,10 @@
 
 #map .mapboxgl-ctrl-geocoder.mapboxgl-ctrl {
   border-radius: 50px;
-  margin: 25px 26px !important;
+  margin: 15px 22px !important;
+}
+
+.mapboxgl-ctrl-bottom-left,
+.mapboxgl-ctrl-bottom-right {
+  display: none !important;
 }
