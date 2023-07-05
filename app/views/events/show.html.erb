@@ -11,9 +11,13 @@
       <div class="event-show">
         <div class="profile-show">
           <% if @user.photo.attached? %>
-            <%= image_tag @user.photo, class: "avatar-global avatar-profile event-avatar" %>
+            <%= link_to user_path(@event.user) do %>
+              <%= image_tag @user.photo, class: "avatar-global avatar-profile event-avatar" %>
+            <% end %>
           <% else %>
-            <%= image_tag "meeple.png", class: "avatar-global avatar-profile event-avatar" %>
+            <%= link_to user_path(@event.user) do %>
+              <%= image_tag "meeple.png", class: "avatar-global avatar-profile event-avatar" %>
+            <% end %>
           <% end %>
         </div>
         <div>
@@ -44,10 +48,10 @@
       <% end %>
     </div>
     <div class="event-date">
-      <div class="event-dateshow "><i class="fa-solid fa-calendar-day icon"></i>
+      <div class="event-dateshow "><i class="fa-solid fa-calendar-day iconshow"></i>
         <%= @event.start_hours.day %>/<%= @event.start_hours.month %>/<%= @event.start_hours.year %>
       </div>
-      <div class="event-dateshow "><i class="fa-solid fa-clock icon"></i>
+      <div class="event-dateshow "><i class="fa-solid fa-clock iconshow"></i>
         <%= @event.start_hours.hour %>:<%= @event.start_hours.min %>  for <%= @event.playtime %> min
         </div>
     </div>
@@ -98,7 +102,7 @@
         <% end %>
       <% else %>
         <div class="event-cardslotuser">
-          <div class="event-slotshow "><i class="fa-solid fa-people-carry-box iconplay"></i>
+          <div class="event-slotshowuser "><i class="fa-solid fa-people-carry-box iconplay"></i>
             <%= @event.bookings.where(status: "Accepted").size + 1 %> / <%= @event.slot_number %>
           </div>
           <div class="bookingstatus">
