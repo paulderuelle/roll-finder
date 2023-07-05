@@ -106,26 +106,32 @@ export default class extends Controller {
   scrollTo(event) {
     // get the id given by the click on the pin
     const id = event.params.id;
-    let cardIndex;
+    let position;
     this.cardTargets.forEach((card) => {
-      // reset the position of every card
-      this.#resetPosition(card);
-      // add the "hidden behind" card position to every card
-      card.classList.add("card0");
-
       if (card.id === id.toString()) {
         // get the index of the card we want in the targets array
-        cardIndex = this.cardTargets.indexOf(card);
+        position = this.cardTargets.indexOf(card) + 1;
       }
     })
+    if (position < this.scrollingPosition) {
+      this.#setUp(position + 1);
+      this.scrollPrevious();
+    } else if (position > this.scrollingPosition) {
+      this.#setUp(position - 1);
+      this.scrollNext();
+    }
+  }
 
-    for (let index = 0; index < 5; index++) {
-      // pick the 4 cards to animate
-      const element = this.cardTargets[this.#negMod(cardIndex - 1 + index)];
-      // add the css class to iniatialize the card position
-      element.classList.add(`card${index}`);
-      // add the css class to animate the card
-      element.classList.add(`switch-to-${index + 1}`);
+  #setUp(position) {
+    if (this.cardTargets.length > 2) {
+      this.cardTargets.forEach((card, index) => {
+        this.#resetPosition(card);
+        let pos = 3 - position + index;
+        if (pos < 0) { pos = 0 }
+        else if (pos > 4) { pos = 4 }
+        card.classList.add(`card${pos}`);
+      })
+      this.scrollingPosition = position;
     }
   }
 
