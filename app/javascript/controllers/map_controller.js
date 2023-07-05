@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 import mapboxgl from 'mapbox-gl'
+import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
 // Connects to data-controller="map"
 export default class extends Controller {
   static values = { apiKey: String, markers: Array }
@@ -14,6 +15,9 @@ export default class extends Controller {
 
      this.#addMarkerToMap();
      this.#fitMapToMarkers();
+
+     this.map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
+      mapboxgl: mapboxgl }))
   }
 
   #addMarkerToMap() {
@@ -25,9 +29,7 @@ export default class extends Controller {
         .setLngLat([ marker.lng, marker. lat])
         .setPopup(popup)
         .addTo(this.map);
-      // mark.getElement().addEventListener("click", () => {
-      //   console.log(mark);
-      // });
+
     })
   }
 

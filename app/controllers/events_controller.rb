@@ -23,18 +23,9 @@ class EventsController < ApplicationController
     @event = Event.new
     @games = []
     @games << Game.find(params[:game_id])
-    # @game_name = params[:game_name]
-    # @year_published = params[:year_published]
-    # @min_players = params[:min_players]
-    # @max_players = params[:max_players]
-    # @playing_time = params[:playing_time]
-    # @description = params[:description]
-    # @image_url = params[:image_url]
   end
 
   def create
-    # @event = current_user.events.build(event_params)
-
     @event = Event.new(event_params)
     @event.user = current_user
     @games = []
