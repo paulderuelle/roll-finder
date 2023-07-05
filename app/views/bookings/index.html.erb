@@ -18,7 +18,8 @@
               <%= image_tag "cards/#{sprintf('%02d', index + 1)}_of_hearts.png", alt: bookmark.event.title, class: "bookmark-image" %>
               <div class="image-text">
                 <div class="image-text-title">
-                  <%= link_to bookmark.event.title, event_path(bookmark.event.id), style: "text-decoration: none; color: $rollblueD;" %>
+
+                  <%= link_to bookmark.event.title, event_path(bookmark.event.id), style: "text-decoration: none; color: #064663;" %>
                 </div>
                 <div class="image-text-status">
                   <%= link_to bookmark_path(bookmark), class: "btn primary", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
@@ -42,7 +43,7 @@
               <%= image_tag "cards/#{sprintf('%02d', index + 1)}_of_clubs.png", alt: booking.event.title, class: "booking-image" %>
               <div class="image-text">
                 <div class="image-text-title">
-                  <%= link_to booking.event.title, event_path(booking.event.id), style: "text-decoration: none; color: $rollblueD;" %>
+                  <%= link_to booking.event.title, event_path(booking.event.id), style: "text-decoration: none; color: #064663;" %>
                 </div>
                 <div class="image-text-status <%= booking.status.downcase if booking.status.present? %>">
                   <p><%= booking.status %></p>
@@ -57,8 +58,3 @@
     <% end %>
   </div>
 </div>
-
-<%#
-link_to booking.event.title, event_path(booking.event.id)
-link_to "Cancel booking", booking_path(booking), class: "btn primary"
-data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>

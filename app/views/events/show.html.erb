@@ -17,7 +17,7 @@
           <% end %>
         </div>
         <div>
-          <div class="event-firstname">
+          <div class="event-nickname">
             <%= @user.first_name %>
           </div>
           <div>
@@ -35,10 +35,10 @@
       <% else %>
       <% bookmark = @event.bookmarks.where(user: current_user).first %>
         <% if bookmark.present? %>
-          <%= link_to "", bookmark_path(bookmark), class:"fa-solid fa-heart", style:"text-decoration: none; color: #f10404;", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+          <%= link_to "", bookmark_path(bookmark), class:"fa-solid fa-heart", style:"color: #f10404;", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
         <% else %>
           <div>
-            <%= link_to "", event_bookmarks_path(@event), class:"fa-regular fa-heart", style:" text-decoration: none; color: #f10404;", data: {turbo_method: :post} %>
+            <%= link_to "", event_bookmarks_path(@event), class:"fa-regular fa-heart", style:"color: #f10404;", data: {turbo_method: :post} %>
           </div>
         <% end %>
       <% end %>
@@ -66,18 +66,14 @@
       </div>
         <% @event.bookings.each do |booking| %>
           <div class="validatecard">
-            <div class="profilevalidate">
-              <div class="profile-show">
-                <% if @user.photo.attached? %>
-                  <%= image_tag @user.photo, class: "avatar-global avatar-profile event-avatar" %>
-                <% else %>
-                  <%= image_tag "meeple.png", class: "avatar-global avatar-profile event-avatar" %>
-                <% end %>
-              </div>
-              <div class="event-firstname">
-                <%= booking.user.first_name %>
-              </div>
+            <div class="profile-show">
+              <% if booking.user.photo.attached? %>
+                <%= image_tag booking.user.photo, class: "avatar-global avatar-profile event-avatar" %>
+              <% else %>
+                <%= image_tag "meeple.png", class: "avatar-global avatar-profile event-avatar" %>
+              <% end %>
             </div>
+            <%= booking.user.first_name %>
             <%if booking.status == "Accepted" %>
               <p class="accepted">Accepted</p>
             <% elsif booking.status == "Declined" %>
@@ -93,7 +89,7 @@
                 <%= simple_form_for (booking) do |f| %>
                   <div>
                     <% f.input :status, input_html: { value: 'Declined' }, as: :hidden %>
-                    <%= f.submit "Declined", class: "btn-main btn-decline" %>
+                    <%= f.submit "Decline", class: "btn-main btn-decline" %>
                   </div>
                 <% end %>
               </div>

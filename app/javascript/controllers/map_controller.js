@@ -10,7 +10,7 @@ export default class extends Controller {
     //console.log(this.apiKeyValue);
      this.map = new mapboxgl.Map({
        container: this.element,
-       style: "mapbox://styles/mapbox/streets-v10"
+       style: "mapbox://styles/baladjinn/cljpgqae700tw01p56onngojt"
      })
 
      this.#addMarkerToMap();
