@@ -17,7 +17,7 @@
           <% end %>
         </div>
         <div>
-          <div class="event-nickname">
+          <div class="event-firstname">
             <%= @user.first_name %>
           </div>
           <div>
@@ -66,7 +66,18 @@
       </div>
         <% @event.bookings.each do |booking| %>
           <div class="validatecard">
-            <%= booking.user.nickname %>
+            <div class="profilevalidate">
+              <div class="profile-show">
+                <% if @user.photo.attached? %>
+                  <%= image_tag @user.photo, class: "avatar-global avatar-profile event-avatar" %>
+                <% else %>
+                  <%= image_tag "meeple.png", class: "avatar-global avatar-profile event-avatar" %>
+                <% end %>
+              </div>
+              <div class="event-firstname">
+                <%= booking.user.first_name %>
+              </div>
+            </div>
             <%if booking.status == "Accepted" %>
               <p class="accepted">Accepted</p>
             <% elsif booking.status == "Declined" %>
@@ -82,7 +93,7 @@
                 <%= simple_form_for (booking) do |f| %>
                   <div>
                     <% f.input :status, input_html: { value: 'Declined' }, as: :hidden %>
-                    <%= f.submit "Decline", class: "btn-main btn-decline" %>
+                    <%= f.submit "Declined", class: "btn-main btn-decline" %>
                   </div>
                 <% end %>
               </div>
