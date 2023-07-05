@@ -1,38 +1,41 @@
-<h1>Let's Get Ready to Rumble!!!</h1>
+<div class="game-index">
+  <h1>Let's host a new game session!</h1>
 
-<%= form_with url: show_games_path, method: :get, class: 'search-form' do |f| %>
-  <%= f.text_field :search_query, placeholder: 'Search a game', value: @search_query %>
-  <%= f.submit 'Search' %>
-<% end %>
-
-<div data-controller="event-carousel">
-  <div class="garrow left" data-action="click->event-carousel#scrollPrevious"
-    data-event-index-target="arrowLeft">
-    <i class="fa-solid fa-chevron-left"></i>
-  </div>
-  <div class="garrow right" data-action="click->event-carousel#scrollNext"
-    data-event-index-target="arrowRight">
-    <i class="fa-solid fa-chevron-right"></i>
-  </div>
-
-  <% if @games.present? %>
-    <div class="game-cards" data-event-index-target="list">
-    <% @games.each_with_index do |game, index| %>
-      <div id="init<%= index %>" class="event-list game-list card<%= index <= 4 ? index : 4 %> index-card" data-event-carousel-target="card">
-        <%= button_to "?", "#", class: 'search-button', data: { controller: 'search', action: 'click->search#search', game_name: game.name } %>
-        <%= image_tag game.image_url, alt: game.name, class: "game-image" if game.image_url.present? %>
-        <div class="game-title">
-          <h3><%= game.name %></h3>
-        </div>
-        <div class="game-info">
-          <p><i class="fas fa-people-carry"></i> <%= game.max_players %></p>
-          <p><i class="fas fa-clock"></i> <%= game.duration %></p>
-        </div>
-        <%= button_to "To my Deck!", new_event_path, method: :get, class: 'deck-button', params: { game_id: game.id} %>
-      </div>
-    <% end %>
-    </div>
-  <% else %>
-    <p>You haven't added any games yet.</p>
+  <%= form_with url: show_games_path, method: :get, class: 'search-form' do |f| %>
+    <%= f.text_field :search_query, placeholder: 'Search for a game...', value: @search_query %>
+    <%= f.submit 'Search', class: "d-none" %>
   <% end %>
+
+  <div data-controller="event-carousel">
+    <div class="garrow left" data-action="click->event-carousel#scrollPrevious"
+      data-event-index-target="arrowLeft">
+      <i class="fa-solid fa-chevron-left"></i>
+    </div>
+    <div class="garrow right" data-action="click->event-carousel#scrollNext"
+      data-event-index-target="arrowRight">
+      <i class="fa-solid fa-chevron-right"></i>
+    </div>
+
+    <% if @games.present? %>
+      <div class="game-cards" data-event-index-target="list">
+      <% @games.each_with_index do |game, index| %>
+        <div id="init<%= index %>" class="event-list game-list index-card" data-event-carousel-target="card">
+          <%= button_to "?", "#", class: 'search-button', data: { controller: 'search', action: 'click->search#search', game_name: game.name } %>
+          <%= image_tag game.image_url, alt: game.name, class: "game-image" if game.image_url.present? %>
+          <div class="game-title">
+            <h3><%= game.name %></h3>
+          </div>
+          <div class="game-info">
+            <p><i class="fas fa-people-carry"></i> <%= game.max_players %></p>
+            <p><i class="fas fa-clock"></i> <%= game.duration %></p>
+          </div>
+          <%= button_to "To my Deck!", new_event_path, method: :get, class: 'deck-button', params: { game_id: game.id} %>
+        </div>
+      <% end %>
+      </div>
+    <% else %>
+      <p>You haven't added any games yet.</p>
+    <% end %>
+  </div>
+
 </div>
