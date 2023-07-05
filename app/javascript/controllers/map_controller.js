@@ -6,19 +6,21 @@ export default class extends Controller {
   static values = { apiKey: String, markers: Array }
 
   connect() {
-     mapboxgl.accessToken = this.apiKeyValue;
-    //console.log(this.apiKeyValue);
-     this.map = new mapboxgl.Map({
-       container: this.element,
-       style: "mapbox://styles/baladjinn/cljpgqae700tw01p56onngojt"
-     })
+    mapboxgl.accessToken = this.apiKeyValue;
+  //console.log(this.apiKeyValue);
+    this.map = new mapboxgl.Map({
+      container: this.element,
+      style: "mapbox://styles/baladjinn/cljpgqae700tw01p56onngojt"
+    })
 
-     this.#addMarkerToMap();
-     this.#fitMapToMarkers();
+    this.#addMarkerToMap();
+    this.#fitMapToMarkers();
 
-     this.map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
-      mapboxgl: mapboxgl }))
-  }
+    this.map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
+    mapboxgl: mapboxgl }))
+    const searchInput = document.querySelector('.mapboxgl-ctrl-geocoder--input');
+    searchInput.placeholder = 'Search for location';
+}
 
   #addMarkerToMap() {
     this.markersValue.forEach((marker) => {
