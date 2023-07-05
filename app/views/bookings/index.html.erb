@@ -2,8 +2,8 @@
   <img class="heart-card" src="/assets/cards/queen_of_hearts.png" data-fr-card-target="image" data-action="click->fr-card#change" />
 </div>
 
-<div data-controller="fr-card" data-fr-card-images-value='["assets/cards/Joker_black.png", "assets/cards/Joker_red.png"]' >
-  <img class="joker-card" src="/assets/cards/Joker_black.png" data-fr-card-target="image" data-action="click->fr-card#change"/>
+<div data-controller="fr-card" data-fr-card-images-value='["assets/cards/queen_of_clubs.png", "assets/cards/jack_of_clubs.png", "assets/cards/king_of_clubs.png"]' >
+  <img class="joker-card" src="/assets/cards/queen_of_clubs.png" data-fr-card-target="image" data-action="click->fr-card#change"/>
 </div>
 
 <div class="books-container">
@@ -17,9 +17,14 @@
             <div class="image-container">
               <%= image_tag "cards/#{sprintf('%02d', index + 1)}_of_hearts.png", alt: bookmark.event.title, class: "bookmark-image" %>
               <div class="image-text">
-                <%= link_to bookmark.event.title, event_path(bookmark.event.id), style: "text-decoration: none; color: green;" %>
-                <%= link_to "Cancel bookmark", bookmark_path(bookmark), class: "btn primary",
-                  data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+                <div class="image-text-title">
+                  <%= link_to bookmark.event.title, event_path(bookmark.event.id), style: "text-decoration: none; color: $rollblueD;" %>
+                </div>
+                <div class="image-text-status">
+                  <%= link_to bookmark_path(bookmark), class: "btn primary", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } do %>
+                    <i class="fas fa-trash"></i>
+                  <% end %>
+                </div>
               </div>
             </div>
           <% end %>
@@ -31,13 +36,17 @@
   <div class="bookings-container">
     <% if @bookings.present? %>
       <div class="bookings-card">
-        <% @bookings.reverse.each_with_index do |booking, index| %>
+        <% @bookings.each_with_index.reverse_each do |booking, index| %>
           <% if index < 10 %>
             <div class="image-container">
               <%= image_tag "cards/#{sprintf('%02d', index + 1)}_of_clubs.png", alt: booking.event.title, class: "booking-image" %>
-              <div class="image-text <%= booking.status.downcase if booking.status.present? %>">
-                <%= link_to booking.event.title, event_path(booking.event.id), style: "text-decoration: none; color: green;" %>
-                <p><%= booking.status %></p>
+              <div class="image-text">
+                <div class="image-text-title">
+                  <%= link_to booking.event.title, event_path(booking.event.id), style: "text-decoration: none; color: $rollblueD;" %>
+                </div>
+                <div class="image-text-status <%= booking.status.downcase if booking.status.present? %>">
+                  <p><%= booking.status %></p>
+                </div>
               </div>
             </div>
           <% end %>
