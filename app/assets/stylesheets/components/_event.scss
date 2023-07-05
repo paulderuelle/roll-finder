@@ -255,8 +255,8 @@
   align-items: center;
 }
 
-.icon{
-  font-size: 30px;
+.iconshow{
+  font-size: 25px;
   display: flex;
   justify-content:center;
   align-items:center;
@@ -273,4 +273,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.event-slotshowuser{
+  margin: 5px;
+  padding: 5px 5px 5px 0px;
+  width: 150px;
+  height: 30px;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: larger;
+  font-weight: bold;
 }
