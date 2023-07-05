@@ -5,6 +5,7 @@
 }
 
 .profile-container{
+  border: 5px solid;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -232,7 +233,7 @@
   align-items: center;
 }
 
-.event-nickname{
+.event-firstname{
   font-size: larger;
   font-weight: bold;
 }
@@ -256,6 +257,12 @@
 
 .iconplay{
   font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profilevalidate{
   display: flex;
   justify-content: center;
   align-items: center;
