@@ -27,7 +27,7 @@ class BookingsController < ApplicationController
   end
 
   def update
-    @booking.status = params[:commit] == "Accepting" ? "Accepted" : "Declined"
+    @booking.status = params[:commit]
     if @booking.save
       redirect_to @booking.event
     else
