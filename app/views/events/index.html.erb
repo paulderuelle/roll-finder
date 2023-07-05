@@ -10,7 +10,7 @@
           data-map-animation-target="button">Show the map <i class="fa-solid fa-chevron-down"></i>
   </button>
 
-  <div class="event-searchbar">
+  <div class="event-searchbar" data-map-animation-target="searchbar">
     <%= form_with url: events_path, method: :get, class: "d-flex" do %>
       <%= text_field_tag :query,
             params[:query],
@@ -21,7 +21,7 @@
     <% end %>
   </div>
 
-  <div class="event-index">
+  <div class="event-index" data-map-animation-target="cards">
     <div class="arrow left" data-action="click->event-carousel#scrollPrevious"
                             data-event-carousel-target="arrowLeft">
       <i class="fa-solid fa-chevron-left"></i>
