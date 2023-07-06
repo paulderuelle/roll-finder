@@ -94,7 +94,6 @@
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
   display: -webkit-box;
   -webkit-line-clamp: 2;
-  /* number of lines to display */
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -106,7 +105,8 @@
   font-weight: bold;
 }
 
-.fas.fa-trash {
+.trash-icon {
+  font-size: 24px;
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
 }
 
@@ -153,20 +153,18 @@
 .joker-card {
   top: 21vh !important;
   left: -15vw !important;
-  z-index: -2;
 }
 
 .heart-back-card {
-  box-shadow: -20px 20px 10px 10px rgba(0, 0, 0, 0.4) !important;
-  transform: rotate(315deg) scale(0.16) !important;
-  top: -33vh !important;
-  left: -47vw !important;
+  box-shadow: 20px 20px 10px 10px rgba(0, 0, 0, 0.4) !important;
+  transform: rotate(5deg) scale(0.16) !important;
+  top: -30vh !important;
+  left: -70vw !important;
 }
 
 .joker-back-card {
-  box-shadow: 20px -20px 10px 10px rgba(0, 0, 0, 0.4) !important;
-  transform: rotate(135deg) scale(0.16) !important;
-  top: 12vh !important;
-  left: -33vw !important;
-  z-index: -1;
+  box-shadow: 20px 20px 10px 10px rgba(0, 0, 0, 0.4) !important;
+  transform: rotate(5deg) scale(0.16) !important;
+  top: 10vh !important;
+  left: -10vw !important;
 }
