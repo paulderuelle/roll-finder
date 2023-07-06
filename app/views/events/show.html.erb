@@ -42,7 +42,7 @@
           <%= link_to "", bookmark_path(bookmark), class:"fa-solid fa-heart fa-2xl", style:"text-decoration: none; color: #f10404;", data: {turbo_method: :delete}%>
         <% else %>
           <div>
-            <%= link_to "", event_bookmarks_path(@event), class:"fa-regular fa-heart", style:"text-decoration: none; color: #f10404;", data: {turbo_method: :post} %>
+            <%= link_to "", event_bookmarks_path(@event), class:"fa-regular fa-heart fa-2xl", style:"text-decoration: none; color: #f10404;", data: {turbo_method: :post} %>
           </div>
         <% end %>
       <% end %>
@@ -71,11 +71,15 @@
         <% @event.bookings.each do |booking| %>
           <div class="validatecard">
             <div class="profile-event">
-              <div class="profile-show">
+              <div class="profile-show" style="padding: 5px;">
                 <% if booking.user.photo.attached? %>
-                  <%= image_tag booking.user.photo, class: "avatar-global avatar-profile event-avatar" %>
+                  <%= link_to user_path(booking.user) do %>
+                    <%= image_tag booking.user.photo, class: "avatar-global avatar-profile event-avatar" %>
+                  <% end %>
                 <% else %>
-                  <%= image_tag "meeple.png", class: "avatar-global avatar-profile event-avatar" %>
+                  <%= link_to user_path(booking.user) do %>
+                    <%= image_tag "meeple.png", class: "avatar-global avatar-profile event-avatar" %>
+                  <% end %>
                 <% end %>
               </div>
               <div class="event-firstname">
@@ -110,15 +114,17 @@
             <%= @event.bookings.where(status: "Accepted").size + 1 %> / <%= @event.slot_number %>
           </div>
           <div class="bookingstatus">
+          <div class="create-booking">
             <% booking = @event.bookings.where(user: current_user).first %>
             <% if booking.present? %>
+            </div>
               <div>
                 <% if booking.status == "Declined" %>
                   <p class="validation declined"><%= booking.status %></p>
                 <% elsif booking.status == "Accepted" %>
                   <p class="validation accepted"><%= booking.status %></p>
                 <% else %>
-                  <p class="wait"><%= booking.status %></p>
+                  <p class="validation-pending"><%= booking.status %></p>
                 <% end %>
               </div>
               <div class="btn-profile btn-logout">
@@ -128,7 +134,7 @@
               <%= simple_form_for [@event, Booking.new] do |f| %>
                 <div>
                   <%= f.input :status, as: :hidden %>
-                  <%= f.submit "Create Booking", class: "btn-main" %>
+                  <%= f.submit "Participate", class: "btn-main" %>
                 </div>
               <% end %>
             <% end %>
