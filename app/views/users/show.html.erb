@@ -92,17 +92,17 @@
     </div>
 
     <div class="profile-stats">
-        <% stats_event_text = @user.events.count > 1 ? "games events" : "game event" %>
-        <%= "Created #{@user.events.count} #{stats_event_text}" %>
+        <% stats_event_text = @user.events.count > 1 ? "tabletop games" : "tabletop game" %>
+        <%= "Crafted #{@user.events.count} unforgettable #{stats_event_text}" %>
         <% accepted_bookings = @user.bookings.where(status: "accepted") %>
-        <% stats_accepted_text =  accepted_bookings.count > 1 ? "games events" : "game event" %>
+        <% stats_accepted_text =  accepted_bookings.count > 1 ? "tabletop games" : "tabletop game" %>
       <br>
-        <%= "Appeared in #{accepted_bookings.count} #{stats_accepted_text}" %>
+        <%= "Reward #{accepted_bookings.count} #{stats_accepted_text} of radiant presence" %>
           <i class="fa-solid fa-angle-down fa-lg" style="color: #042393A; margin: 20px auto;"></i>
         <% incoming_user_events = @user.events.where("start_hours > ?", Time.now).count %>
-        <% @user == current_user ? stats_user_text = "You are" : stats_user_text = "#{ @user.first_name } is" %>
-        <% stats_event_text = incoming_user_events > 1 ? "games events" : "game event" %>
-        <%= "#{stats_user_text} hosting #{incoming_user_events} #{stats_event_text}" %>
+        <%# <% @user == current_user ? stats_user_text = "You are" : stats_user_text = "#{ @user.first_name } is" %>
+        <% stats_event_text = incoming_user_events > 1 ? "tabletop games" : "tabletop game" %>
+        <%= "Offering adventures in #{incoming_user_events} #{stats_event_text}" %>
       </div>
     <div class="review-stats d-none">
       <%= render "reviews/info" %>

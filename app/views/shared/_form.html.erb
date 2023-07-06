@@ -1,11 +1,11 @@
 <div class="new-event-wrap">
-  <h1>Host a new event</h1>
-
+  <%# <div class="game-index"> %>
+    <%# <h1>Host a new event</h1> %>
     <%= simple_form_for @event do |f| %>
       <div class="new-event-form">
-        <%= f.input :title, placeholder: "Type your game event title" %>
-        <%= f.input :description, placeholder: "What's gonna happen?" %>
-        <label for="">Games</label>
+        <%= f.input :title, placeholder: "e.g. Evening board games" %>
+        <%= f.input :description, placeholder: "e.g. A friendly evening to discover new games!" %>
+        <label for="">Game choice</label>
         <div class="new-event-games">
           <% @games.each do |game| %>
             <%= image_tag game.image_url, style: "width: 100px; height: 100px; object-fit: cover" %>
@@ -15,11 +15,11 @@
         <%= f.input :address, input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},
           wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
         <%= f.input :start_hours, label: "Date", as: :string,
-                                    input_html: { data: { controller: "datepicker" } } %>
+                                    input_html: { placeholder: "When you will play?", data: { controller: "datepicker" } } %>
         <div class="half-size">
-          <%= f.input :playtime, label: "Duration" %>
+          <%= f.input :playtime, label: "Duration", placeholder: "e.g. 180 minutes" %>
           <div class="players">
-            <%= f.input :slot_number, as: :integer, label: "Players"%>
+            <%= f.input :slot_number, as: :integer, label: "Players", placeholder: "How many players?" %>
           </div>
         </div>
         <!--
@@ -28,6 +28,7 @@
         </div>
         -->
       </div>
+  <%# </div> %>
 
       <div class="submit-wrap">
         <%= f.submit value: "Let's play!", class: "btn-main" %>
