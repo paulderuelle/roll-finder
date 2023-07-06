@@ -28,8 +28,8 @@
 
 .game-image {
   width: 100%;
-  height: 90%;
-  border-radius: 7px 7px 0 0;
+  height: 100%;
+  border-radius: 7px 7px 7px 7px;
   object-fit: cover;
   margin-top: 0;
 }
@@ -71,26 +71,26 @@
 
 .game-info p:first-child {
   margin-right: 10px;
-  /* Adjust this value to move the player numbers to the left */
 }
 
 .game-info p:last-child {
   margin-left: 37px;
-  /* Adjust this value to move the time info to the right */
 }
 
 .deck-button {
-  background-color: $red;
+  background-color: #FD1015;
   color: #ffffff;
   z-index: 9;
   bottom: 55px;
-  position: relative;
-  border-radius: 7px 7px 7px 7px;
-  border: 2px outset $yellow;
+  position: fixed;
+  border-radius: 7px;
+  border: 2px outset #FFC65A;
   box-shadow: inset -3px -3px 10px 2px rgba(0, 0, 0, 0.5);
   font-size: 1.5em;
   font-weight: bold;
   font-style: italic;
+  left: 75px;
+  height: 40px;
 }
 
 .search-button {
