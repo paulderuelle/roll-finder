@@ -33,22 +33,13 @@
         <div class="btn-profile btn-cassé-edit">
           <%= link_to "", edit_event_path(@event), class: "fa-solid fa-pencil", style:"color: #04293a; text-decoration:none;" %>
         </div>
-<<<<<<< HEAD
-        <div class="btn-profile btn-logout">
-          <%= link_to "", event_path(@event), class: "fa-solid fa-trash-can", style:"color: #04293a;", data: { turbo_method: :delete} %>
-=======
         <div class="btn-profile">
-          <%= link_to "", event_path(@event), class: "fa-solid fa-trash-can", style:"color: #04293a;", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
->>>>>>> master
+          <%= link_to "", event_path(@event), class: "fa-solid fa-trash-can", style:"color: #04293a;", data: { turbo_method: :delete} %>
         </div>
       <% else %>
       <% bookmark = @event.bookmarks.where(user: current_user).first %>
         <% if bookmark.present? %>
-<<<<<<< HEAD
-          <%= link_to "", bookmark_path(bookmark), class:"fa-solid fa-heart", style:"text-decoration: none; color: #f10404;", data: {turbo_method: :delete}%>
-=======
-          <%= link_to "", bookmark_path(bookmark), class:"fa-solid fa-heart fa-2xl", style:"text-decoration: none; color: #f10404;", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
->>>>>>> master
+          <%= link_to "", bookmark_path(bookmark), class:"fa-solid fa-heart fa-2xl", style:"text-decoration: none; color: #f10404;", data: {turbo_method: :delete}%>
         <% else %>
           <div>
             <%= link_to "", event_bookmarks_path(@event), class:"fa-regular fa-heart", style:"text-decoration: none; color: #f10404;", data: {turbo_method: :post} %>
