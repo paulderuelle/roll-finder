@@ -1,29 +1,30 @@
 .garrow {
   position: absolute;
-  bottom: 320px;
+  bottom: 376px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 2em;
-  width: 70px;
-  height: 70px;
-  background-color: rgba($color: white, $alpha: 0.6);
+  width: 60px;
+  height: 60px;
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 50%;
   z-index: 5;
   cursor: pointer;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
 }
 
 .garrow.right {
-  right: 0;
+  right: 11px;
 }
 
 .garrow.left {
-  left: 0;
+  left: 8px;
 }
 
 .game-cards {
   margin-top: 41px;
-  transform: translateX(25px);
+  transform: translateX(-2px);
 }
 
 .game-image {

@@ -104,3 +104,9 @@ $animDuration: 0.5s;
     }
   }
 }
+
+.card-image {
+  max-height: 280px;
+  object-fit: cover;
+  object-position: top;
+}
