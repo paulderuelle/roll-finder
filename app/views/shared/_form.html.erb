@@ -8,7 +8,7 @@
         <label for="">Game choice</label>
         <div class="new-event-games">
           <% @games.each do |game| %>
-            <%= image_tag game.image_url, style: "width: 100px; height: 100px; object-fit: cover" %>
+            <%= image_tag game.image_url, style: "width: 100px; height: 100px; object-fit: cover; object-position: top;" %>
             <%= f.hidden_field :game_id, value: game.id %>
           <% end %>
         </div>
