@@ -11,3 +11,13 @@
   width: 10rem;
   background-color: $rollblueL;
 }
+
+.avatar-review {
+  border: 3px solid $rollblueL;
+  height: 2.2rem;
+  width: 2.2rem;
+  background-color: $rollblueL;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 50%;
+}

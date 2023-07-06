@@ -3,8 +3,8 @@
 <%# content_for :meta_image, cl_image_path(@event.photo.path) %>
 
 <div class="event-containner">
-  <div class="event-title">
-    <h1><%= @event.title %></h1>
+  <div class="event-background-img">
+    <h1 class="event-title"><%= @event.title %></h1>
   </div>
   <div class="profile-container">
     <div class="event-profile">
@@ -24,22 +24,31 @@
           <div class="event-firstname">
             <%= @user.first_name %>
           </div>
-          <div>
+          <div class="event-nickname">
             <%= @user.nickname %>
           </div>
         </div>
       </div>
       <% if current_user == @event.user %>
-        <div class="btn-profile btn-logout">
-          <%= link_to "", edit_event_path(@event), class: "fa-solid fa-pencil", style:"color: #04293a;" %>
+        <div class="btn-profile btn-cassé-edit">
+          <%= link_to "", edit_event_path(@event), class: "fa-solid fa-pencil", style:"color: #04293a; text-decoration:none;" %>
         </div>
+<<<<<<< HEAD
         <div class="btn-profile btn-logout">
           <%= link_to "", event_path(@event), class: "fa-solid fa-trash-can", style:"color: #04293a;", data: { turbo_method: :delete} %>
+=======
+        <div class="btn-profile">
+          <%= link_to "", event_path(@event), class: "fa-solid fa-trash-can", style:"color: #04293a;", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+>>>>>>> master
         </div>
       <% else %>
       <% bookmark = @event.bookmarks.where(user: current_user).first %>
         <% if bookmark.present? %>
+<<<<<<< HEAD
           <%= link_to "", bookmark_path(bookmark), class:"fa-solid fa-heart", style:"text-decoration: none; color: #f10404;", data: {turbo_method: :delete}%>
+=======
+          <%= link_to "", bookmark_path(bookmark), class:"fa-solid fa-heart fa-2xl", style:"text-decoration: none; color: #f10404;", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+>>>>>>> master
         <% else %>
           <div>
             <%= link_to "", event_bookmarks_path(@event), class:"fa-regular fa-heart", style:"text-decoration: none; color: #f10404;", data: {turbo_method: :post} %>
@@ -52,7 +61,7 @@
         <%= @event.start_hours.day %>/<%= @event.start_hours.month %>/<%= @event.start_hours.year %>
       </div>
       <div class="event-dateshow "><i class="fa-solid fa-clock iconshow"></i>
-        <%= @event.start_hours.hour %>:<%= @event.start_hours.min %>  for <%= @event.playtime %> min
+        <%= @event.start_hours.hour %>:<%= @event.start_hours.min %> - <%= @event.playtime %>min
         </div>
     </div>
     <div class="event-description">
@@ -60,7 +69,7 @@
     </div>
     <div class="event-games">
       <% @event.games.each do |game| %>
-        <%= image_tag game.image_url,  style: "width: 100px; height: 100px; object-fit:cover" %>
+        <%= image_tag game.image_url,  style: "width: 150px; height: 150px; object-fit:cover; object-position: top; margin: 10px;" %>
       <% end %>
     </div>
     <div class="event-cardslot">

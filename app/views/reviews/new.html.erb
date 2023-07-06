@@ -1,6 +1,12 @@
-<h1>New review</h1>
-<%= simple_form_for [@event, @review] do |f| %>
-  <%= f.input :rating %>
-  <%= f.input :comment %>
-  <%= f.submit "Create Reviews", class: "btn-main" %>
-<% end %>
+<div class="review-new">
+  <h1>Send a review to <strong><%= @event.user.first_name %></strong></h1>
+  <%= simple_form_for [@event, @review] do |f| %>
+    <div class="review-input">
+      <%= f.input :rating, label: "Rating (0-5)", class: "review-form" %>
+      <%= f.input :comment, label: "Your comment", class: "review-form", placeholder: "It was great!" %>
+    </div>
+    <div class="review-submit">
+      <%= f.submit "Send", class: "btn-main" %>
+    </div>
+  <% end %>
+</div>
