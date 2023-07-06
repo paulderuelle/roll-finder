@@ -3,8 +3,18 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show]
 
   def show
-    @event = @user.events
-    @reviews = current_user.event_reviews
+    @events = @user.events
+    @reviews = @user.event_reviews
+
+    @can_review = false
+    if current_user != @user
+      current_user.bookings.each do |booking|
+        if booking.event.user == @user && booking.status == "Accepted" && !@reviews.where(user: current_user).present?
+          @can_review = true
+          @event_to_review = booking.event
+        end
+      end
+    end
   end
 
   def edit

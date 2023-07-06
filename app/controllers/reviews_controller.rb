@@ -16,8 +16,8 @@ class ReviewsController < ApplicationController
     @review.event = @event
     @review.user = current_user
     # @review = current_user.reviews.build(review_params)
-    if @review.save
-      redirect_to events_path(@event), notice: 'Review was successfully created.'
+    if @review.save!
+      redirect_to user_path(@event.user), notice: 'Review was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
