@@ -14,6 +14,6 @@ class Event < ApplicationRecord
   validates :title, presence: true, uniqueness: true, length: { maximum: 30 }
   validates :description, presence: true, length: { maximum: 300 }
   validates :address, presence: true
-  validates :slot_number, presence: true, length: { is: 2 }
+  validates :slot_number, presence: true, length: { is: 1 }
   has_one_attached :photo
 end
