@@ -1,1 +1,20 @@
-<%= render "shared/form", review: @review %>
+<div class="new-event-wrap">
+  <%= simple_form_for @event do |f| %>
+    <div class="new-event-form">
+      <%= f.input :title, placeholder: "e.g. Evening board games" %>
+      <%= f.input :description, placeholder: "e.g. A friendly evening to discover new games!" %>
+      <%= f.input :address, input_html: {data: {address_autocomplete_target: "address"}, class: "newaddress"},
+        wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}} %>
+      <%= f.input :start_hours, label: "Date", as: :string,
+                                  input_html: { placeholder: "When you will play?", data: { controller: "datepicker" } } %>
+      <div class="half-size">
+        <%= f.input :playtime, label: "Duration", placeholder: "e.g. 180 minutes" %>
+        <div class="players">
+          <%= f.input :slot_number, as: :integer, label: "Players", placeholder: "How many players?" %>
+        </div>
+      </div>
+    </div>
+    <div class="submit-wrap">
+      <%= f.submit value: "Let's play!", class: "btn-main" %>
+    </div>
+    <% end %>
