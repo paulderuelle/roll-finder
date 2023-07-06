@@ -10,7 +10,7 @@ class BookmarksController < ApplicationController
     @bookmark.event = @event
     @bookmark.user = current_user
     if @bookmark.save
-      redirect_to event_path(@event.bookmarks)
+      redirect_to event_path(@event)
     else
       render "events/show", status: :unprocessable_entity
     end
