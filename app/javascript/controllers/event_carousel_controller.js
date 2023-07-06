@@ -109,21 +109,23 @@ export default class extends Controller {
   }
 
   scrollTo(event) {
-    // get the id given by the click on the pin
-    const id = event.params.id;
-    let position;
-    this.cardTargets.forEach((card) => {
-      if (card.id === id.toString()) {
-        // get the index of the card we want in the targets array
-        position = this.cardTargets.indexOf(card) + 1;
+    if (this.cardTargets.length > 1) {
+      // get the id given by the click on the pin
+      const id = event.params.id;
+      let position;
+      this.cardTargets.forEach((card) => {
+        if (card.id === id.toString()) {
+          // get the index of the card we want in the targets array
+          position = this.cardTargets.indexOf(card) + 1;
+        }
+      })
+      if (position < this.scrollingPosition) {
+        this.#setUp(position + 1);
+        this.scrollPrevious();
+      } else if (position > this.scrollingPosition) {
+        this.#setUp(position - 1);
+        this.scrollNext();
       }
-    })
-    if (position < this.scrollingPosition) {
-      this.#setUp(position + 1);
-      this.scrollPrevious();
-    } else if (position > this.scrollingPosition) {
-      this.#setUp(position - 1);
-      this.scrollNext();
     }
   }
 
@@ -141,17 +143,18 @@ export default class extends Controller {
   }
 
   #updateArrows() {
-    if (this.cardTargets.length <= 1) {
+
+    if (this.cardTargets.length === 1) {
+      console.log("yeah");
       this.arrowLeftTarget.classList.add("d-none");
       this.arrowRightTarget.classList.add("d-none");
-    }
-    if (this.scrollingPosition === 1) {
+    } else if (this.cardTargets.length > 1 && this.scrollingPosition === 1) {
       this.arrowLeftTarget.classList.add("d-none");
       this.arrowRightTarget.classList.remove("d-none");
-    } else if (this.scrollingPosition > 1 && this.scrollingPosition < this.cardTargets.length) {
+    } else if (this.cardTargets.length > 1 && this.scrollingPosition > 1 && this.scrollingPosition < this.cardTargets.length) {
       this.arrowLeftTarget.classList.remove("d-none");
       this.arrowRightTarget.classList.remove("d-none");
-    } else if (this.scrollingPosition === this.cardTargets.length) {
+    } else if (this.cardTargets.length > 1 && this.scrollingPosition === this.cardTargets.length) {
       this.arrowLeftTarget.classList.remove("d-none");
       this.arrowRightTarget.classList.add("d-none");
     }
