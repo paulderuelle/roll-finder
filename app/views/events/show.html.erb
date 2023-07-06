@@ -60,7 +60,7 @@
     </div>
     <div class="event-games">
       <% @event.games.each do |game| %>
-        <%= image_tag game.image_url,  style: "width: 150px; height: 150px; object-fit:cover; object-position: top; margin: 10px;" %>
+        <%= image_tag game.image_url,  style: "width: 150px; height: 150px; object-fit:cover; object-position: top; margin: 10px; box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.5);" %>
       <% end %>
     </div>
     <div class="event-cardslot">
