@@ -110,7 +110,7 @@
         <div class="profile-event-games">
           <% event.games.each do |game| %>
             <%= link_to event_path(event) do %>
-              <%= image_tag game.image_url,  style: "width: 100px; height: 100px; object-fit:cover; object-position: top;" %>
+              <%= image_tag game.image_url,  style: "width: 100px; height: 100px; object-fit:cover; object-position: top; box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.5);" %>
             <% end %>
           <% end %>
         </div>
