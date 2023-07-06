@@ -17,7 +17,7 @@
         <%= f.input :start_hours, label: "Date", as: :string,
                                     input_html: { placeholder: "When you will play?", data: { controller: "datepicker" } } %>
         <div class="half-size">
-          <%= f.input :playtime, label: "Duration", placeholder: "e.g. 180 minutes" %>
+          <%= f.input :playtime, label: "Duration", placeholder: "e.g. 180 (minutes)" %>
           <div class="players">
             <%= f.input :slot_number, as: :integer, label: "Players", placeholder: "How many players?" %>
           </div>

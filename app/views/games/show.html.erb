@@ -1,5 +1,5 @@
 <div class="game-index">
-<h1>What will you choose?</h1>
+<h1>What will you pick?</h1>
   <%= form_with url: show_games_path, method: :get, class: 'search-form' do |f| %>
     <%= f.text_field :search_query, placeholder: 'Search for a game...', value: @search_query %>
     <%= f.submit 'Search', class: "d-none" %>
