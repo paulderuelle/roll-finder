@@ -1,20 +1,51 @@
-  <div class="reviewcard">
+  <div class="profile-reviews">
+    <h2>Reviews</h2>
     <% if @reviews.any? %>
       <% @reviews.each do |review| %>
-        <div class="reviewrating">
-          <div>
-            <%= review.user.nickname %>
+        <div class="review-card">
+          <div class="reviewrating">
+            <% if review.user.photo.attached? %>
+              <%= link_to user_path(review.user) do %>
+                <%= image_tag review.user.photo, class:"avatar-review" %>
+              <% end %>
+            <% else %>
+              <%= link_to user_path(review.user) do %>
+                <%= image_tag "meeple.png", class:"avatar-review" %>
+              <% end %>
+            <% end %>
+            <div class="review-name">
+              <%= review.user.first_name %>
+            </div>
+            <div class="review-rating">
+              <%= review.rating.to_i == review.rating ? review.rating.to_i : review.rating %>/5
+              <span class="review-stars">
+                <% full_stars = review.rating.floor %>
+                <% half_star = review.rating - full_stars %>
+                <% total_stars = 5 %>
+                <% empty_stars = 5 - full_stars - (half_star > 0 ? 1 : 0) %>
+                <% full_stars.times.with_index do |_, index| %>
+                  <i class="fa-solid fa-star fa-lg" style="color: #06293A; font-size:0.9em"></i>
+                <% end %>
+                <% if half_star > 0 %>
+                  <i class="fa-solid fa-star-half-stroke fa-lg" style="color: #06293A; font-size:0.9em"></i>
+                <% end %>
+                <% empty_stars.times.with_index do |_, index| %>
+                  <i class="fa-solid fa-star fa-lg" style="color: #E2E4E8; font-size:0.9em"></i>
+                <% end %>
+              </span>
+
+            </div>
           </div>
-          <div>
-            <%= review.rating %>
+          <div class="review-comment">
+            <span class="quotes">“</span>
+            <%= review.comment %>
           </div>
-        </div>
-        <div>
-          <%= review.comment %>
         </div>
     <% end %>
     <% else %>
-      <p> You haven't any review yet </p>
+    <div class="review-card no">
+      <p> No review yet.</p>
+      </div>
     <% end %>
   </div>
 </div>
