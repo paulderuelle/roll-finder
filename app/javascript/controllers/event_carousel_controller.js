@@ -52,19 +52,20 @@ export default class extends Controller {
 
       for (let index = 0; index < 5; index++) {
         // pick the 4 elements to animate
-        const element = this.cardTargets[(this.scrollingPosition + index - 2) % this.cardTargets.length];
+        const element = this.cardTargets[this.#negMod(this.scrollingPosition + index - 2)];
         this.#resetPosition(element);
         // add the css classes to animate the element
         if (index < 4) {
-          element.classList.add(`card${(index + 1) % this.cardTargets.length}`);
+          element.classList.add(`card${(index + 1)}`);
+          element.classList.add(`switch-to-${index}`);
         } else {
-          element.classList.add(`card${4 % this.cardTargets.length}`);
+          element.classList.add(`card4`);
         }
 
-        element.classList.add(`switch-to-${index % this.cardTargets.length}`);
       }
       this.scrollingPosition += 1;
     }
+    console.log(this.scrollingPosition);
   }
   // ====================================================== PREVIOUS CLICK
   scrollPrevious() {
@@ -89,18 +90,22 @@ export default class extends Controller {
 
       for (let index = 0; index < 5; index++) {
         // pick the 4 elements to animate
-        const element = this.cardTargets[this.#negMod(this.scrollingPosition + index - 2)];
+        const element = this.cardTargets[this.#negMod(this.scrollingPosition + index - 3)];
         this.#resetPosition(element);
         // add the css classes to animate the element
-        element.classList.add(`card${(index) % this.cardTargets.length}`);
-        element.classList.add(`switch-to-${(index + 1) % this.cardTargets.length}`);
+        element.classList.add(`card${index}`);
+        if (index + 1 <= 4) {
+          element.classList.add(`switch-to-${index + 1}`);
+        }
+
       }
-      if (this.scrollingPosition > 0) {
+      if (this.scrollingPosition > 1) {
         this.scrollingPosition -= 1;
       } else {
-        this.scrollingPosition = this.cardTargets.length - 1;
+        this.scrollingPosition = this.cardTargets.length;
       }
     }
+    console.log(this.scrollingPosition);
   }
 
   scrollTo(event) {

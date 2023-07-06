@@ -34,18 +34,19 @@
       <div class="event-cards">
       <% @events.each_with_index do |event, index| %>
           <div id="<%= event.id %>" class="event-list index-card" data-event-carousel-target="card">
-            <%= image_tag "tabletop.png", class: "card-image" %>
-            <div class="event-address">
+            <%= image_tag event.games[0].image_url, class: "card-image" %>
+            <!-- <div class="event-address">
                 <%= event.address %>
-            </div>
+            </div> -->
             <div class="card-title">
               <h3><%= link_to event.title, event_path(event.id) %></h3>
             </div>
+            <!--
             <div class="card-games">
               <% event.games.each do |game| %>
                 <%= game.name %>
               <% end %>
-            </div>
+            </div> -->
             <div class="card-info">
               <div class="date-wrap">
                 <div class="card-date">
