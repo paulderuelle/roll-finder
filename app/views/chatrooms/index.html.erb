@@ -1,37 +1,43 @@
-<h1>Chatrooms</h1>
-<%# link_to "Chat with bobby", "/chatrooms", data: { turbo_method: :post} %>
-<% if @chatrooms.present? %>
-  <div class="chatrooms">
-    <% @chatrooms.each do |chatroom| %>
-      <%= link_to chatroom_path(chatroom.id), style: "text-decoration:none; color:black;" do %>
-        <div style="background-color: white; padding: 17px; margin:10px; border-radius: 10px; display: flex; justify-content: space-between;">
-          <% if chatroom.personal %>
-             <% chatroom.users.each do |user| %>
-              <% unless user == current_user %>
-                <div style="display: flex">
+<div class="chatroom-index">
 
-                  <% if user.photo.attached? %>
-                    <%= image_tag user.photo, class:"avatar-global" %>
-                  <% else %>
-                    <%= image_tag "meeple.png", class:"avatar-global" %>
-                  <% end %>
-                  <%# <div style="height: 30px; width: 30px; background-color:grey; border-radius: 50%"></div> %>
-                  <%= render "messages/user_names", user: user %>
-                </div>
-                <div>
-                  <% if chatroom.messages.present? %>
-                    <span><strong>“</strong></span><%= chatroom.messages.last.content %>
-                  <% end %>
-                </div>
+  <h1>Chatrooms</h1>
+  <%# link_to "Chat with bobby", "/chatrooms", data: { turbo_method: :post} %>
+  <% if @chatrooms.present? %>
+    <div class="chatrooms">
+      <% @chatrooms.each do |chatroom| %>
+        <%= link_to chatroom_path(chatroom.id), style: "text-decoration:none; color:black;" do %>
+          <div class="chatroom-list">
+            <% if chatroom.personal %>
+              <% chatroom.users.each do |user| %>
+                <% unless user == current_user %>
+                  <div class="chatroom-info">
+
+                    <% if user.photo.attached? %>
+                      <%= image_tag user.photo, class:"avatar-review" %>
+                    <% else %>
+                      <%= image_tag "meeple.png", class:"avatar-review" %>
+                    <% end %>
+                    <%# <div style="height: 30px; width: 30px; background-color:grey; border-radius: 50%"></div> %>
+                    <div class="chatroom-name">
+                      <%= render "messages/user_names", user: user %>
+                    </div>
+                    <div class="mess">
+                      <% if chatroom.messages.present? %>
+                        <span class="quotes">“</span><%= chatroom.messages.last.content %>
+                      <% end %>
+                    </div>
+                  </div>
+
+                <% end %>
               <% end %>
-             <% end %>
-          <% else %>
-              <%= chatroom.name %>
-          <% end %>
-        </div>
+            <% else %>
+                <%= chatroom.name %>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
-<% else %>
-  <p>You have no opened chatrooms yet.</p>
-<% end %>
+    </div>
+  <% else %>
+    <p>You have no opened chatrooms yet.</p>
+  <% end %>
+</div>

@@ -1,4 +1,50 @@
+.chatroom-index {
+  h1 {
+    font-weight: bold;
+    margin: 20px 0 10px 37px;
+  }
+}
 
+.chatroom-list {
+  background-color: white;
+  padding: 17px;
+  margin: 0px 28px 19px 28px;;
+  border-radius: 10px;
+
+  .chatroom-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .chatroom-name {
+      flex-grow: 1;
+      margin-left: 5px;
+    }
+    .mess {
+      color: grey;
+    }
+  }
+
+  .quotes {
+    padding-right: 10px;
+    font-weight: bold;
+  }
+}
+
+.chatroom-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  gap: 10px;
+
+  h2 {
+    margin: 0;
+  }
+}
+
+.chatroom {
+  padding: 20px;
+}
   .message {
     display: flex;
     margin: 10px;
@@ -8,11 +54,16 @@
       padding: 10px;
       border-radius: 10px;
     }
-    .message-avatar {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
+    img {
+      margin-top: 6px;
     }
+  }
+
+  .new-text input {
+    margin-top: 20px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
   }
   .message.me {
     flex-direction: row-reverse;
@@ -37,3 +88,16 @@
       margin: 0;
     }
   }
+
+.arrow-back {
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    width: 35px;
+    height: 35px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    text-decoration: none;
+    color: black;
+}
