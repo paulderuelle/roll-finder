@@ -31,7 +31,7 @@
   top: 10%;
   width: 100%;
   text-align: center;
-  font-size: 3.5rem;
+  font-size: 2.5rem;
   font-weight: 400;
   color: floralwhite;
 }
@@ -131,14 +131,14 @@
 }
 
 .validatecard{
-  margin: 5px;
+  margin-top: 10px;
   padding: 2px;
   background-color: white;
   border-radius: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 350px;
+  width: 300px;
 }
 
 .event-slotshow{
@@ -184,14 +184,16 @@
 }
 
 .bookingstatus{
-  width: 200px;
-  margin: 10px;
   display:flex;
   justify-content:space-between;
   align-items: center;
 }
 
-.wait{
+.create-booking {
+  margin-top: -15px;
+}
+
+.validation-pending{
   width: 120px;
   margin: 10px;
   padding: 5px;
@@ -297,8 +299,8 @@
 }
 
 .event-slotshowuser{
-  margin: -15px;
-  margin-right: -5px;
+  margin: -10px;
+  margin-right: 5px;
   padding: 5px 5px 5px 0px;
   width: 150px;
   background-color: white;
