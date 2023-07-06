@@ -122,12 +122,13 @@
 
 .validatecard{
   margin: 5px;
+  padding: 2px;
   background-color: white;
   border-radius: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 300px;
+  width: 350px;
 }
 
 .event-slotshow{
@@ -164,7 +165,7 @@
 }
 
 .cardbutton{
-  margin: 10px;
+  margin: 5px;
   display:inline-flex;
   justify-content:space-between;
   align-items: center;
@@ -186,8 +187,7 @@
   justify-content: center;
   align-items:last baseline;
   border: 2px solid orange;
-  border-radius: 20px;
-  box-shadow: 5px 2px 2px orange;
+  border-radius: 10px;
   color: orange;
   text-align: center;
   font-size: larger;
@@ -211,8 +211,8 @@
   opacity: 0.4;
 }
 .accepted{
-  color: #1EDD88;
-  border: 2px solid #1EDD88;
+  color: green;
+  border: 2px solid green;
 }
 .declined{
   color: red;
@@ -242,6 +242,7 @@
 }
 
 .event-firstname{
+  margin: 5px;
   font-size: larger;
   font-weight: bold;
 }
