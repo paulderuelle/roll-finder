@@ -102,10 +102,10 @@
 }
 
 .edit-profile-form {
-background-color: white;
-padding: 25px 25px 13px 25px;
-border-radius: 10px;
-margin: 20px;
+  background-color: white;
+  padding: 25px 25px 13px 25px;
+  border-radius: 10px;
+  margin: 20px;
 label {
   font-weight: bold;
   margin: 0 0 5px 15px;
@@ -123,6 +123,9 @@ input {
 
 .profile-events-cards{
   display: flex;
+  align-items: center;
+  margin: 5px;
+  flex-wrap: wrap;
 }
 
 .profile-event-games{
