@@ -29,7 +29,7 @@ export default class extends Controller {
     this.searchbarTarget.classList.remove("apear");
     this.cardsTarget.classList.add("cardsUp");
     this.cardsTarget.classList.remove("cardsDown");
-    this.buttonTarget.innerHTML = "Show events <i class='fa-solid fa-chevron-up'></i>";
+    this.buttonTarget.innerHTML = "Search by games <i class='fa-solid fa-chevron-up'></i>";
   }
 
   closeMap() {
@@ -44,6 +44,6 @@ export default class extends Controller {
     this.searchbarTarget.classList.remove("disapear");
     this.cardsTarget.classList.remove("cardsUp");
     this.cardsTarget.classList.add("cardsDown");
-    this.buttonTarget.innerHTML = "Show the map <i class='fa-solid fa-chevron-down'></i>";
+    this.buttonTarget.innerHTML = "Search by location <i class='fa-solid fa-chevron-down'></i>";
   }
 }

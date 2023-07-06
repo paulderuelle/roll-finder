@@ -1,10 +1,10 @@
-<h1>Let's Get Ready to Rumble!!!</h1>
-
-<%= form_with url: show_games_path, method: :get, class: 'search-form' do |f| %>
-  <%= f.text_field :search_query, placeholder: 'Search a game', value: @search_query %>
-  <%= f.submit 'Search' %>
-<% end %>
-
+<div class="game-index">
+<h1>What will you choose?</h1>
+  <%= form_with url: show_games_path, method: :get, class: 'search-form' do |f| %>
+    <%= f.text_field :search_query, placeholder: 'Search for a game...', value: @search_query %>
+    <%= f.submit 'Search', class: "d-none" %>
+  <% end %>
+</div>
 <% if @games.empty? %>
   <p>No game found.</p>
 <% else %>
