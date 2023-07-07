@@ -167,7 +167,6 @@
 }
 
 .event-cardslotuser{
-  margin: 10px;
   width: 300px;
   display:flex;
   justify-content:space-between;
@@ -272,10 +271,19 @@
   margin-left: 7px;
 }
 .event-games{
-  margin: 15px;
+  margin: 0 0 10px 0;
   display: flex;
   justify-content:center;
   align-items: center;
+  img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    object-position: top;
+    margin: 10px;
+    border-radius: 3px;
+    box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 0.2);
+  }
 }
 
 .iconshow{

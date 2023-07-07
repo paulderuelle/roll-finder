@@ -1,9 +1,19 @@
 $index-cards-anim-duration: 0.4s;
 
+$mainCardHeight: 50vh;
+$mainCardTransform: rotate(0) translate(-61%, 0);
+$rightCardHeight: 47vh;
+$rightCardTransform: translate(30%, 17px) rotate(3deg);
+$leftCardTransform: translate(-70%, 30px) rotate(-5deg);
+$leftCardHeight: 43vh;
+$leftOutCardHeight: 40vh;
+$leftOutCardTransform: translate(-60%, 26px) rotate(-8deg);
+$rightOutCardTarnsform: translate(70%, 26px) rotate(3deg);
+
 @keyframes switch-to-4 {
   to {
-    height: 410px;
-    transform: rotate(3deg) translate(385px, 0px);
+    height: $leftCardHeight;
+    transform: $rightOutCardTarnsform;
     filter: brightness(0.65);
     opacity: 0;
   }
@@ -14,8 +24,8 @@ $index-cards-anim-duration: 0.4s;
     opacity: 1;
   }
   to {
-    height: 440px;
-    transform: rotate(3deg) translate(295px, 0px);
+    height: $rightCardHeight;
+    transform: $rightCardTransform;
     filter: brightness(0.65);
     transform-origin: center;
     opacity: 1;
@@ -24,16 +34,16 @@ $index-cards-anim-duration: 0.4s;
 
 @keyframes switch-to-2 {
   to {
-    transform: rotate(0) translate(0,0);
+    transform: $mainCardTransform;
     filter: brightness(1);
-    height: 460px;
+    height: $mainCardHeight;
   }
 }
 
 @keyframes switch-to-1 {
   to {
-    height: 410px;
-    transform: rotate(-5deg) translate(-20px, 30px);
+    height: $leftCardHeight;
+    transform: $leftCardTransform;
     transform-origin: bottom left;
     filter: brightness(0.65);
     opacity: 1;
@@ -42,8 +52,8 @@ $index-cards-anim-duration: 0.4s;
 
 @keyframes switch-to-0 {
   to {
-    transform: rotate(-8deg) translate(-11px, 26px);
-    height: 310px;
+    transform: $leftOutCardTransform;
+    height: $leftOutCardHeight;
     transform-origin: center;
     filter: brightness(0.65);
     opacity: 0;
@@ -60,12 +70,13 @@ $index-cards-anim-duration: 0.4s;
   position: absolute;
   box-shadow: -7px 7px 20px 0px rgba(0,0,0,0.2);
   top: 0;
+  left: 50%;
 }
 
 // left-out card
 .card0 {
-  transform: rotate(-8deg) translate(-11px, 26px);
-  height: 310px;
+  transform: $leftOutCardTransform;
+  height: $leftOutCardHeight;
   transform-origin: center;
   filter: brightness(0.65);
   opacity: 0;
@@ -73,8 +84,8 @@ $index-cards-anim-duration: 0.4s;
 }
 // left card
 .card1 {
-  height: 410px;
-  transform: rotate(-5deg) translate(-20px, 30px);
+  height: $leftCardHeight;
+  transform: $leftCardTransform;
   transform-origin: bottom left;
   filter: brightness(0.65);
   opacity: 1;
@@ -82,16 +93,16 @@ $index-cards-anim-duration: 0.4s;
 }
 // main card
 .card2 {
-  height: 460px;
-  transform: rotate(0) translate(0,0);
+  height: $mainCardHeight;
+  transform: $mainCardTransform;
   transform-origin: bottom left;
   filter: brightness(1);
   z-index: 2;
 }
 // right card
 .card3 {
-  height: 440px;
-  transform: rotate(3deg) translate(295px, 0px);
+  height: $rightCardHeight;
+  transform: $rightCardTransform;
   filter: brightness(0.65);
   transform-origin: center;
   opacity: 1;
@@ -99,8 +110,8 @@ $index-cards-anim-duration: 0.4s;
 }
 // right-out card
 .card4 {
-  height: 410px;
-  transform: rotate(3deg) translate(385px, 0px);
+  height: $leftCardHeight;
+  transform: $rightOutCardTarnsform;
   filter: brightness(0.65);
   opacity: 0;
   z-index: 4;
@@ -108,7 +119,7 @@ $index-cards-anim-duration: 0.4s;
 
 .arrow {
   position: absolute;
-  bottom: -262px;
+  transform: translateY(23vh);
   display: flex;
   justify-content: center;
   align-items: center;

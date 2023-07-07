@@ -23,10 +23,12 @@ nav {
     color: $rollmustard;
   }
   #brand {
+    display: block;
     font-family: 'Courgette', cursive;
     font-size: 1.8rem;
     text-decoration: none;
     color: $rollmustard;
+    padding: 3px 0 0 10px;
   }
   .fa-comments {
     text-decoration: none;

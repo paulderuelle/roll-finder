@@ -1,7 +1,8 @@
 <div class="profile-global-container" data-controller="review">
   <div class="profile-display">
-    <div class="profile-btn-container">
-      <% if current_user == @user %>
+
+    <% if current_user == @user %>
+      <div class="profile-btn-container">
         <div class="btn-profile">
           <%= link_to edit_user_path(current_user), class: "edit" do %>
             <% concat content_tag(:i, "", class: "fa-solid fa-pencil", style:"color: #04293a;") %>
@@ -12,8 +13,9 @@
             <% concat content_tag(:i, "", class: "fa-solid fa-power-off", style:"color: #04293a;") %>
           <% end %>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
+
     <div class="profile-headers-container">
       <div class="profile-highlights position-relative">
         <div class="user-avatar">
@@ -96,7 +98,7 @@
         <% stats_accepted_text =  accepted_bookings.count > 1 ? "tabletop games" : "tabletop game" %>
       <br>
         <%= "Reward #{accepted_bookings.count} #{stats_accepted_text} of radiant presence" %>
-          <i class="fa-solid fa-angle-down fa-lg" style="color: #042393A; margin: 20px auto;"></i>
+          <i class="fa-solid fa-angle-down fa-lg" style="color: #042393A; margin: 16px auto;"></i>
         <% incoming_user_events = @user.events.where("start_hours > ?", Time.now).count %>
         <%# <% @user == current_user ? stats_user_text = "You are" : stats_user_text = "#{ @user.first_name } is" %>
         <% stats_event_text = incoming_user_events > 1 ? "tabletop games" : "tabletop game" %>
@@ -110,7 +112,7 @@
         <div class="profile-event-games">
           <% event.games.each do |game| %>
             <%= link_to event_path(event) do %>
-              <%= image_tag game.image_url,  style: "width: 100px; height: 100px; object-fit:cover; object-position: top; box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.5);" %>
+              <%= image_tag game.image_url %>
             <% end %>
           <% end %>
         </div>
