@@ -15,7 +15,8 @@
       <%= text_field_tag :query,
             params[:query],
             class: "form-control event-search",
-            placeholder: "Search for a game..."
+            placeholder: "Search for a game...",
+            autocomplete: 'off'
         %>
       <%= submit_tag "Search", name: "", class: "btn btn-primary d-none" %>
     <% end %>

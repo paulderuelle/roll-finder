@@ -29,7 +29,7 @@
       <%= simple_form_for [@chatroom, @message],
         html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }} do |f| %>
         <div class="new-text">
-          <%= f.input :content, label: false, placeholder: "Type your message..." %>
+          <%= f.input :content, label: false, placeholder: "Type your message...", input_html: { autocomplete: 'off' } %>
         </div>
         <div style="text-align: center">
           <%= f.submit value: "Send message", class: "btn-main d-none", style: "width:100%" %>

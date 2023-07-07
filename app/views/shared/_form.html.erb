@@ -3,8 +3,8 @@
     <%# <h1>Host a new event</h1> %>
     <%= simple_form_for @event do |f| %>
       <div class="new-event-form">
-        <%= f.input :title, placeholder: "e.g. Evening board games" %>
-        <%= f.input :description, placeholder: "e.g. A friendly evening to discover new games!" %>
+        <%= f.input :title, placeholder: "e.g. Evening board games", input_html: { autocomplete: 'off' } %>
+        <%= f.input :description, placeholder: "e.g. A friendly evening to discover new games!", input_html: { autocomplete: 'off' } %>
         <label for="">Game choice</label>
         <div class="new-event-games">
           <% @games.each do |game| %>
