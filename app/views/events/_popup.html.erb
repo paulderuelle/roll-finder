@@ -1,6 +1,6 @@
 <% event.games.each do |game| %>
   <div class="pin" data-action="mousedown->map-animation#closeMap mousedown->event-carousel#scrollTo"
                    data-event-carousel-id-param="<%= event.id %>">
-    <%= image_tag game.image_url, style: "width:60px; height: 60px; object-fit: cover" %>
+    <%= image_tag game.image_url, style: "width:60px; height: 60px; object-fit: cover; object-position: top;" %>
   </div>
 <% end %>
