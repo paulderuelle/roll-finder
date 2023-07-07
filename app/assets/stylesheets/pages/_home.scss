@@ -6,6 +6,7 @@
     color: $rollblue;
     font-size: 37px;
     font-weight: 900;
+    padding: 0 10px;
   }
   a {
     text-decoration: none;
@@ -23,20 +24,20 @@
   height: 8rem;
   .homepage-txt-btn {
     color: $rollmustard;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 600;
     text-align: center;
   }
   .homepage-create-txt {
-    margin-right: 9px;
+    margin-right: -72px;
+    line-height: 1.3em;
   }
   .homepage-near-txt {
-    margin-left: -20px;
+    margin-left: -81px;
+    line-height: 1.3em;
   }
-  .homepage-create-img {
-    margin-right: 30px;
-  }
+
   .homepage-near-img {
-    margin-left: 30px;
+    margin-left: -8px;
   }
 }
