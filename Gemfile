@@ -85,3 +85,5 @@ group :test do
 end
 
 gem "faker"
+
+gem "sinatra", "~> 3.0"
