@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     resources :reviews, only: %i[new create edit update]
   end
 
+  get "/github", to: "github#index"
+  get "/github/callback", to: "github#callback"
 
   resources :bookings, only: %i[index edit update destroy]
   # member do
