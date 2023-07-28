@@ -38,10 +38,10 @@ module GitAuthHelper
     uri = URI("https://api.github.com/user")
 
     result = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
-      body = {"access_token" => token}.to_json
+      body = { "access_token" => token }.to_json
 
       auth = "Bearer #{token}"
-      headers = {"Accept" => "application/json", "Content-Type" => "application/json", "Authorization" => auth}
+      headers = { "Accept" => "application/json", "Content-Type" => "application/json", "Authorization" => auth }
 
       http.send_request("GET", uri.path, body, headers)
     end
@@ -49,28 +49,51 @@ module GitAuthHelper
     parse_response(result)
   end
 
-  # get "/" do
-  #   link = '<a href="https://github.com/login/oauth/authorize?client_id=<%= CLIENT_ID %>">Login with GitHub</a>'
-  #   erb link
-  # end
+  # def user_repositories(token)
+  #   uri = URI("https://api.github.com/user/repos")
 
-  # get "/github/callback" do
-  #   code = params["code"]
+  #   result = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
+  #     auth = "Bearer #{token}"
+  #     headers = { "Accept" => "application/json", "Authorization" => auth }
 
-  #   token_data = exchange_code(code)
-
-  #   if token_data.key?("access_token")
-  #     token = token_data["access_token"]
-
-  #     user_info = user_info(token)
-  #     handle = user_info["login"]
-  #     name = user_info["name"]
-
-  #     render = "Successfully authorized! Welcome, #{name} (#{handle})."
-  #     erb render
-  #   else
-  #     render = "Authorized, but unable to exchange code #{code} for token."
-  #     erb render
+  #     http.send_request("GET", uri.path, nil, headers)
   #   end
+
+  #   parse_response(result)
   # end
+
+  def user_repositories_with_gemfile(token)
+    uri = URI("https://api.github.com/user/repos")
+
+    result = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
+      auth = "Bearer #{token}"
+      headers = { "Accept" => "application/json", "Authorization" => auth }
+
+      http.send_request("GET", uri.path, nil, headers)
+    end
+
+    repositories = parse_response(result)
+
+    repositories_with_gemfile = []
+    repositories.each do |repo|
+      gemfile = fetch_gemfile_content(token, repo['full_name'])
+      repositories_with_gemfile << { 'name' => repo['name'], 'gemfile' => gemfile } if gemfile
+    end
+
+    repositories_with_gemfile
+  end
+
+  def fetch_gemfile_content(token, repo_full_name)
+    uri = URI("https://api.github.com/repos/#{repo_full_name}/contents/Gemfile")
+
+    result = Net::HTTP.start(uri.host, uri.port, use_ssl: true) do |http|
+      auth = "Bearer #{token}"
+      headers = { "Accept" => "application/json", "Authorization" => auth }
+
+      http.send_request("GET", uri.path, nil, headers)
+    end
+
+    content_response = parse_response(result)
+    return Base64.decode64(content_response["content"]) if content_response.key?("content")
+  end
 end

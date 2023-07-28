@@ -1,1 +1,8 @@
-<%= @render %>
+<% @repositories_with_gemfile.each do |repo| %>
+  <h3><%= repo['name'] %></h3>
+  <% if repo['gemfile'] %>
+    <pre><%= repo['gemfile'] %></pre>
+  <% else %>
+    <p>No Gemfile found for this repository.</p>
+  <% end %>
+<% end %>
