@@ -6,4 +6,4 @@
 RollFinder is an application to find players around your location and enable you to bring out your old board game boxes from the closet or organize large gaming sessions! 🔥
 This project was developed as a team effort, from the conception stage to deployment, while adhering to agile work techniques.
 
-**Website**: [https://rollfinder.online](https://rollfinder.online)
+**Website**: [https://rollfinder.online](https://www.rollfinder.online/)
